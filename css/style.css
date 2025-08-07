@@ -1,0 +1,314 @@
+@charset "utf-8";
+
+/* Pretendard 전체 굵기 */
+/* Pretendard 전체 굵기 */
+@font-face { font-family: 'Pretendard'; src: url('../font/Pretendard-Thin.woff2') format('woff2'); font-weight: 100; font-style: normal; }
+@font-face { font-family: 'Pretendard'; src: url('../font/Pretendard-ExtraLight.woff2') format('woff2'); font-weight: 200; font-style: normal; }
+@font-face { font-family: 'Pretendard'; src: url('../font/Pretendard-Light.woff2') format('woff2'); font-weight: 300; font-style: normal; }
+@font-face { font-family: 'Pretendard'; src: url('../font/Pretendard-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; }
+@font-face { font-family: 'Pretendard'; src: url('../font/Pretendard-Medium.woff2') format('woff2'); font-weight: 500; font-style: normal; }
+@font-face { font-family: 'Pretendard'; src: url('../font/Pretendard-SemiBold.woff2') format('woff2'); font-weight: 600; font-style: normal; }
+@font-face { font-family: 'Pretendard'; src: url('../font/Pretendard-Bold.woff2') format('woff2'); font-weight: 700; font-style: normal; }
+@font-face { font-family: 'Pretendard'; src: url('../font/Pretendard-Black.woff2') format('woff2'); font-weight: 900; font-style: normal; }
+
+/* MangoGrotesque 전체 굵기 */
+@font-face { font-family: 'MangoGrotesqueVF'; src: url('../font/MangoGrotesqueVF.woff2') format('woff2'); font-weight: 100 900; font-style: normal; }
+@font-face { font-family: 'MangoGrotesque'; src: url('../font/MangoGrotesque-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; }
+@font-face { font-family: 'MangoGrotesque'; src: url('../font/MangoGrotesque-Medium.woff2') format('woff2'); font-weight: 500; font-style: normal; }
+@font-face { font-family: 'MangoGrotesque'; src: url('../font/MangoGrotesque-Bold.woff2') format('woff2'); font-weight: 700; font-style: normal; }
+@font-face { font-family: 'MangoGrotesque'; src: url('../font/MangoGrotesque-ExtraBd.woff2') format('woff2'); font-weight: 800; font-style: normal; }
+
+
+@font-face { font-family: 'MangoGrotesque'; src: url('../font/MangoGrotesque-BlackItalic.woff2') format('woff2'); font-weight: 900; font-style: italic; }
+@font-face { font-family: 'MangoGrotesque'; src: url('../font/MangoGrotesque-ExtBdItal.woff2') format('woff2'); font-weight: 950; font-style: italic; }
+
+
+/* reset */
+
+*{margin: 0;padding: 0; box-sizing: border-box;}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, tbody, tfoot, thead, tr, th, td{margin:0;padding:0;}
+h1, h2, h3, h4, h5, h6 { font-size: inherit;}
+a {color: inherit; text-decoration: inherit;}
+img {vertical-align: middle;}
+a img {border: none;}
+li {list-style: none;}
+address, em, i {font-style: normal;}
+a:focus {outline: none}
+button:focus {outline: none}
+
+body {
+    font-family: 'Pretendard', sans-serif;
+  }
+
+/* 공통요소 */
+.wrap {overflow: hidden; background: #161616;}
+.inner {width:90%; margin: 0 auto; }
+
+
+  /* main */
+
+  .visual {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+    .visual img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(80%);
+  }
+
+  /* header */
+  .fixHeader {position: absolute; top: 10px; left: 0; width: 100%; z-index: 10; display: flex; justify-content: space-between; align-items: center; padding: 20px 60px; }
+  .fixHeader p {display: flex;}
+  .fixHeader .top  {width: 700px; display: flex; justify-content: space-between; margin-left: 250px;}
+  .fixHeader .logo2 {color: #fff;}
+  .fixHeader .logo3 {font-weight: 600;}
+  .fixHeader .logo3::after {content: ''; width: 150px; height: 3.5px; background-color: #161616; margin-top: 7px; margin-left: 10px;}
+
+  .fixHeader {
+    color: black;
+    transition: color 0.3s ease;
+  }
+  
+  .fixHeader.light-mode {
+    color: white;
+  }
+
+  .gnb {width: 350px;  margin-right: 115px;}
+  .gnb ul{display: flex; gap: 50px; }
+  .gnb ul li {font-weight: 500;}
+
+
+  /* 가운데 텍스트 */
+.bigName {
+  font-family: 'MangoGrotesqueVF', sans-serif;
+  font-weight: normal;
+  font-weight: 800;
+  font-style: normal;
+  color: #fff;
+  font-size: 550px;
+  line-height: 1;
+  letter-spacing: 0;
+  position: absolute;
+  top: 20%;
+  left: 19%;
+  z-index: 5;
+  text-align: center;
+  transition: all 0.4s ease;
+}
+.bigName.fixed {
+  font-size: 20px;
+  font-weight: 500;
+  position: fixed;
+  top: 30px;
+  left: 45px;
+  transform: translate(0, 0) scale(0.2);
+  transform-origin: top left;
+  z-index: 100;
+  font-family: 'Pretendard', sans-serif;
+}
+
+.scroll-text {
+  position: absolute;
+  bottom: 140px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 18px;
+  animation: floatUpDown 1.6s ease-in-out infinite;
+}
+
+@keyframes floatUpDown{
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+.scroll-text::after {
+  content: '';
+  position: absolute;
+  top: 150%;
+  left: 50%;
+  width: 2px;
+  height: 80px;
+  background-color: #fff;
+}
+
+.start-btn {
+  position: absolute;
+  bottom: 50px;
+  right: 100px;
+  margin-top: 40px;
+  padding: 14px 50px 14px 28px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border: none;
+  background: transparent; /* ✅ 버튼 배경 제거 */
+  color: #161616;
+  border-radius: 999px;
+  cursor: pointer;
+  z-index: 10;
+
+}
+
+.start-btn::after {
+  content: "";
+  position: absolute;
+  left: -16px; 
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 100px;
+  z-index: -1;
+  transition: all 0.4s ease;
+}
+
+.start-btn:hover::after {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+}
+
+/* hook */
+
+.hook .inner {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #161616;
+}
+
+.hook .text-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.hook .title-wrap {
+  font-size: 180px;
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+  letter-spacing: -1px;
+  color: #fff;
+}
+
+.hook .title-wrap h2 {font-weight: 900 !important;}
+
+.hook p.desc {
+  font-size:30px;
+  color: #fff;
+  text-align: center;
+  margin-top: 30px;
+}
+
+
+
+/* about */
+.about {color: #fff; padding: 200px 0;}
+.about-sticky { height: calc(100vh * 3); position: relative;}
+.about-title {position: sticky; top: 80px; font-family: 'Inter', sans-serif; font-size: 120px; font-variation-settings: "wght" 100; color: #2D9B4C; text-align: end; transition: font-variation-settings 0.5s ease; z-index: 10; background: #161616;}
+
+
+.about-item {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 60px;
+  transition: all 0.8s ease;
+  background: #161616;
+}
+
+.about-item:nth-child(1) {z-index: 3;}
+
+.about-item:nth-child(2) {z-index: 2;}
+
+.about-item:nth-child(3) {z-index: 1;}
+
+.about-img{
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  overflow: hidden;
+}
+
+.about-img img {
+  width: 700px;
+  display: block;
+  border-radius: 20px;
+}
+
+.img-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.about-img:hover .img-hover {
+  opacity: 1;
+}
+
+.about-text{
+text-align: end;
+}
+
+.about-text h3 {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 20px;
+  color: #2D9B4C;
+  border-bottom: 2px solid #2D9B4C;
+  padding-bottom: 3px;
+  margin-bottom: 20px;
+}
+
+.about-text p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #aaa;
+  max-width: 556px;
+}
+
+@keyframes testWeight {
+  0%   { font-variation-settings: "wght" 100; }
+  100% { font-variation-settings: "wght" 900; }
+}
+
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.marquee p {
+  font-size: 25px;
+  display: inline-block;
+  padding-left: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #fff;
+  border-top: 1px solid #fff;
+  animation: marquee 60s linear infinite;
+}
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+

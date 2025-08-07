@@ -1,43 +1,116 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sehui</title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Sehui</title>
 
-    <link rel="stylesheet" href="style.css" />
-</head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/scrolla/0.0.3/scrolla.min.js"></script>
+       
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap">
+        <link rel="stylesheet" href="./css/style.css" />
+
+    
+        <script src="libs/splitting.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    </head>
 <body>
+
     <div class="wrap">
-        <header>
-            <div class="fixHeader">
-                <p class="logo"><span></span>S./EHUI</p>
-                <p class="logo2">SEHUI./LEE</p>
+    <section class="visual">
+        <img src="img/visual.jpg" alt="" />
+
+        <header class="fixHeader">
+            <div class="top">
+                <p class="logo2">&lt;SEHUI./LEE&gt;</p>
                 <p class="logo3">Visual & UX/UI Designer <span></span></p>
-                <nav class="gnb">
-                    <ul>
-                        <li><a href="#main">Main</a></li>
-                        <li><a href="#aboutme">About me</a></li>
-                        <li><a href="#project">Project</a></li>
-                        <li><a href="#skill">Skill</a></li>
-                    </ul>
-                </nav>
             </div>
+
+            <nav class="gnb">
+            <ul>
+                <li><a href="#main">Main</a></li>
+                <li><a href="#aboutme">About me</a></li>
+                <li><a href="#project">Project</a></li>
+                <li><a href="#skill">Skill</a></li>
+            </ul>
+            </nav>
         </header>
-        <main>
-            <section class="visual">
-                <p class="mainImg"><img src="img/visual.jpg" alt=""></p>
-                <h1 class="bigName">LSH</h1>
-            </section>
-        </main>
 
+        <div class="inner">
+            <h1 class="bigName">LEESEHUI</h1>
+            <p class="scroll-text">( SCROLL )</p>
+        <button class="start-btn">LET'S BEGIN!</button>
+        </div>
+    </section>
 
+    <section class="hook">
+        <div class="inner">
+            <div class="title-wrap">
+            <h2 class="title animate-title"><span>WORK</span></h2>
+            <h2 class="title animate-title"><span>BY</span></h2>
+            <h2 class="title animate-title"><span>SEHUI<span class="dot">·</span></span></h2>
+        </div>
+        <p class="desc">
+            I observe, empathize, and design.<br>
+            Good design comes from care.<br>
+            And yes — I notice everything.
+        </p>
+        </div>
+    </section>
 
+    <section class="about">
+        <div class="inner">
+            <h2 class="about-title">About Me</h2>
 
+            <div class="about-sticky">
+                <div class="about-item item1">
+                    <div class="about-img">
+                        <img src="img/item1.png" alt="졸업사진">
+                        <img src="img/item1-cover.png" alt="호버 이미지" class="img-hover">
+                    </div>
+                    <div class="about-text">
+                        <h3>인덕대학교 시각디자인 전문학사</h3>
+                        <p>시각디자인을 3년간 전공하며 앨범 디자인, 편집 디자인,
+                        패키지 디자인, 브랜드 창업 디자인 등 다양한 분야의 디자인을 경험했습니다.
+                        졸전을 준비하는 3학년때 처음 접하게 된 UX/UI 디자인에 가장 큰 흥미를 느꼈고,
+                        이후UX/UI 디자이너로서의 역량을 키우는 데 집중하게 되었습니다.</p>
+                    </div>
 
+                </div>
 
+                <div class="about-item item2">
+                    <div class="about-img">
+                        <img src="img/item2.png" alt="학원">
+                        <img src="img/item2-cover.png" alt="호버 이미지" class="img-hover">
+                    </div>
+                    <div class="about-text">
+                        <h3>강남 이젠아카데미 프론트엔드 부트캠프 수료</h3>
+                        <p>웹 페이지 마크업부터 동적인 사용자 인터랙션 구현까지, HTML/CSS/JavaScript를 통해 퍼블리싱 역량을 쌓았고, React의 컴포넌트 구조를 바탕으로 효율적인 UI 구성과 상태 관리 기초를 익혔습니다.</p>
+                    </div>
 
+                </div>
 
-     </div>
+                <div class="about-item item3">
+                    <div class="about-img">
+                        <img src="img/item1.png" alt="경력">
+                        <img src="img/item3-cover.png" alt="호버 이미지" class="img-hover">
+                    </div>
+                    <div class="about-text">
+                        <h3>관세법인 수출통관 직무경험</h3>
+                        <p>관세법인에서의 근무 경험은 사용자 중심 사고에 대한 기반이 되었습니다. 수출입 기업 고객들과의 지속적인 커뮤니케이션을 통해 문제를 파악하고 해결안을 제시하는 과정을 반복하며, 실제 사용자의 니즈를 빠르게 파악하고 효율적으로 대응하는 감각을 키울 수 있었습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="marquee">
+            <p>✌🏻 2000.02.21 ✌🏻 NEAREST BOND SESSION:SEOUL UXUI DESIGNER ✌🏻 2000.02.21 ✌🏻 NEAREST BOND SESSION:SEOUL UXUI DESIGNER ✌🏻 2000.02.21 ✌🏻 NEAREST BOND SESSION:SEOUL UXUI DESIGNER ✌🏻 2000.02.21 ✌🏻 NEAREST BOND SESSION:SEOUL UXUI DESIGNER ✌🏻 2000.02.21 ✌🏻 NEAREST BOND SESSION:SEOUL UXUI DESIGNER ✌🏻 2000.02.21 ✌🏻 NEAREST BOND SESSION:SEOUL UXUI DESIGNER ✌🏻 2000.02.21 ✌🏻 NEAREST BOND SESSION:SEOUL UXUI DESIGNER ✌🏻 2000.02.21 ✌🏻 NEAREST BOND SESSION:SEOUL UXUI DESIGNER ✌🏻 2000.02.21 ✌🏻 NEAREST BOND SESSION:SEOUL UXUI DESIGNER ✌🏻 2000.02.21 ✌🏻 NEAREST BOND SESSION:SEOUL UXUI DESIGNER ✌🏻 2000.02.21 ✌🏻 NEAREST BOND SESSION:SEOUL UXUI DESIGNER</p>
+        </div>
+    </section>
+    
+    </div>
 </body>
+<script src="js/script.js"></script>
 </html>
