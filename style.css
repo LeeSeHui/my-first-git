@@ -1,0 +1,112 @@
+@charset "utf-8";
+
+/* Pretendard 전체 굵기 */
+@font-face {
+    font-family: 'Pretendard';
+    src: url('./fonts/Pretendard-Thin.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('./fonts/Pretendard-ExtraLight.woff2') format('woff2');
+    font-weight: 200;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('./fonts/Pretendard-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('./fonts/Pretendard-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('./fonts/Pretendard-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('./fonts/Pretendard-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('./fonts/Pretendard-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('./fonts/Pretendard-Black.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+  }
+
+
+  /* MangoGrotesque 전체 굵기 */
+  @font-face {
+    font-family: 'MangoGrotesque';
+    src: url('./fonts/MangoGrotesque-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'MangoGrotesque';
+    src: url('./fonts/MangoGrotesque-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'MangoGrotesque';
+    src: url('./fonts/MangoGrotesque-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'MangoGrotesque';
+    src: url('./fonts/MangoGrotesque-Black.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'MangoGrotesque';
+    src: url('./fonts/MangoGrotesque-BlackItalic.woff2') format('woff2');
+    font-weight: 900;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: 'MangoGrotesque';
+    src: url('./fonts/MangoGrotesque-ExtBdItal.woff2') format('woff2');
+    font-weight: 950;
+    font-style: italic;
+  }
+  
+  
+
+/* reset */
+
+*{margin: 0;padding: 0; box-sizing: border-box;}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, tbody, tfoot, thead, tr, th, td{margin:0;padding:0;}
+h1, h2, h3, h4, h5, h6 {font-weight: 700; font-size: inherit;}
+a {color: inherit; text-decoration: inherit;}
+img {vertical-align: middle;}
+a img {border: none;}
+li {list-style: none;}
+address, em, i {font-style: normal;}
+a:focus {outline: none}
+button:focus {outline: none}
+
+body {
+    font-family: 'Pretendard', sans-serif;
+  }
+
+  /* header */
+
