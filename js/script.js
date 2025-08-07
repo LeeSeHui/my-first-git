@@ -146,16 +146,56 @@ gsap.to(".bigName", {
         ease: "power1.out"
     });
 
-    // ABOUT
-    gsap.to(".about-title", {
-      scrollTrigger: {
-        trigger: ".about-title",
-        start: "top bottom",    // 아래에서부터 시작해서
-        end: "top 50%",         // 고정 시작 직전까지 굵어짐
-        scrub: true
-      },
-      fontVariationSettings: "'wght' 900"
-    });
+
+// 💥 About Me 타이틀 굵어지고 고정
+ScrollTrigger.create({
+  trigger: ".about-sticky",
+  start: "top top",
+  end: "50% top",
+  scrub: true,
+  onUpdate: (self) => {
+    const wght = 100 + Math.round(self.progress * 800); // 점점 굵어짐
+    document.querySelector(".about-title").style.fontVariationSettings = `"wght" ${wght}`;
+  },
+  onLeave: () => {
+    document.querySelector(".about-title").classList.add("fixed-title");
+  },
+  onLeaveBack: () => {
+    document.querySelector(".about-title").classList.remove("fixed-title");
+  }
+});
 
 
-    // 
+// 💥 카드 순차 등장 & 이전 카드 덮기
+gsap.registerPlugin(ScrollTrigger);
+
+const items = document.querySelectorAll(".about-item");
+
+items.forEach((item, index) => {
+  ScrollTrigger.create({
+    trigger: ".about-sticky",
+    start: `${10 + index * 35}% top`,
+    end: `${10 + (index + 1) * 100}% top`,
+    scrub: true,
+    onUpdate: (self) => {
+      items.forEach((el, i) => {
+        el.classList.remove("active", "dimmed");
+
+        if (i < index) {
+          el.classList.add("dimmed");
+        } else if (i === index) {
+          el.classList.add("active");
+        }
+        // 👉 이후 카드들은 비활성
+      });
+    }
+  });
+});
+
+ScrollTrigger.create({
+  trigger: ".about-sticky",
+  start: "top top",
+  end: "bottom+=2000 top", // 필요한 만큼 길게
+  pin: ".about-sticky",
+  scrub: true,
+});
