@@ -147,55 +147,170 @@ gsap.to(".bigName", {
     });
 
 
-// 💥 About Me 타이틀 굵어지고 고정
+// 💥 About: 화면 고정(pin) + 카드 스텝 전환
+gsap.registerPlugin(ScrollTrigger);
+
+const titleEl = document.querySelector(".about-title");
+const items = gsap.utils.toArray(".about-item");
+
+// 1) 초기엔 숨김
+gsap.set(titleEl, { autoAlpha: 0 });   // 초기 숨김
+
+const DELAY_PX = -300; // hook이 화면 위로 사라진 뒤 몇 px 더 지나서 보여줄지
+
 ScrollTrigger.create({
-  trigger: ".about-sticky",
-  start: "top top",
-  end: "50% top",
-  scrub: true,
-  onUpdate: (self) => {
-    const wght = 100 + Math.round(self.progress * 800); // 점점 굵어짐
-    document.querySelector(".about-title").style.fontVariationSettings = `"wght" ${wght}`;
-  },
-  onLeave: () => {
-    document.querySelector(".about-title").classList.add("fixed-title");
+  trigger: ".hook",
+  start: `bottom top+=${DELAY_PX}`, // 🔹 hook의 bottom이 viewport top을 지나 +DELAY_PX일 때
+  onEnter: () => {
+    titleEl.classList.add("fixed-title");
+    gsap.to(titleEl, { autoAlpha: 1, duration: 1, ease: "power2.out" });
   },
   onLeaveBack: () => {
-    document.querySelector(".about-title").classList.remove("fixed-title");
+    gsap.to(titleEl, { autoAlpha: 0, duration: 0.25, onComplete: () => {
+      titleEl.classList.remove("fixed-title");
+    }});
   }
 });
 
-
-// 💥 카드 순차 등장 & 이전 카드 덮기
-gsap.registerPlugin(ScrollTrigger);
-
-const items = document.querySelectorAll(".about-item");
-
-items.forEach((item, index) => {
-  ScrollTrigger.create({
-    trigger: ".about-sticky",
-    start: `${10 + index * 35}% top`,
-    end: `${10 + (index + 1) * 100}% top`,
-    scrub: true,
-    onUpdate: (self) => {
-      items.forEach((el, i) => {
-        el.classList.remove("active", "dimmed");
-
-        if (i < index) {
-          el.classList.add("dimmed");
-        } else if (i === index) {
-          el.classList.add("active");
-        }
-        // 👉 이후 카드들은 비활성
-      });
-    }
-  });
-});
-
+// 3) 스테이지 자체를 핀(화면 고정)
 ScrollTrigger.create({
   trigger: ".about-sticky",
   start: "top top",
-  end: "bottom+=2000 top", // 필요한 만큼 길게
-  pin: ".about-sticky",
+  end: () => "+=" + (items.length * 900), // 필요하면 900 숫자만 조절
+  pin: true,
   scrub: true,
+  pinSpacing: true
 });
+
+// 4) 진행도에 따라 활성 카드 전환 (겹치기 연출)
+ScrollTrigger.create({
+  trigger: ".about-sticky",
+  start: "top top",
+  end: () => "+=" + (items.length * 900),
+  scrub: true,
+  onUpdate: (self) => {
+    const idx = Math.min(items.length - 1, Math.floor(self.progress * items.length));
+    items.forEach((el, i) => {
+      el.classList.toggle("active", i === idx);
+      el.classList.toggle("dimmed", i < idx);
+    });
+  }
+});
+
+// 5) 등장 애니메이션은 sticky 대상이 아닌 '자식'에만
+items.forEach((item) => {
+  const innerEls = item.querySelectorAll(".about-img, .about-text");
+  gsap.fromTo(innerEls, { y: 40, opacity: 0 }, {
+    y: 0, opacity: 1, duration: 0.6, ease: "power2.out", stagger: 0.05,
+    scrollTrigger: { trigger: item, start: "top 90%" }
+  });
+});
+
+
+// teamproject
+// ===== Intro: 가로 스크롤 =====
+(() => {
+  if (!window.gsap || !window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const wrap  = document.querySelector(".intro-wrap");
+  if (!wrap) return;
+
+  const track = wrap.querySelector(".intro-track");
+
+  // 트랙 총 가로 길이 - 화면 너비 만큼 이동
+  const len = () => Math.max(0, track.scrollWidth - window.innerWidth);
+
+  // 가로 스크롤
+  gsap.to(track, {
+    x: () => -len(),
+    ease: "none",
+    scrollTrigger: {
+      id: "intro-horizontal",
+      trigger: wrap,
+      start: "top top",
+      end: () => "+=" + len(),
+      pin: true,
+      scrub: 1,
+      anticipatePin: 1,
+      invalidateOnRefresh: true
+    }
+  });
+
+  window.addEventListener("resize", () => ScrollTrigger.refresh());
+})();
+
+
+(() => {
+  if (!window.gsap || !window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* 0) 인트로 한 번만 핀 */
+  const intro = document.querySelector(".tproj-intro");
+  if (intro) {
+    ScrollTrigger.create({
+      id: "tproj-intro-pin",
+      trigger: intro,
+      start: "top top",
+      end: "+=700",        // 인트로 멈춰있는 길이 (원하면 500~1200 조절)
+      pin: true,
+      scrub: true
+    });
+  }
+
+  /* 1) 각 프로젝트: 헤더 살짝 보여주고 → 가로 스크롤 */
+  document.querySelectorAll(".tproj-sec").forEach((sec, i) => {
+    const head  = sec.querySelector(".tproj-head");
+    const wrap  = sec.querySelector(".tproj-wrap");
+    const track = sec.querySelector(".tproj-track");
+    const slides = sec.querySelectorAll(".tproj-slide");
+
+    // 가로 길이 계산
+    const len = () => Math.max(0, track.scrollWidth - window.innerWidth);
+
+    // 스테이지 핀
+    ScrollTrigger.create({
+      id: `tproj-pin-${i}`,
+      trigger: wrap,
+      start: "top top",
+      end: () => "+=" + (len() || 1),
+      pin: true,
+      scrub: 1,
+      invalidateOnRefresh: true,
+      anticipatePin: 1
+    });
+
+// 🔒 타이틀도 같은 범위 동안 고정 (여백 추가 X)
+ScrollTrigger.create({
+  id: `tproj-headpin-${i}`,
+  trigger: wrap,
+  start: "top top",
+  end: () => "+=" + len(),
+  pin: head,
+  pinSpacing: false,
+  anticipatePin: 1
+});
+    // 트랙 이동 + 슬라이드 스냅(한 장씩 크게)
+    gsap.to(track, {
+      x: () => -len(),
+      ease: "none",
+      scrollTrigger: {
+        id: `tproj-move-${i}`,
+        trigger: wrap,
+        start: "top top",
+        end: () => "+=" + len(),
+        scrub: 1,
+        invalidateOnRefresh: true,
+        snap: {
+          snapTo: (v) => {
+            const steps = slides.length - 1;
+            return steps>0 ? Math.round(v * steps)/steps : 0;
+          },
+          duration: 0.25
+        }
+      }
+    });
+  });
+
+  window.addEventListener("resize", () => ScrollTrigger.refresh());
+})();

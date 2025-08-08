@@ -41,7 +41,7 @@ body {
   }
 
 /* 공통요소 */
-.wrap {overflow: hidden; background: #161616;}
+.wrap {overflow-x: hidden; overflow-y: visible; background: #161616;}
 .inner {width:90%; margin: 0 auto; }
 
 
@@ -215,96 +215,162 @@ body {
 
 
 /* about */
-.about {position: relative; overflow: visible; color: #fff; background: #161616; padding: 200px 0;}
-.about-title {position: sticky; top: 300px; font-family: 'Inter', sans-serif; font-size: 120px; font-variation-settings: "wght" 100; color: #2D9B4C; text-align: end; transition: font-variation-settings 0.5s ease; z-index: 10; background: none;}
+
+
+.about, .about .inner, .about .about-sticky {overflow: visible;}
+.about {position: relative; color: #fff; background: #161616; padding: 200px 0;}
+.about-title {position: sticky; font-family: 'Inter', sans-serif; font-size: 120px; font-variation-settings: "wght" 100; color: #2D9B4C; text-align: end; transition: font-variation-settings 0.5s ease; z-index: 10; background: none;}
 
 .fixed-title {
   position: fixed;
-  top: 300px;
-  right: 15%;
+  top: 200px;
+  right: 8%;
   text-align: end;
   z-index: 50;
   font-variation-settings: "wght" 900;
 
 }
 
-.about .about-sticky {position: relative; height: 200vh;}
+.about .about-sticky {position: relative; height: 100vh;}
+/* .about-item {position: relative; height: 170vh;}  */
+.about-item {position: absolute; inset: 0; opacity: 0; transition: opacity .35s ease; top: 100px; z-index: 1;}
+/* .about-item.active {filter: none !important; z-index: 10;} */
+.about-item.active {opacity: 1; z-index: 3;}
+/* .about-item .stick {position: sticky; top: 12vh;} */
+.about-item .stick {position: static; top: auto;  display: flex; justify-content: space-between;}
+/* .about-item.dimmed {filter: brightness(0.35); z-index: 5;} */
+.about-item.dimmed {filter: brightness(0.35); z-index: 2;}
 
-.about-item {
-  position: absolute;
-  top: 30px;
-  left: 0;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 80px;
-  transform: translateY(200px);
-  opacity: 0;
-  transition: all 0.8s ease;
-  z-index: 1;
-}
-
-.about-item.active {
-  transform: translateY(200px);
-  opacity: 1;
-  z-index: 10;
-}
-
-.about-item.dimmed {
-  filter: brightness(0.3);
-  z-index: 5;
-}
-
-.about-img {width: 1000px; margin-bottom: 20px; position: relative;}
+.about-img {width: 800px; margin-bottom: 20px; position: relative;}
 .about-img img {width: 100%; display: block;}
-.about-img .img-hover {position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: 0.5s;}
+.img-hover {position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 0.4s ease;}
 .about-img:hover .img-hover {opacity: 1;}
-
-
-.about-text {max-width: 800px;}
+.about-text {max-width: 550px; text-align: end; margin-top: 300px; margin-right: 150px;}
 .about-text h3 {font-size: 28px; margin-bottom: 10px;}
-.about-text p {font-size: 18px; line-height: 1.6;}
+.about-text p {font-size: 18px; line-height: 1.6; }
 
-.img-hover {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.about-img:hover .img-hover {
-  opacity: 1;
-}
-
-
-
-@keyframes testWeight {
-  0%   { font-variation-settings: "wght" 100; }
-  100% { font-variation-settings: "wght" 900; }
-}
-
-.marquee {
-  overflow: hidden;
-  white-space: nowrap;
-  box-sizing: border-box;
-}
+.marquee {width: 100%; white-space: nowrap; box-sizing: border-box; padding: 0; margin: 0;}
 
 .marquee p {
   font-size: 25px;
   display: inline-block;
   padding-left: 100%;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #fff;
-  border-top: 1px solid #fff;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  border-bottom: 2px solid #fff;
+  border-top: 2px solid #fff;
   animation: marquee 60s linear infinite;
 }
 
 @keyframes marquee {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-100%); }
+}
+
+
+/* team project */
+
+/* ====== Intro : 가로 스크롤 ====== */
+.intro-wrap{
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: #fff;
+  color: #111;
+}
+.intro-track{
+  display: flex;
+  height: 100%;
+  will-change: transform;
+}
+/* 슬라이드가 1개여도 오른쪽에 1패널만큼 더 공간을 만들어서 가로 이동이 생기게 */
+.intro-track::after{
+  content:"";
+  flex: 0 0 100vw;
+}
+
+.intro-slide{
+  flex: 0 0 100vw;
+  height: 100%;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+}
+.intro-slide h1{ font-size: clamp(40px, 8vw, 120px); margin: 0 0 12px; }
+.intro-slide p{ opacity:.75; }
+
+/* (참고) 프로젝트 구간에서 이미지 간격 넓을 때는 gap을 0으로 */
+.tproj-track{ display:flex; height:100%; gap: 0; }
+
+
+
+
+/* 각 프로젝트 */
+/* 섹션 레이어 기준 */
+
+/* 1) 스페이서 배경을 흰색으로 강제 */
+.gsap-pin-spacer { background:#fff !important; }
+
+.tproj-sec{
+  position: relative;
+  background: #fff;
+  color: #161616;
+  isolation: isolate;
+  padding-top: 10px;
+}
+
+/* 헤더는 항상 트랙 위에 떠야 함 */
+.tproj-head{
+  position: relative;
+  z-index: 20;          /* ← 추가 */
+  padding: 24px 5vw 12px;
+  background: #fff;   
+  margin: 0;
+}
+
+/* 고정 타이틀 안의 텍스트 스타일 */
+.tproj-head h2 {
+  font-size: 40px;
+  margin: 0 0 8px;
+  line-height: 1.1;
+}
+
+
+/* 트랙 영역: 타이틀만큼 아래에서 시작 */
+:root { --headSpace: 80px; }   /* 타이틀 블록 높이(상황 따라 100~160px로 조절) */
+
+/* 트랙은 헤더보다 아래 레이어 */
+.tproj-wrap{
+  position: relative;
+  height: 62vh;
+  overflow: hidden;
+  z-index: 10;
+  background: #fff;
+  margin-top: 0;
+  padding: 0 3vw;
+}
+/* 혹시 또 겹치면 안전핀 */
+.tproj-head { margin:0; padding:24px 5vw 12px; }
+
+/* 가로 트랙 + 이미지 */
+.tproj-track{ display:flex; height:100%; gap: 20px; padding-left: 10vw; }
+
+.tproj-slide{
+  flex: 0 0 60vw;                 /* 한 장이 화면의 80% */
+  height: 100%;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+}
+.tproj-slide img{              /* 세로 너무 커지지 않게 */
+  width: 100%;
+  height: auto;                   /* 비율 유지, 잘림 방지 */
+  object-fit: contain;  
+  display: block;       
+  max-height: 60vh;   
+}
+@media (max-width:900px){
+  .tproj-intro__title{font-size:64px}
+  .tproj-head{height:40vh}
+  .tproj-head h3{font-size:28px}
 }
 
 
