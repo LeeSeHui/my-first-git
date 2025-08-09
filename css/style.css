@@ -328,7 +328,7 @@ body {
 
 /* 고정 타이틀 안의 텍스트 스타일 */
 .tproj-head h2 {
-  font-size: 40px;
+  font-size: 30px;
   margin: 0 0 8px;
   line-height: 1.1;
 }
@@ -341,7 +341,7 @@ body {
 .tproj-wrap{
   position: relative;
   height: 80vh;
-  /* overflow: hidden; */
+  overflow: visible !important;
   z-index: 10;
   background: #fff;
   margin-top: 0;
@@ -354,7 +354,7 @@ body {
 .tproj-track{ display:flex; height:100%; gap: 20px; padding-left: 10vw; }
 
 .tproj-slide {
-  flex: 0 0 70vw; /* 원래 60vw였다면 넓게 조정 */
+  flex: 0 0 65vw; /* 원래 60vw였다면 넓게 조정 */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -363,8 +363,8 @@ body {
 }
 
 .tproj-slide img {
+  height: 60vh;
   width: 100%;        /* 부모 안에서 꽉 차게 */
-  height: auto;
   object-fit: cover;  /* 또는 contain (원하는 스타일에 따라) */
   border-radius: 10px;
 }
@@ -377,12 +377,17 @@ body {
   gap: 20px;
   margin-top: 16px;
 }
-.left {flex: 1; display: flex; flex-direction: column; gap: 10px;}
+
+.bottom,.slide-desc{margin-top:12px;}
+
+.left { width: 330px; display: flex; flex-direction: column; gap: 10px; margin-top: 12px}
+.left .p-name {font-size: 28px; font-weight: 700;}
+.left .leader {font-size: 18px; padding: 5px; border: 2px solid #2D9B4C; border-radius: 50px; width: 150px; text-align: center; margin-top: 10px;}
+
 .chart {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 10px;
 }
 
 .label {
@@ -392,9 +397,9 @@ body {
 
 .bar-wrap {
   position: relative;
-  background: #ccc;
-  width: 130px;
-  height: 8px;
+  background: #7C7C7C;
+  width: 150px;
+  height: 10px;
   border-radius: 4px;
   overflow: hidden;
 }
@@ -414,11 +419,12 @@ body {
   text-align: right;
 }
 .slide-desc {
+  background: #4C4C4C;
+  border-radius: 20px;
   flex: 2;
-  color: #161616;
-  font-size: 14px;
+  color: #fff;
   line-height: 1.6;
-
+  padding: 25px;
 }
 
 .slide-desc h4 {
@@ -427,7 +433,7 @@ body {
 }
 
 .slide-desc p {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
 }
 
@@ -436,6 +442,118 @@ body {
   .tproj-intro__title{font-size:64px}
   .tproj-head{height:40vh}
   .tproj-head h3{font-size:28px}
+}
+
+
+/* 두번째 슬라이드부터 설명 절대값 */
+/* 공통: 슬라이드 박스 기준점 */
+.tproj-slide{position:relative;}
+
+/* 2번 슬라이드부터 desc는 절대배치 + 변수로 위치 조절 */
+.tproj-slide:not(:first-child) > .slide-desc{
+  position:absolute;
+  left:var(--desc-left, 20px);
+  right:var(--desc-right, auto);
+  bottom:var(--desc-bottom, 20px);
+  max-width:var(--desc-w, 520px);
+  background:#4a4a4a;
+  color:#fff;
+  border-radius:20px;
+  z-index:30;
+  height: 178px;
+}
+
+/* 두 번째 슬라이드부터 배경 제거 */
+.tproj-slide:nth-child(n+2) > .slide-desc {
+  background: none;
+  color: #161616; /* 글자색도 배경 없는 경우에 맞게 */
+}
+
+.tproj-slide:nth-child(n+3) > .slide-desc p {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+}
+
+/* 모바일에선 자연스럽게 아래로 떨어뜨리기 */
+@media (max-width:900px){
+  .tproj-slide:not(:first-child) > .slide-desc{
+    position:static; left:auto; right:auto; bottom:auto; max-width:100%; margin-top:12px;
+  }
+}
+
+
+
+/* 클론 */
+/* 1) 제목(왼쪽 큰 텍스트)은 Mango만 쓰기 + 굵기 명시 */
+.clone-tit p{
+  font-family:'MangoGrotesque', sans-serif; /* 정적 패밀리 */
+  font-weight:500;  /* Regular */
+  font-synthesis:none;
+  font-size: 90px;
+  margin-bottom: 320px;
+  letter-spacing: 2px;
+}
+
+/* 2) 본문 영역은 전부 Pretendard 400로 '고정' */
+.clone-text,
+.clone-text * {
+  font-family: 'Pretendard', sans-serif !important;
+  font-variation-settings: "wght" 400 !important;
+  font-synthesis: none !important;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* 3) 줄-hover 구조(정렬/폭 유지) */
+.section-text p { max-width: 850px; line-height: 1.8; margin: 0; word-break: keep-all; font-size: 20px; }
+.line-hover { max-width: 740px; text-align: left; white-space: normal; }
+.line-hover .hover-line { display:block; width:100%; color:rgba(255,255,255,.5); transition:color .25s; cursor: default; }
+.line-hover .hover-line:hover { color:#fff; }
+.line-hover .hover-line > span { display:inline; }
+
+/* 4) 레이아웃(지금 네 값 유지) */
+.clone-section { background:#161616; color:#fff; padding:100px 0; }
+.clone-section .inner { width:70%;height: 100vh;  display:flex; justify-content:space-between; align-items: center; }
+.clone-text { display:flex; flex-direction:column; gap:40px; }
+.section-text h3 { color:#2D9B4C; font-size:20px; margin:0 0 14px; font-weight: 600; }
+
+/* 5) 반응형 */
+@media (max-width:768px){
+  .clone-section .inner{ gap:36px; flex-direction:column; }
+  .section-text h3{ font-size:18px; }
+  .section-text p, .line-hover{ max-width:none; }
+}
+
+:root { --text-w: 820px; } /* 원하는 문단 폭만 여기서 조절 */
+
+.section-text p { max-width: var(--text-w); line-height: 1.8; margin: 0; word-break: keep-all; font-size: 20px; }
+.line-hover      { max-width: var(--text-w); text-align:left; white-space:normal; }
+.line-hover .hover-line{ display:block; width:100%; color:rgba(255,255,255,.5); transition:color .25s; cursor:default; }
+.line-hover .hover-line:hover{ color:#fff; }
+.line-hover .hover-line>span{ display:inline; }
+
+
+/* 클론 그리드 */
+/* 컨테이너 폭과 상관없이 가로 꽉 차게 */
+.fullbleed-image{
+  position: relative;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;                 /* 화면 꽉 채움 */
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);             /* 확대 시 삐져나가는 부분 가림 */
+}
+
+/* 중복된 규칙 하나로 정리 */
+.fullbleed-image img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;             /* 가득 채우기 */
+  transform: scale(1);
+  transform-origin: center center;
+  will-change: transform;
 }
 
 

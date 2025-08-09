@@ -314,3 +314,67 @@ ScrollTrigger.create({
 
   window.addEventListener("resize", () => ScrollTrigger.refresh());
 })();
+
+function splitIntoLines(p){
+  // 원문 가져오기 (br는 공백으로, 공백은 1칸으로)
+  const raw = p.textContent.replace(/\s+/g,' ').trim();
+  p.innerHTML = '';
+
+  // 단어 span 임시 생성
+  const words = raw.split(' ');
+  const temp = [];
+  words.forEach(w=>{
+    const s = document.createElement('span');
+    s.textContent = w + ' ';
+    p.appendChild(s);
+    temp.push(s);
+  });
+
+  // 줄 그룹핑
+  let lines = [], top = null, buf = [];
+  temp.forEach(s=>{
+    const y = s.offsetTop;
+    if(top === null) top = y;
+    if(y !== top){ lines.push(buf); buf = []; top = y; }
+    buf.push(s);
+  });
+  if(buf.length) lines.push(buf);
+
+  // 줄 래퍼로 재구성
+  p.innerHTML = '';
+  lines.forEach(line=>{
+    const wrap = document.createElement('span');
+    wrap.className = 'hover-line';
+    line.forEach(s=> wrap.appendChild(s));
+    p.appendChild(wrap);
+  });
+}
+
+// 실행 & 재계산(폰트 로드, 리사이즈)
+function applyAll(){
+  document.querySelectorAll('.line-hover').forEach(splitIntoLines);
+}
+
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(applyAll);
+} else {
+  window.addEventListener('load', applyAll);
+}
+
+let t;
+window.addEventListener('resize', ()=>{ clearTimeout(t); t = setTimeout(applyAll, 120); });
+
+// 그리드이미지확대
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.to(".fullbleed-image img", {
+  scale: 1.5,                 // 확대 비율 (원하면 1.8 등으로 조절)
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".fullbleed-image",
+    start: "top top",
+    end: "+=1000",            // 확대되는 구간 길이 (800~1400 사이 취향대로)
+    scrub: true,
+    pin: true                 // 한 화면 고정 후 다음 섹션으로 넘어감
+  }
+});
