@@ -294,8 +294,7 @@ body {
   height: 100%;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
 }
-.intro-slide h1{ font-size: clamp(40px, 8vw, 120px); margin: 0 0 12px; }
-.intro-slide p{ opacity:.75; }
+.intro-slide h1{font-family:'MangoGrotesque', sans-serif; font-size: clamp(40px, 8vw, 120px); margin: 0 0 12px; transform: translateX(500PX);}
 
 /* (참고) 프로젝트 구간에서 이미지 간격 넓을 때는 gap을 0으로 */
 .tproj-track{ display:flex; height:100%; gap: 0; }
@@ -306,8 +305,8 @@ body {
 /* 각 프로젝트 */
 /* 섹션 레이어 기준 */
 
-/* 1) 스페이서 배경을 흰색으로 강제 */
-.gsap-pin-spacer { background:#fff !important; }
+/* ✅ 프로젝트 구간에서만 pin-spacer 배경 적용 */
+.tproj-sec > .gsap-pin-spacer{background:#fff!important;}
 
 .tproj-sec{
   position: relative;
@@ -320,18 +319,30 @@ body {
 /* 헤더는 항상 트랙 위에 떠야 함 */
 .tproj-head{
   position: relative;
-  z-index: 20;          /* ← 추가 */
+  z-index: 1;        
   padding: 24px 5vw 12px;
   background: #fff;   
   margin: 0;
+
 }
+
+.tproj-head.is-active{z-index:20;}
 
 /* 고정 타이틀 안의 텍스트 스타일 */
 .tproj-head h2 {
   font-size: 30px;
   margin: 0 0 8px;
   line-height: 1.1;
+  color: #00270D;
 }
+
+.tproj-head p {
+  color: #2D9B4C;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+
 
 
 /* 트랙 영역: 타이틀만큼 아래에서 시작 */
@@ -348,7 +359,7 @@ body {
   padding: 0 3vw;
 }
 /* 혹시 또 겹치면 안전핀 */
-.tproj-head { margin:0; padding:24px 5vw 12px; }
+.tproj-head { margin:0; padding:24px 10vw 12px; }
 
 /* 가로 트랙 + 이미지 */
 .tproj-track{ display:flex; height:100%; gap: 20px; padding-left: 10vw; }
@@ -427,6 +438,8 @@ body {
   padding: 25px;
 }
 
+.slide-desc span {font-size: 20px; font-weight: 700; color: #2D9B4C;}
+
 .slide-desc h4 {
   font-size: 20px;
   margin-bottom: 8px;
@@ -435,6 +448,7 @@ body {
 .slide-desc p {
   font-size: 18px;
   line-height: 1.5;
+  font-weight: 500;
 }
 
 
@@ -454,13 +468,12 @@ body {
   position:absolute;
   left:var(--desc-left, 20px);
   right:var(--desc-right, auto);
-  bottom:var(--desc-bottom, 20px);
-  max-width:var(--desc-w, 520px);
+  bottom:var(--desc-bottom, 19px);
   background:#4a4a4a;
   color:#fff;
   border-radius:20px;
   z-index:30;
-  height: 178px;
+  height: 155px;
 }
 
 /* 두 번째 슬라이드부터 배경 제거 */
@@ -535,25 +548,78 @@ body {
 
 
 /* 클론 그리드 */
-/* 컨테이너 폭과 상관없이 가로 꽉 차게 */
-.fullbleed-image{
+.reveal-scene {
   position: relative;
-  z-index: 9999;
   width: 100vw;
-  height: 100vh;                 /* 화면 꽉 채움 */
+  height: 100vh;
   margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);             /* 확대 시 삐져나가는 부분 가림 */
+  margin-right: calc(50% - 50vw);
+  overflow: hidden;
 }
 
-/* 중복된 규칙 하나로 정리 */
-.fullbleed-image img{
-  display: block;
+.grid-layer {
+  position: relative;
   width: 100%;
   height: 100%;
-  object-fit: cover;             /* 가득 채우기 */
+}
+
+.grid-crop {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* 확대 시 삐져나오는 부분 가리기 */
+}
+
+.grid-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   transform: scale(1);
-  transform-origin: center center;
   will-change: transform;
 }
+
+.box-frame {
+  position: absolute;
+  inset: 0;
+  pointer-events: none; /* 클릭 방지 */
+}
+
+
+/* ====== 다음 섹션(겹침/전환 안전) ====== */
+.clone-list{ position:relative; z-index:1; background:#161616; color:#fff; min-height:100vh; }
+
+
+/* 다음 섹션이 위로 올라올 수 있게 보장 (안 되어 있으면 추가) */
+.tproj-sec, .clone-section { position: relative; z-index: 1; }
+/* clone-list */
+/* con02 */
+.con02 {width: 100%; background: #161616; padding: 400px 0;}
+
+.con02 .inner { color:#808080; text-align: left;}
+.con02 .inner ul li {text-align: right;}
+.con02 .inner ul li a {display: block; width: 100%; height: 100%;}
+.con02 .inner ul li a .title {font-size: 90px; font-weight: bolder; line-height: 1.1; letter-spacing: -5px; transition: all 0.5s ease-in-out; opacity: 1; }
+.con02 .inner ul li a .title span {display: inline-block; width: 10px;height: 10px; border-radius: 50%; background: #f45b40; margin-left: 30px;}
+
+.con02 .inner ul li a .color {line-height: 0.8; font-size: 100px; transition: all 0.5s ease-in-out; opacity: 1; }
+
+
+/* 왼쪽 고정 프리뷰 이미지 */
+.con02 .inner ul li a .fadeImg{
+  position: fixed;          /* 화면 왼쪽에 고정 */
+  left: 100px;               /* 원하는 여백으로 조절 */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 800px;             /* 크기 마음대로 */
+  height: auto;
+  object-fit: cover;
+  opacity: 0;               /* 기본은 숨김 */
+  filter: brightness(90%);
+  pointer-events: none;     /* 마우스 간섭 X */
+  z-index: 5;               /* 리스트보다 위 */
+}
+
+
+/* hover */
+.con02 .inner ul li a:hover .title {transition: all 0.3s ease-in-out; color: #2D9B4C;}
 
 

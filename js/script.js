@@ -288,7 +288,11 @@ ScrollTrigger.create({
   end: () => "+=" + len(),
   pin: head,
   pinSpacing: false,
-  anticipatePin: 1
+  anticipatePin: 1,
+  onEnter:     () => gsap.set(head, {autoAlpha: 1}),
+  onEnterBack: () => gsap.set(head, {autoAlpha: 1}),
+  onLeave:     () => gsap.set(head, {autoAlpha: 0}),  // ← 다음 섹션에선 안 보이게
+  onLeaveBack: () => gsap.set(head, {autoAlpha: 0})
 });
     // 트랙 이동 + 슬라이드 스냅(한 장씩 크게)
     gsap.to(track, {
@@ -367,14 +371,47 @@ window.addEventListener('resize', ()=>{ clearTimeout(t); t = setTimeout(applyAll
 // 그리드이미지확대
 gsap.registerPlugin(ScrollTrigger);
 
-gsap.to(".fullbleed-image img", {
-  scale: 1.5,                 // 확대 비율 (원하면 1.8 등으로 조절)
+gsap.to(".grid-img", {
+  scale: 1.35, // 확대 비율
   ease: "none",
   scrollTrigger: {
-    trigger: ".fullbleed-image",
+    trigger: ".reveal-scene",
     start: "top top",
-    end: "+=1000",            // 확대되는 구간 길이 (800~1400 사이 취향대로)
+    end: () => "+=" + window.innerHeight,
     scrub: true,
-    pin: true                 // 한 화면 고정 후 다음 섹션으로 넘어감
+    pin: true,
+    pinSpacing: false, // 다음 섹션 바로 붙게
+    anticipatePin: 1,
+    invalidateOnRefresh: true,
+    onUpdate: self => {
+      const fadeStart = 0.85; // 확대 거의 끝날 때 페이드 시작
+      const alpha = self.progress < fadeStart
+        ? 1
+        : 1 - (self.progress - fadeStart) / (1 - fadeStart);
+      gsap.set(".reveal-scene", { autoAlpha: alpha });
+    }
   }
+});
+
+
+// 클론 따라다니는 이미지
+// 기존 con02 hover 스크립트 전부 지우고 아래로 교체
+let activeImg = null;
+
+gsap.utils.toArray(".con02 ul li a").forEach((link) => {
+  const img = link.querySelector("img.fadeImg");
+  gsap.set(img, { autoAlpha: 0 });
+
+  link.addEventListener("mouseenter", () => {
+    if (activeImg && activeImg !== img) {
+      gsap.to(activeImg, { autoAlpha: 0, duration: 0.2 });
+    }
+    gsap.to(img, { autoAlpha: 1, duration: 0.25 });
+    activeImg = img;
+  });
+
+  link.addEventListener("mouseleave", () => {
+    gsap.to(img, { autoAlpha: 0, duration: 0.25 });
+    if (activeImg === img) activeImg = null;
+  });
 });
