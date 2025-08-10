@@ -371,27 +371,25 @@ window.addEventListener('resize', ()=>{ clearTimeout(t); t = setTimeout(applyAll
 // 그리드이미지확대
 gsap.registerPlugin(ScrollTrigger);
 
-gsap.to(".grid-img", {
-  scale: 1.35, // 확대 비율
-  ease: "none",
+const tl = gsap.timeline({
   scrollTrigger: {
     trigger: ".reveal-scene",
     start: "top top",
-    end: () => "+=" + window.innerHeight,
-    scrub: true,
+    end: () => "+=" + window.innerHeight, // 스크롤 길이
+    scrub: 1,
     pin: true,
-    pinSpacing: false, // 다음 섹션 바로 붙게
+    pinSpacing: true,   // 바로 붙게 하려면 false로 바꿔도 됨
     anticipatePin: 1,
-    invalidateOnRefresh: true,
-    onUpdate: self => {
-      const fadeStart = 0.85; // 확대 거의 끝날 때 페이드 시작
-      const alpha = self.progress < fadeStart
-        ? 1
-        : 1 - (self.progress - fadeStart) / (1 - fadeStart);
-      gsap.set(".reveal-scene", { autoAlpha: alpha });
-    }
+    invalidateOnRefresh: true
   }
 });
+
+// 1) 전체 구간: 이미지 확대
+tl.to(".grid-img", { scale: 2, ease: "none" }, 0);
+
+// 2) 끝 20% 구간만: 장면 페이드아웃(자연스럽게 사라짐)
+tl.to(".reveal-scene", { autoAlpha: 0, ease: "power1.out" }, 0.8);
+//            ▲ 0.8은 타임라인 진행도의 80% 시점. 0.8~1.0 사이에서만 서서히 사라짐
 
 
 // 클론 따라다니는 이미지

@@ -609,17 +609,18 @@ body {
   left: 100px;               /* 원하는 여백으로 조절 */
   top: 50%;
   transform: translateY(-50%);
-  width: 800px;             /* 크기 마음대로 */
+  width: 1000px;             /* 크기 마음대로 */
   height: auto;
   object-fit: cover;
   opacity: 0;               /* 기본은 숨김 */
   filter: brightness(90%);
   pointer-events: none;     /* 마우스 간섭 X */
-  z-index: 5;               /* 리스트보다 위 */
+  z-index: 5;     
+  transition: all 0.3s ease-in-out;          /* 리스트보다 위 */
 }
 
 
 /* hover */
-.con02 .inner ul li a:hover .title {transition: all 0.3s ease-in-out; color: #2D9B4C;}
+.con02 .inner ul li a:hover .title {font-size: 98px; transition: all 0.3s ease-in-out; color: #2D9B4C;}
 
 
