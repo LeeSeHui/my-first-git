@@ -26,7 +26,7 @@
 /* reset */
 
 *{margin: 0;padding: 0; box-sizing: border-box;}
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, tbody, tfoot, thead, tr, th, td{margin:0;padding:0;}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, tbody, tfoot, thead, tr, th, td{margin:0;padding:0; letter-spacing: -1px;}
 h1, h2, h3, h4, h5, h6 { font-size: inherit;}
 a {color: inherit; text-decoration: inherit;}
 img {vertical-align: middle;}
@@ -213,10 +213,11 @@ body {
   margin-top: 30px;
 }
 
+/* profile */
 .profile {background: #fff;}
 .profile .inner{ min-height: 100vh; padding: 100px;}
 .profile .contents {display: flex; justify-content: center; align-items: center;}
-.profile .profileTitle {font-size: 28px; margin-bottom: 15px; font-weight: 700; }
+.profile .profileTitle {font-size: 25px; margin-bottom: 15px; font-weight: 600; }
 .profile .left {width: 40%;}
 .profile .right { width: 60%;}
 .profile .left p.profileImg {
@@ -231,6 +232,7 @@ body {
   height: auto;
   position: relative;
   z-index: 2; /* 사진이 위로 오도록 */
+  border-radius: 25px;
 }
 
 /* 그라데이션 원 */
@@ -239,21 +241,22 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 140%;
-  height: 95%;
+  width: 400px;
+  height: 400px;
   border-radius: 50%;
   background: radial-gradient(
     circle at center,
-rgba(144, 238, 144, 0.2) 10%,   /* 연두(LightGreen) + 옅게 */
+rgba(92, 230, 140, 0.4) 0%,   /* 연두(LightGreen) + 옅게 */
     rgba(255, 255, 255, 0) 100%  /* 끝은 투명 */
   );
   z-index: 1;
+  filter: blur(100px);
 }
 
 
 .profile .left p.profileImg img {width: 110%; transform: scaleX(-1); filter: grayscale(20%); margin-left: 40px;}
-.profile .left h2.name {font-family: 'MangoGrotesqueVF', sans-serif; font-size: 60px; color: #161616; margin-left: 120px;}
-.profile .left p.nameText {font-size: 18px; line-height: 1.5; color: #161616; letter-spacing: -1.3px; text-align: center; margin-right: 205px;}
+.profile .left h2.name {font-family: 'MangoGrotesqueVF', sans-serif; font-size: 50px; color: #161616; margin-left: 130px; margin-top: 10px; z-index: 2;}
+.profile .left p.nameText {font-size: 18px; line-height: 1.5; color: #161616; letter-spacing: -1.3px; text-align: center; margin-right: 205px; z-index: 2;} 
 .profile .right{display: flex; flex-wrap: wrap; width: 50%; gap: 20px; }
 .profile .right ul {display: flex; flex-direction: column; gap: 10px; }
 .profile .right li {display: flex;  align-items: flex-start; font-size: 18px; line-height: 1.1;}
@@ -261,7 +264,14 @@ rgba(144, 238, 144, 0.2) 10%,   /* 연두(LightGreen) + 옅게 */
 .profile .right > div {width: 45%; box-sizing: border-box; margin-bottom: 20px;}
 
 .profile .level ul li {display: flex; align-items: center; gap: 5px;}
-.profile .aboutme .contact-info {display: inline-block; line-height: 1.8; margin-left: 10px;}
+.profile .aboutme .contact-info {display: inline-block; margin-left: 10px;}
+.contact-info p {
+  margin: 8px 0 0;   /* 윗줄만 간격 */
+}
+.contact-info p:first-child {
+  margin-top: 0;
+}
+.aboutme ul li b {display: inline-block; width: 65px; margin-right: 6px;}
 .profile .level ul li p {width: 180px;}
 .profile .level .bar {flex: 1; height: 10px; display: block; height: 10px; background-color: #676767; border-radius: 5px; overflow: hidden; }
 .profile .level .bar .fill { display: block; height: 100%; background-color: #2D9B4C; border-radius: 5px;}
@@ -320,11 +330,89 @@ rgba(144, 238, 144, 0.2) 10%,   /* 연두(LightGreen) + 옅게 */
 }
 
 /* hobby */
-.hobby .inner {height: 100vh;}
-.hobbyList {display: flex; justify-content: center;}
-.hobbyList li {margin-left: -40px;}
-.hobbyList li img {width: 100%;}
+.hobby .inner {height: 100vh; margin-top: 400px;   display: flex;
+  flex-direction: column; /* 세로 정렬 */
+  gap: 180px; }
+.hobbyTit {text-align: center; color: #fff;}
+.hobbyTit h2 {font-size: 50px; font-weight: 800;}
+.hobbyTit p {font-size: 36px; font-weight: 200;}
+.hobbyList {display: flex; justify-content: center; width: 80%; height: 460px; position: relative;}
+.hobbyList li img {width: 320px; height: 420px; transition: transform 0.3s ease; filter: brightness(70%);}
+/* 첫 번째 이미지는 항상 밝게 (hover 효과 없음) */
+.hobbyList li:first-child img {
+  filter: brightness(100%);
+}
 
+.hobbyList li {position: absolute;   top: -20px; left: 50%; transform:translateX(-50%); transition: transform 0.3s ease, z-index 0s;}
+.hobbyList li:nth-child(1) { transform: translate(-110%,-15%) rotate(-8deg); z-index: 1; }
+.hobbyList li:nth-child(1) img {width: 100%;}
+.hobbyList li:nth-child(2) { transform: translate(-60%,-15%) rotate(-8deg); z-index: 1; }
+.hobbyList li:nth-child(3) { transform: translateX(-10%) rotate(-4deg); z-index: 2; }
+.hobbyList li:nth-child(4) { transform: translate(40%,-10%) rotate(2deg); z-index: 3; }
+.hobbyList li:nth-child(5) { transform: translateX(80%) rotate(-5deg); z-index: 4; }
+
+
+
+/* 첫 번째 li 제외하고만 hover 효과 적용 */
+.hobbyList li:not(:first-child):hover {
+  z-index: 99;
+}
+
+.hobbyList li:not(:first-child):hover img {
+  transform: scale(1.15);
+  filter: brightness(100%);
+}
+
+.hobbyText p { font-size: 30px; font-weight: 200; color: #fff; text-align: center; align-items: center;}
+
+
+/* philosophy */
+.philosophy .inner {min-height: 100vh; padding-top: 450px; width: 70%;}
+.philosophy .philosophyTit {color: #fff; position: relative; z-index: 1; }
+
+.philosophy .philosophyTit::before {
+  content: "";
+  position: absolute;
+  top: -30%;
+  left: 0%;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+rgba(92, 230, 140, 0.4) 0%,   /* 연두(LightGreen) + 옅게 */
+#161616 100%  /* 끝은 투명 */
+  );
+  z-index: -1;
+  filter: blur(70px);
+}
+
+.philosophy .philosophyTit p {font-size: 20px;}
+.philosophy .philosophyTit h2 {font-size: 70px;}
+
+.philosophy .philosophyText {display: flex; justify-content: end; margin-top: 150px; color: #fff;}
+.philosophy .philosophyText p.top {font-size: 35px; font-weight: 500;}
+.philosophy .philosophyText p.top span {font-size: 18px;}
+.philosophy .philosophyText p.bottom {font-size: 18px; line-height: 1.6; font-weight: 200;}
+.philosophy .philosophyText li {margin-bottom: 80px; position: relative;}
+.philosophy .philosophyText li:hover p.top {color: #2D9B4C; cursor: default;}
+
+.philosophy .philosophyText li { position: relative; }
+
+.philosophy .philosophyText li::after{
+  content:"";
+  position:absolute; top:0; left:0;
+  width:10px; height:10px; background:#2D9B4C;
+  transform: translate(-10px,-45px);  /* 위에 숨어 있음 */
+  border-radius: 20px;
+  opacity:0;
+  transition: transform .3s ease, opacity .3s ease;
+}
+
+.philosophy .philosophyText li:hover::after{
+  transform: translate(-10px,-15px);       /* 아래로 내려옴 */
+  opacity:1;                      /* 나타남 */
+}
 
 /* team project */
 
@@ -352,7 +440,28 @@ rgba(144, 238, 144, 0.2) 10%,   /* 연두(LightGreen) + 옅게 */
   height: 100%;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
 }
-.intro-slide h1{font-family:'MangoGrotesque', sans-serif; font-size: clamp(40px, 8vw, 120px); margin: 0 0 12px; transform: translateX(500PX);}
+.intro-slide h1{font-family:'MangoGrotesque', sans-serif; font-weight: 500; font-size: 250px; margin: 0 0 12px; transform: translateX(400PX); color: #2D9B4C; z-index: 1;}
+
+.intro-slide h1::before{
+      content:"";
+  position:absolute; inset:50% auto auto 50%;
+  transform:translate(-120%,-80%);
+  width: 450px; height: 450px;
+  border-radius:50%;
+  pointer-events:none;
+  background-image:
+    radial-gradient(circle at center,
+      rgba(92,230,140,.30) 0%,
+      rgba(92,230,140,0) 70%),
+    /* 2px짜리 노이즈 패턴 */
+    repeating-radial-gradient(circle,
+      rgba(255,255,255,.012) 0 2px,
+      rgba(0,0,0,0)          2px 4px);
+  mix-blend-mode: overlay;   /* 밴딩만 살짝 깨줌 */
+  opacity: .6;
+  filter: blur(10px);
+  z-index:-1;
+}
 
 /* (참고) 프로젝트 구간에서 이미지 간격 넓을 때는 gap을 0으로 */
 .tproj-track{ display:flex; height:100%; gap: 0; }
@@ -373,7 +482,6 @@ rgba(144, 238, 144, 0.2) 10%,   /* 연두(LightGreen) + 옅게 */
   padding-top: 10px;
 }
 
-/* 헤더는 항상 트랙 위에 떠야 함 */
 .tproj-head{
   position: relative;
   z-index: 1;        
@@ -417,23 +525,40 @@ rgba(144, 238, 144, 0.2) 10%,   /* 연두(LightGreen) + 옅게 */
 .tproj-head { margin:0; padding:24px 10vw 12px; }
 
 /* 가로 트랙 + 이미지 */
-.tproj-track{ display:flex; height:100%; gap: 20px; padding-left: 10vw; }
+.tproj-track{ display:flex; height:100%; gap:20px; padding-left:10vw; }
 
-.tproj-slide {
-  flex: 0 0 65vw; /* 원래 60vw였다면 넓게 조정 */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-right: 40px; /* 이미지 간격 조절 */
-  height: auto;
+.tproj-slide{
+  flex:0 0 65vw;
+  display:flex; flex-direction:column; align-items:center;
+  margin-right:40px;
+  position:relative;
 }
 
-.tproj-slide img {
-  height: 60vh;
-  width: 100%;        /* 부모 안에서 꽉 차게 */
-  object-fit: cover;  /* 또는 contain (원하는 스타일에 따라) */
-  border-radius: 10px;
+/* 가운데 하나만 뜨는 오버레이 */
+.tproj-slide::after{
+  content:"";
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:60vh;        /* 이미지와 같게 */
+  background:url("../img/click.png") center no-repeat;
+  background-size:250px auto;
+  opacity:0;
+  transition:opacity .3s ease;
+  z-index:2;                      /* 이미지보다 위 */
+  pointer-events:none;            /* hover/클릭 방해 X */
 }
+
+.tproj-slide img{
+  width:100%; height:60vh;
+  object-fit:cover;
+  border-radius:10px;
+  transition:filter .3s ease;
+  z-index:1;                      /* 오버레이보다 아래 */
+}
+
+/* 부모 hover 시: 오버레이 보이기 + 이미지 어둡게 */
+.tproj-slide:hover::after{ opacity:1; }
+.tproj-slide:hover img{ filter:brightness(.5); }
 
 
 .bottom {
@@ -485,15 +610,17 @@ rgba(144, 238, 144, 0.2) 10%,   /* 연두(LightGreen) + 옅게 */
   text-align: right;
 }
 .slide-desc {
-  background: #4C4C4C;
+  background: #2D2D2D;
   border-radius: 20px;
   flex: 2;
   color: #fff;
   line-height: 1.6;
   padding: 25px;
+  width: 100%;
+  height: 200px;
 }
 
-.slide-desc span {font-size: 20px; font-weight: 700; color: #2D9B4C;}
+.slide-desc span {font-size: 25px; font-weight: 700; color: #2D9B4C;}
 
 .slide-desc h4 {
   font-size: 20px;
@@ -501,11 +628,12 @@ rgba(144, 238, 144, 0.2) 10%,   /* 연두(LightGreen) + 옅게 */
 }
 
 .slide-desc p {
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.5;
-  font-weight: 500;
-  color: #fff;
+  font-weight: 300;
+  color: #979797;
 }
+.slide-desc p.top {color: #fff;}
 
 
 @media (max-width:900px){
@@ -525,17 +653,15 @@ rgba(144, 238, 144, 0.2) 10%,   /* 연두(LightGreen) + 옅게 */
   left:var(--desc-left, 20px);
   right:var(--desc-right, auto);
   bottom:var(--desc-bottom, 19px);
-  background:#4a4a4a;
+  background: #2D2D2D;
   color:#fff;
   border-radius:20px;
   z-index:30;
-  height: 155px;
 }
 
 /* 두 번째 슬라이드부터 배경 제거 */
 .tproj-slide:nth-child(n+2) > .slide-desc {
-  background: none;
-  color: #161616; /* 글자색도 배경 없는 경우에 맞게 */
+bottom: -48px;
 }
 
 .tproj-slide:nth-child(n+3) > .slide-desc p {
