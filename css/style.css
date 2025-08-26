@@ -527,38 +527,28 @@ rgba(92, 230, 140, 0.4) 0%,   /* 연두(LightGreen) + 옅게 */
 /* 가로 트랙 + 이미지 */
 .tproj-track{ display:flex; height:100%; gap:20px; padding-left:10vw; }
 
-.tproj-slide{
-  flex:0 0 65vw;
-  display:flex; flex-direction:column; align-items:center;
-  margin-right:40px;
-  position:relative;
+.tproj-slide{ position:relative; flex:0 0 65vw; display:flex; flex-direction:column; align-items:center; margin-right:40px; }
+.tproj-slide img{ width:100%; height:60vh; object-fit:cover; border-radius:10px; transition:filter .3s ease; }
+
+/* 섹션 안의 첫 번째 슬라이드만 타겟 */
+.tproj-sec .tproj-slide:first-child:hover img {
+  filter: brightness(0.5); /* 어둡게 */
 }
 
-/* 가운데 하나만 뜨는 오버레이 */
-.tproj-slide::after{
-  content:"";
-  position:absolute;
-  top:0; left:0;
-  width:100%; height:60vh;        /* 이미지와 같게 */
-  background:url("../img/click.png") center no-repeat;
-  background-size:250px auto;
-  opacity:0;
-  transition:opacity .3s ease;
-  z-index:2;                      /* 이미지보다 위 */
-  pointer-events:none;            /* hover/클릭 방해 X */
+/* 나머지는 항상 밝게 */
+.tproj-sec .tproj-slide:not(:first-child) img {
+  filter: brightness(1);
 }
-
-.tproj-slide img{
-  width:100%; height:60vh;
-  object-fit:cover;
-  border-radius:10px;
-  transition:filter .3s ease;
-  z-index:1;                      /* 오버레이보다 아래 */
+.click-fx{
+  position:absolute; width:120px; height:120px;
+  background:url("../img/click.png") center/contain no-repeat;
+  transform:translate(-50%,-50%) scale(.9);
+  opacity:0; pointer-events:none; z-index:2;
+  transition:opacity .15s ease, transform .15s ease;
+  will-change: transform, opacity;
 }
-
-/* 부모 hover 시: 오버레이 보이기 + 이미지 어둡게 */
-.tproj-slide:hover::after{ opacity:1; }
-.tproj-slide:hover img{ filter:brightness(.5); }
+.c-right .img{ position:relative; display:inline-block; overflow:hidden; }
+/* 학교프로젝트 부분 클릭 호버효과 포지션 */
 
 
 .bottom {
@@ -867,6 +857,8 @@ position: relative; transform: translateY(-45px);}
   box-shadow: 0 8px 24px rgba(0,0,0,.35);
 }
 .exhibition .img img{ display:block; width:100%; height:auto; }
+
+.exhibition .img img:hover {filter: brightness(0.5);}
 /* 섹션 간격 */
 .exhibition .contents > div + div{ margin-top: 48px; }
 

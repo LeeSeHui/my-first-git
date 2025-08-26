@@ -413,3 +413,45 @@ gsap.utils.toArray(".con02 ul li a").forEach((link) => {
     if (activeImg === img) activeImg = null;
   });
 });
+
+// click-hover
+document.querySelectorAll('.tproj-slide').forEach(slide => {
+  const fx = slide.querySelector('.click-fx');
+  if(!fx) return; // 없으면 그냥 스킵
+
+  slide.addEventListener('mouseenter', () => {
+    fx.style.opacity = '1';
+    fx.style.transform = 'translate(-50%, -50%) scale(1)';
+  });
+
+  slide.addEventListener('mousemove', (e) => {
+    const r = slide.getBoundingClientRect();
+    fx.style.left = (e.clientX - r.left) + 'px';
+    fx.style.top  = (e.clientY - r.top)  + 'px';
+  });
+
+  slide.addEventListener('mouseleave', () => {
+    fx.style.opacity = '0';
+    fx.style.transform = 'translate(-50%, -50%) scale(.9)';
+  });
+});
+
+const containers = document.querySelectorAll('.c-right .img');
+
+containers.forEach(container => {
+  const clickFx = container.querySelector('.click-fx');
+
+  container.addEventListener('mousemove', e => {
+    const rect = container.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    clickFx.style.left = `${x}px`;
+    clickFx.style.top = `${y}px`;
+    clickFx.style.opacity = 1;
+  });
+
+  container.addEventListener('mouseleave', () => {
+    clickFx.style.opacity = 0;
+  });
+});
