@@ -76,17 +76,17 @@ ScrollTrigger.create({
 gsap.registerPlugin(ScrollTrigger);
 
 // 🔹 배경 이미지 축소
-gsap.to(".visual img", {
-    scale: 0.3,
-    ease:"power2.out",
-    scrollTrigger:{
-        trigger: ".visual",
-        start: "top top",
-        end:"60% top",
-        scrub: 1.5,
-        // markers: true
-    }
-});
+// gsap.to(".visual img", {
+//     scale: 0.3,
+//     ease:"power2.out",
+//     scrollTrigger:{
+//         trigger: ".visual",
+//         start: "top top",
+//         end:"60% top",
+//         scrub: 1.5,
+//         // markers: true
+//     }
+// });
 
 
 // ✅ LSH 고정 유지 (안 작아짐, 안 사라짐)
@@ -455,3 +455,51 @@ containers.forEach(container => {
     clickFx.style.opacity = 0;
   });
 });
+
+// qna
+(function(){
+  const single = true; // true=하나만 열림, false=여러 개 동시 열림
+  const items = document.querySelectorAll('.acc-item');
+  items.forEach((item)=>{
+    const btn = item.querySelector('.acc-btn');
+    const panel = item.querySelector('.acc-panel');
+
+    // 초기 상태(aria-expanded=true면 열어둠)
+    if(btn.getAttribute('aria-expanded') === 'true'){
+      panel.style.height = panel.scrollHeight + 'px';
+      panel.addEventListener('transitionend',()=>{ if(btn.getAttribute('aria-expanded')==='true'){ panel.style.height='auto'; }});
+    }
+
+    btn.addEventListener('click', ()=>{
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+
+      if(single){
+        items.forEach((other)=>{
+          if(other !== item){
+            const ob = other.querySelector('.acc-btn');
+            const op = other.querySelector('.acc-panel');
+            if(ob.getAttribute('aria-expanded') === 'true'){
+              ob.setAttribute('aria-expanded','false');
+              op.style.height = op.scrollHeight + 'px';
+              requestAnimationFrame(()=>{ op.style.height = '0px'; });
+            }
+          }
+        });
+      }
+
+      if(expanded){
+        btn.setAttribute('aria-expanded','false');
+        panel.style.height = panel.scrollHeight + 'px';
+        requestAnimationFrame(()=>{ panel.style.height = '0px'; });
+      }else{
+        btn.setAttribute('aria-expanded','true');
+        panel.style.height = panel.scrollHeight + 'px';
+        panel.addEventListener('transitionend', function onEnd(e){
+          if(e.propertyName!=='height') return;
+          panel.style.height = 'auto';
+          panel.removeEventListener('transitionend', onEnd);
+        });
+      }
+    });
+  });
+})();

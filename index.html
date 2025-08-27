@@ -20,7 +20,10 @@
 
     <div class="wrap">
     <section class="visual">
-        <img src="img/visual.jpg" alt="" />
+  <video class="visual-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="img/visual-video.mp4">
+    <source src="img/visual-video.mp4" type="video/mp4">
+    이 브라우저는 비디오를 지원하지 않습니다.
+  </video>s
 
         <header class="fixHeader">
             <div class="top">
@@ -615,8 +618,10 @@ useState / useEffect / Vercel / GitHub / Figma / Midjourney</p>
             </div>
             <div class="c-right">
               <p class="img">
+                <a class="img-link" href="exhibition-01.html" aria-label="Showcase Design 상세 보기">
                 <img src="img/school-1.png" alt="">
                 <span class="click-fx"></span>
+                </a>
               </p>
             </div>
           </div>
@@ -631,8 +636,10 @@ useState / useEffect / Vercel / GitHub / Figma / Midjourney</p>
             </div>
             <div class="c-right">
               <p class="img">
+                <a class="img-link" href="exhibition-02.html" aria-label="Brand Launch Design 상세 보기">
                 <img src="img/school-2.png" alt="">
                 <span class="click-fx"></span>
+                </a>
               </p>
             </div>
           </div>
@@ -647,8 +654,10 @@ useState / useEffect / Vercel / GitHub / Figma / Midjourney</p>
             </div>
             <div class="c-right">
               <p class="img">
+                <a class="img-link" href="exhibition-03.html" aria-label="Mobile Application Design 상세 보기">
                 <img src="img/school-3.png" alt="">
                 <span class="click-fx"></span>
+                </a>
               </p>
             </div>
           </div>
@@ -663,8 +672,10 @@ useState / useEffect / Vercel / GitHub / Figma / Midjourney</p>
             </div>
             <div class="c-right">
               <p class="img">
+                <a class="img-link" href="exhibition-04.html" aria-label="GoodDoctor Web Re:Design 상세 보기">
                 <img src="img/school-4.png" alt="">
                 <span class="click-fx"></span>
+                </a>
               </p>
 
             </div>
@@ -723,6 +734,63 @@ useState / useEffect / Vercel / GitHub / Figma / Midjourney</p>
         <li><span class="p-label">STYLE</span></li>
         <li><span class="p-label">PURPOSE</span></li>
       </ul>
+  </div>
+</section>
+
+<section class="qa">
+  <div class="inner">
+    <div class="qaTitle">
+      <p class="top">궁금하실 부분을 몇가지 적어보았습니다.</p>
+      <h2 class="bottom">Quick answers</h2>
+    </div>
+
+    <div class="accordion" id="accordion">
+      <!-- item 1 -->
+      <div class="acc-item">
+        <button class="acc-btn" id="q1" aria-expanded="true" aria-controls="a1">
+          <span class="q">UXUI 디자이너를 선택한 이유는 무엇인가요?</span>
+          <span class="arrow" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel" id="a1" role="region" aria-labelledby="q1">
+          <div class="acc-body">
+            인덕대학교 2024 졸업전시에서 디스플레이 디자인 팀에 팀장을 맡아 디스플레이 기획을 주제적으로 맡아 진행했습니다. 3학년 졸업생 약 60명의 작업물을 효율적으로 전시하기 위해…
+          </div>
+        </div>
+      </div>
+
+      <!-- item 2 -->
+      <div class="acc-item">
+        <button class="acc-btn" id="q2" aria-expanded="false" aria-controls="a2">
+          <span class="q">UXUI 디자이너를 선택한 이유는 무엇인가요?</span>
+          <span class="arrow" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel" id="a2" role="region" aria-labelledby="q2">
+          <div class="acc-body">여기에 두 번째 답변을 넣어줘.</div>
+        </div>
+      </div>
+
+      <!-- item 3 -->
+      <div class="acc-item">
+        <button class="acc-btn" id="q3" aria-expanded="false" aria-controls="a3">
+          <span class="q">UXUI 디자이너를 선택한 이유는 무엇인가요?</span>
+          <span class="arrow" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel" id="a3" role="region" aria-labelledby="q3">
+          <div class="acc-body">세 번째 답변 예시.</div>
+        </div>
+      </div>
+
+      <!-- item 4 -->
+      <div class="acc-item">
+        <button class="acc-btn" id="q4" aria-expanded="false" aria-controls="a4">
+          <span class="q">UXUI 디자이너를 선택한 이유는 무엇인가요?</span>
+          <span class="arrow" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel" id="a4" role="region" aria-labelledby="q4">
+          <div class="acc-body">네 번째 답변 예시.</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 

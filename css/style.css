@@ -52,14 +52,14 @@ body {
     height: 100vh;
     overflow: hidden;
   }
-
-    .visual img {
+.visual .visual-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+    /* .visual img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
     filter: brightness(80%);
-  }
+  } */
 
   /* header */
   .fixHeader {position: absolute; top: 10px; left: 0; width: 100%; z-index: 10; display: flex; justify-content: space-between; align-items: center; padding: 20px 60px; }
@@ -795,6 +795,15 @@ bottom: -48px;
 /* hover */
 .con02 .inner ul li a:hover .title {font-size: 98px; transition: all 0.3s ease-in-out; color: #2D9B4C;}
 
+/* 학교프로젝트섹션 한정 포맷코드 */
+.exhibition .img {position:relative;}
+.exhibition .img img {display:block;width:100%;height:auto;}
+.exhibition .img .img-link {display:block;outline:none;}
+.exhibition .img .img-link:focus-visible {outline:2px solid #fff;outline-offset:4px;}
+.exhibition .img .click-fx {pointer-events:none;}
+
+
+
 /* experience */
 .experience .inner {color: #fff; align-items: center; height: 100vh;}
 .experience p.tit {font-size: 23px;}
@@ -996,6 +1005,27 @@ position: relative; transform: translateY(-45px);}
 .portfolio ul li:hover .p-label{
   transform: translateX(-30px);
 }
+
+/* qna */
+.qa{padding:60px 24px;}
+.qa .qaTitle {background: red; width: 40%; text-align: center; align-items: center; margin: 0 auto;}
+.qa .qaTitle p {color: #fff; font-size: 20px;}
+.qa .qaTitle h2 {color: #fff; font-size: 100px; font-family:'MangoGrotesque', sans-serif; font-weight:500;}
+
+.qa .inner{max-width:1100px;margin:0 auto;}
+.qa .accordion{display:flex;flex-direction:column;gap:16px;}
+.qa .acc-item{background:transparent;border-radius:14px;}
+.qa .acc-btn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 20px;background:transparent;border:0;color:#fff;font-size:20px;line-height:1.3;text-align:left;border-radius:14px;cursor:pointer;}
+.qa .acc-btn:hover{background:rgba(255,255,255,0.04);}
+.qa .acc-btn:focus-visible{outline:2px solid #fff;outline-offset:2px;}
+.qa .acc-panel{overflow:hidden;height:0;transition:height .28s ease;}
+.qa .acc-body{margin:0 20px 18px 20px;background:#1c1c1c;border-radius:12px;padding:16px 18px;color:#ccc;line-height:1.8;font-size:16px;}
+.qa .arrow{width:18px;height:18px;display:inline-block;position:relative;transform:rotate(0deg);transition:transform .28s ease;}
+.qa .arrow::before,.qa .arrow::after{content:"";position:absolute;inset:0;border-right:2px solid #aaa;border-bottom:2px solid #aaa;transform:rotate(-45deg);}
+.qa .acc-btn[aria-expanded="true"] .arrow{transform:rotate(90deg);}
+@media (max-width:640px){.qa{padding:40px 16px;} .qa .acc-btn{font-size:18px;padding:16px;} .qa .acc-body{font-size:15px;}}
+
+
 
 
 /* 푸터 */
