@@ -8,6 +8,10 @@ $(function () {
     });
   });
 
+  // 스플리팅
+  $(function(){
+Splitting();  //대문자로쓴다!!!
+});
 
 // HEADER
 
@@ -502,4 +506,119 @@ containers.forEach(container => {
       }
     });
   });
+})();
+
+// 마우스커서
+const cursor = document.querySelector('.cursor');
+
+let mouseX = 0;
+let mouseY = 0;
+let currentX = 0;
+let currentY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function animate() {
+  // 0.1 → 따라오는 속도 (값을 올리면 빨라지고, 줄이면 더 느려짐)
+  currentX += (mouseX - currentX) * 0.2;
+  currentY += (mouseY - currentY) * 0.2;
+
+  cursor.style.left = currentX + 'px';
+  cursor.style.top = currentY + 'px';
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+// gnb관련
+  // ===== 부드러운 스크롤 (헤더 높이 고려) =====
+  const headerEl = document.querySelector('header'); // 없으면 null
+  const headerH = headerEl ? headerEl.offsetHeight : 0;
+
+  const navLinks = document.querySelectorAll('.gnb a[href^="#"]');
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = link.getAttribute('href').slice(1);
+      const target = document.getElementById(id);
+      if (!target) return;
+
+      const y = target.getBoundingClientRect().top + window.pageYOffset - headerH;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    });
+  });
+
+  // ===== 현재 섹션에 맞춰 메뉴 활성화 =====
+  // 관찰할 섹션: gnb에 연결된 id만 자동으로 수집
+  const sectionIds = Array.from(navLinks).map(a => a.getAttribute('href').slice(1));
+  const sections = sectionIds
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+
+  const linkById = {};
+  navLinks.forEach(a => { linkById[a.getAttribute('href').slice(1)] = a; });
+
+  // 헤더 높이를 고려해서 활성화 시점을 자연스럽게 조정
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const id = entry.target.id;
+      if (entry.isIntersecting) {
+        // active 토글
+        navLinks.forEach(a => a.classList.remove('active'));
+        const active = linkById[id];
+        if (active) active.classList.add('active');
+      }
+    });
+  }, {
+    root: null,
+    threshold: 0.35,                          // 섹션의 35%가 보이면 활성화
+    rootMargin: `-${headerH}px 0px -40% 0px`  // 헤더/하단 여백 감안
+  });
+
+  sections.forEach(sec => observer.observe(sec));
+
+  // 헤더고정
+  // ==== 스크롤 방향에 따라 헤더 숨김/노출(위로 올리면 바로 보이기) ====
+(function(){
+  const header = document.querySelector('.fixHeader');
+  if(!header) return;
+
+  // 처음엔 보이게 시작 (메인에서 바로 보이도록)
+  header.classList.add('show');
+
+  let lastY = window.pageYOffset || document.documentElement.scrollTop || 0;
+  const THRESHOLD = 5; // 5px만 위로 올려도 나타남
+  let ticking = false;
+
+  function onScroll(){
+    const y = window.pageYOffset || document.documentElement.scrollTop || 0;
+    const delta = y - lastY;
+
+    // 최상단 근처에서는 항상 보임
+    if (y < 10){
+      header.classList.add('show');
+      lastY = y;
+      return;
+    }
+
+    // 스크롤 방향 판정
+    if (delta < -THRESHOLD){        // 위로 스크롤
+      header.classList.add('show'); // 즉시 나타남
+    } else if (delta > THRESHOLD){  // 아래로 스크롤
+      header.classList.remove('show'); // 숨김
+    }
+
+    lastY = y;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking){
+      requestAnimationFrame(() => { onScroll(); ticking = false; });
+      ticking = true;
+    }
+  }, { passive: true });
 })();

@@ -44,6 +44,9 @@ body {
 .wrap {overflow-x: hidden; overflow-y: visible; background: #161616;}
 .inner {width:90%; margin: 0 auto; }
 
+html {
+  scroll-behavior: smooth; /* 클릭 시 부드럽게 이동 */
+}
 
   /* main */
 
@@ -67,20 +70,39 @@ body {
   .fixHeader .top  {width: 700px; display: flex; justify-content: space-between; margin-left: 250px;}
   .fixHeader .logo2 {color: #fff;}
   .fixHeader .logo3 {font-weight: 600;}
-  .fixHeader .logo3::after {content: ''; width: 150px; height: 3.5px; background-color: #161616; margin-top: 7px; margin-left: 10px;}
+  .fixHeader .logo3::after {content: ''; width: 150px; height: 2.5px; background-color: #ffffff; margin-top: 7px; margin-left: 10px;}
 
   .fixHeader {
-    color: black;
+    color: rgb(255, 255, 255);
     transition: color 0.3s ease;
   }
   
   .fixHeader.light-mode {
     color: white;
   }
+  
 
   .gnb {width: 350px;  margin-right: 115px;}
   .gnb ul{display: flex; gap: 50px; }
   .gnb ul li {font-weight: 500;}
+
+/* === 헤더를 전 구간에서 쓰기 위해 fixed + 위/아래 슬라이드 === */
+.fixHeader{
+  position: fixed;        /* absolute → fixed */
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  transform: translateY(-110%);
+  transition: transform .32s ease, color .3s ease;
+}
+
+/* 위로 스크롤하면 나타남 */
+.fixHeader.show{
+  transform: translateY(0);
+}
+
+/* 고정 헤더로 앵커 가림 방지 (섹션 상단 여백) */
+section{ scroll-margin-top: 88px; } /* 헤더 실제 높이에 맞게 조정 */
+
 
 
   /* 가운데 텍스트 */
@@ -307,11 +329,11 @@ rgba(92, 230, 140, 0.4) 0%,   /* 연두(LightGreen) + 옅게 */
 .about-img img {width: 100%; display: block;}
 .img-hover {position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 0.4s ease;}
 .about-img:hover .img-hover {opacity: 1;}
-.about-text {max-width: 550px; text-align: end; margin-top: 300px; margin-right: 150px;}
+.about-text { text-align: end; margin-top: 300px; margin-right: 150px;}
 .about-text h3 {font-size: 28px; margin-bottom: 10px; font-weight: 400;}
 .about-text p {font-size: 18px; line-height: 1.6; font-weight: 300; color:rgba(255,255,255,.5);}
 
-.marquee {width: 100%; white-space: nowrap; box-sizing: border-box; padding: 0; margin: 0;}
+.marquee {width: 100%; white-space: nowrap; box-sizing: border-box; padding: 0; margin-top: 100px;}
 
 .marquee p {
   font-size: 25px;
@@ -677,9 +699,12 @@ bottom: -48px;
   font-weight:500;  /* Regular */
   font-synthesis:none;
   font-size: 90px;
-  margin-bottom: 320px;
+  margin-bottom: 400px;
   letter-spacing: 2px;
+  transform: translateY(30px);
 }
+
+
 
 /* 2) 본문 영역은 전부 Pretendard 400로 '고정' */
 .clone-text,
@@ -691,7 +716,25 @@ bottom: -48px;
   text-rendering: optimizeLegibility;
 }
 
-/* 3) 줄-hover 구조(정렬/폭 유지) */
+/* 초기 상태 (숨김) */
+.section-text{
+  transform: translateY(30px);
+  opacity: 0;
+}
+
+/* scrolla가 motion 붙여줄 때 애니메이션 실행 */
+.section-text.motion{
+  animation: text-slide 0.8s ease-out both;
+}
+.section-text.motion:nth-child(2){
+  animation: text-slide 2s ease-out both;
+}
+
+@keyframes text-slide{
+  0%   { transform: translateY(30px); opacity:0; }
+  100% { transform: translateY(0);    opacity:1; }
+}
+
 .section-text p { max-width: 850px; line-height: 1.8; margin: 0; word-break: keep-all; font-size: 20px; }
 .line-hover { max-width: 740px; text-align: left; white-space: normal; }
 .line-hover .hover-line { display:block; width:100%; color:rgba(255,255,255,.5); transition:color .25s; cursor: default; }
@@ -704,6 +747,18 @@ bottom: -48px;
 .clone-text { display:flex; flex-direction:column; gap:40px; }
 .section-text h3 { color:#2D9B4C; font-size:30px; margin:0 0 14px; font-weight: 700; letter-spacing: -0.5px; }
 
+
+/* 클론코딩 스플리팅 */
+.motion  .char { display: inline-block;
+animation: slide-up 1s cubic-bezier(.10, 0, .10, 1) both;
+animation-delay: calc(50ms * var(--char-index));
+}
+
+@keyframes slide-up {
+0% {transform: translateY(30px); opacity: 0;}
+80% {transform: translateY(30px); opacity: 0;}
+}
+
 /* 5) 반응형 */
 @media (max-width:768px){
   .clone-section .inner{ gap:36px; flex-direction:column; }
@@ -713,7 +768,7 @@ bottom: -48px;
 
 :root { --text-w: 820px; } /* 원하는 문단 폭만 여기서 조절 */
 
-.section-text p { max-width: var(--text-w); line-height: 1.8; margin: 0; word-break: keep-all; font-size: 20px; }
+.section-text p { line-height: 1.8; margin: 0; word-break: keep-all; font-size: 20px; }
 .line-hover      { max-width: var(--text-w); text-align:left; white-space:normal; }
 .line-hover .hover-line{ display:block; width:100%; color:#161616; transition:color .25s; cursor:default; font-weight: 600; }
 .line-hover .hover-line:hover{ color:#2D9B4C; }
@@ -815,11 +870,27 @@ bottom: -48px;
 .experience p.center {color: #2D9B4C; font-size: 250px; font-family:'MangoGrotesque', sans-serif; font-weight: 500;}
 .experience p.center span {display: inline-block; width: 350px; height: 4px; background-color: #2D9B4C; margin-bottom: 75px;}
 
-.experience .con1 {transform: translateX(45%);}
-.experience .con2 {transform: translateX(20%);}
-.experience .con3 {transform: translateX(45%);}
+.experience .con1 {transform: translateX(45%); opacity: 0;}
+.experience .con2 {transform: translateX(20%); opacity: 0;}
+.experience .con3 {transform: translateX(45%); opacity: 0;}
 
 
+/* scrolla가 붙여주는 .motion 시점에 애니메이션 실행 */
+.experience .con1.motion { animation: slide-from-right .8s ease-out both; }
+.experience .con2.motion { animation: slide-from-left  .8s ease-out both; }
+.experience .con3.motion { animation: slide-from-right .8s ease-out both; }
+
+/* con1, con3: 오른쪽에서 들어오기 (최종 45%) */
+@keyframes slide-from-right{
+  0%   { transform: translateX(45%) translateX(60px);  opacity:0; }
+  100% { transform: translateX(45%) translateX(0);     opacity:1; }
+}
+
+/* con2: 왼쪽에서 들어오기 (최종 20%) */
+@keyframes slide-from-left{
+  0%   { transform: translateX(20%) translateX(-60px); opacity:0; }
+  100% { transform: translateX(20%) translateX(0);     opacity:1; }
+}
 /* exhibition */
 /* ===== Exhibition ===== */
 .exhibition {color: #fff;}
@@ -870,6 +941,26 @@ position: relative; transform: translateY(-45px);}
 .exhibition .img img:hover {filter: brightness(0.5);}
 /* 섹션 간격 */
 .exhibition .contents > div + div{ margin-top: 48px; }
+
+
+/* 초기값(스크롤 전) */
+.one{ transform: translateY(60px); opacity:0; will-change: transform, opacity; }
+.contents .one.motion {animation: exhibition-up 1s cubic-bezier(.10, 0, .10, 1) both;
+}
+.two{ transform: translateY(60px); opacity:0; will-change: transform, opacity; }
+.contents .two.motion {animation: exhibition-up 1s cubic-bezier(.10, 0, .10, 1) both;
+}
+.three{ transform: translateY(60px); opacity:0; will-change: transform, opacity; }
+.contents .three.motion {animation: exhibition-up 1s cubic-bezier(.10, 0, .10, 1) both;
+}
+.four{ transform: translateY(60px); opacity:0; will-change: transform, opacity; }
+.contents .four.motion {animation: exhibition-up 1s cubic-bezier(.10, 0, .10, 1) both;
+}
+
+@keyframes exhibition-up{
+  0%   { transform: translateY(60px); opacity:0; }
+  100% { transform: translateY(0);    opacity:1; }
+}
 
 
 /* ===== 반응형 ===== */
@@ -1008,8 +1099,25 @@ position: relative; transform: translateY(-45px);}
 
 /* qna */
 .qa{padding:60px 24px;}
-.qa .qaTitle {background: red; width: 40%; text-align: center; align-items: center; margin: 0 auto;}
-.qa .qaTitle p {color: #fff; font-size: 20px;}
+.qa .qaTitle { width: 40%; margin: 0 auto; align-items: center; margin-bottom: 150px; position: relative;}
+
+.qa .qaTitle::before {
+  content: "";
+  position: absolute;
+  top: -100px;
+  left: -20%;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+rgba(92, 230, 140, 0.4) 0%,   /* 연두(LightGreen) + 옅게 */
+    rgba(255, 255, 255, 0) 100%  /* 끝은 투명 */
+  );
+  z-index: 1;
+  filter: blur(100px);
+}
+.qa .qaTitle p {color: #fff; font-size: 20px; margin-left: 20px;}
 .qa .qaTitle h2 {color: #fff; font-size: 100px; font-family:'MangoGrotesque', sans-serif; font-weight:500;}
 
 .qa .inner{max-width:1100px;margin:0 auto;}
@@ -1093,3 +1201,18 @@ position: relative; transform: translateY(-45px);}
   .footer-bottom{flex-direction:column; gap:16px; margin:0 24px;}
   .footer-right{justify-content:flex-start;}
 }
+
+
+
+/* 마우스 커서 */
+.cursor {
+  width: 20px;
+  height: 20px;
+  background: #2D9B4C;  /* 세희가 말한 컬러 */
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none; /* 클릭 막지 않게 */
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+

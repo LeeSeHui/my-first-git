@@ -11,35 +11,36 @@
         <link rel="stylesheet" href="./css/style.css" />
 
     
-        <script src="libs/splitting.min.js"></script>
+          <script src="js/splitting.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     </head>
 <body>
 
+
+  <header class="fixHeader">
+      <div class="top">
+          <p class="logo2">&lt;SEHUI./LEE&gt;</p>
+          <p class="logo3">Visual & UX/UI Designer <span></span></p>
+      </div>
+
+      <nav class="gnb">
+      <ul>
+          <li><a href="#main">Main</a></li>
+          <li><a href="#aboutme">About me</a></li>
+          <li><a href="#project">Project</a></li>
+          <li><a href="#skill">Skill</a></li>
+      </ul>
+      </nav>
+  </header>
+
     <div class="wrap">
-    <section class="visual">
+    <section class="visual" id="main">
   <video class="visual-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="img/visual-video.mp4">
     <source src="img/visual-video.mp4" type="video/mp4">
     이 브라우저는 비디오를 지원하지 않습니다.
   </video>s
-
-        <header class="fixHeader">
-            <div class="top">
-                <p class="logo2">&lt;SEHUI./LEE&gt;</p>
-                <p class="logo3">Visual & UX/UI Designer <span></span></p>
-            </div>
-
-            <nav class="gnb">
-            <ul>
-                <li><a href="#main">Main</a></li>
-                <li><a href="#aboutme">About me</a></li>
-                <li><a href="#project">Project</a></li>
-                <li><a href="#skill">Skill</a></li>
-            </ul>
-            </nav>
-        </header>
 
         <div class="inner">
             <h1 class="bigName">LEESEHUI</h1>
@@ -63,7 +64,7 @@
         </div>
     </section>
 
-    <section class="profile">
+    <section class="profile" id="aboutme">
       <div class="inner">
         <div class="contents">
                   <div class="left">
@@ -169,9 +170,8 @@
                     </div>
                     <div class="about-text">
                         <h3>인덕대학교 시각디자인 전문학사</h3>
-                        <p>시각디자인을 3년간 전공하며 앨범 디자인, 편집 디자인,
-                        패키지 디자인, 브랜드 창업 디자인 등 다양한 분야의 디자인을 경험했습니다.
-                        졸전을 준비하는 3학년때 처음 접하게 된 UX/UI 디자인에 가장 큰 흥미를 느꼈고,
+                        <p>시각디자인을 3년간 전공하며 앨범 디자인, 편집 디자인,패키지 디자인, 브랜드 창업 디자인 등 <br> 다양한 분야의 디자인을 경험했습니다. 
+                        졸전을 준비하는 3학년때 처음 접하게 된 UX/UI 디자인에 <br>가장 큰 흥미를 느꼈고,
                         이후UX/UI 디자이너로서의 역량을 키우는 데 집중하게 되었습니다.</p>
                     </div>
                 </div>
@@ -186,7 +186,7 @@
                     </div>
                     <div class="about-text">
                         <h3>강남 이젠아카데미 프론트엔드 부트캠프 수료</h3>
-                        <p>웹 페이지 마크업부터 동적인 사용자 인터랙션 구현까지, HTML/CSS/JavaScript를 통해 퍼블리싱 역량을 쌓았고, React의 컴포넌트 구조를 바탕으로 효율적인 UI 구성과 상태 관리 기초를 익혔습니다.</p>
+                        <p>웹 페이지 마크업부터 동적인 사용자 인터랙션 구현까지,  HTML/CSS/JavaScript를 통해 퍼블리싱 <br> 역량을 쌓았고, React의 컴포넌트 구조를  바탕으로  효율적인 UI 구성과 상태 관리 기초를 익혔습니다. <br> 또한, 세 개의 프로젝트에서 팀장을 맡아 소통능력과 리더십을 길렀습니다.</p>
                     </div>
                 </div>
 
@@ -202,7 +202,7 @@
                     </div>
                     <div class="about-text">
                         <h3>관세법인 수출통관 직무경험</h3>
-                        <p>관세법인에서의 근무 경험은 사용자 중심 사고에 대한 기반이 되었습니다. 수출입 기업 고객들과의 지속적인 커뮤니케이션을 통해 문제를 파악하고 해결안을 제시하는 과정을 반복하며, 실제 사용자의 니즈를 빠르게 파악하고 효율적으로 대응하는 감각을 키울 수 있었습니다.</p>
+                        <p>관세법인에서의 근무 경험은 사용자 중심 사고에 대한 기반이 되었습니다. <br> 수출입 기업 고객들과의 지속적인 커뮤니케이션을 통해 문제를 파악하고 해결안을<br> 제시하는 과정을 반복하며, 실제 사용자의 니즈를 빠르게 파악하고 <br> 효율적으로 대응하는 감각을 키울 수 있었습니다.</p>
                     </div>
                 </div>
             </div>
@@ -259,7 +259,7 @@
       </div>
     </section>
 
-    <section class="intro-wrap">
+    <section class="intro-wrap" id="project">
         <div class="intro-track">
           <div class="intro-slide">
             <h1>Team Project</h1>
@@ -488,25 +488,27 @@ useState / useEffect / Vercel / GitHub / Figma / Midjourney</p>
 <section class="clone-section">
   <div class="inner">
     <div class="clone-tit">
-        <p>Clone coding</p>
+        <p class="animate" data-animate="motion" data-splitting>Clone coding</p>
       </div>
 
       <div class="clone-text">
-        <div class="section-text">
-          <h3>STORY</h3>
+        <div class="section-text animate" data-animate="motion">
+          <h3 class="story-title">STORY</h3>
           <p class="line-hover">
-            6개월간의 프론트엔드 부트캠프 과정 동안 HTML, CSS, JavaScript 등 웹의
-            기초 기술을 집중적으로 학습하며,총 6개의 클론코딩 프로젝트를 완성했습니다.
-            실제 웹사이트를 분석하여 구조를 이해하고, 반복적인 실습을 통해 코드 작성 역량과 문제 해결 능력을 키울 수 있었습니다.단순히 따라 하는 것을 넘어서 각 기능의 작동 원리를 분석하고, UI 구성 및 반응형 설계에도 집중했습니다. 이 과정을 통해
-            웹 프론트엔드 전반의 기초를 단단히 다졌고, 실무 적용 기반을 마련했습니다.
+            6개월간의 과정에서 HTML과 CSS의 기초를 차근차근 익히며 웹의 기본 구조와 표현 방식을 이해했습니다.
+            이후 실제 프로젝트에 들어가기 전, 클론코딩을 통해 실무에서 상업적으로 쓰이고 있는 다양한 홈페이지를 직접 구현해보았습니다.
+            그 과정에서 레이아웃을 구성하고 스타일을 적용하는 법을 몸에 익히며 기본적인 코드 작성 습관을 다질 수 있었습니다.
+            또한 스크롤 애니메이션이나 메뉴 인터랙션과 같은 다양한 동작들을 그대로 따라 만들어 보면서, 실제 사이트가 어떻게 만들어지는지를 경험했습니다.
+            이를 통해 단순히 이론을 배우는 수준을 넘어, 프로젝트를 직접 맡아 진행할 수 있는 기초 체력과 자신감을 마련했습니다.
           </p>
         </div>
 
-        <div class="section-text">
-          <h3>CLONE CODING</h3>
+        <div class="section-text animate" data-animate="motion">
+          <h3 class="clone-title">CLONE CODING</h3>
           <p class="line-hover">
-            6개월간의 프론트엔드 부트캠프 과정 동안 HTML, CSS, JavaScript 등 웹의 기초 기술을 집중적으로 학습하며, 총 6개의 클론코딩 프로젝트를 완성했습니다. 실제 웹사이트를 분석하여 구조를 이해하고,
-            반복적인 실습을 통해 코드 작성 역량과 문제 해결 능력을 키울 수 있었습니다.
+          총 6개의 실제 홈페이지 크루어라모드, 뮤자인 플랫폼, 대방, 대혜, 코리아컨슈머 에이전시, 웰랑컴퍼니를 클론코딩하며 다양한 경험을 쌓았습니다.
+          각 사이트를 반응형으로까지 구현해보면서 PC, 태블릿, 모바일 환경에서의 차이를 이해하고, 레이아웃과 스타일을 유연하게 적용하는 법을 익혔습니다.
+          이를 통해 단순한 모방을 넘어 프론트엔드의 기초를 확실히 다지고, 실제 서비스 제작 흐름을 체감할 수 있었습니다.
           </p>
         </div>
       </div>
@@ -583,17 +585,17 @@ useState / useEffect / Vercel / GitHub / Figma / Midjourney</p>
 
     <section class="experience">
       <div class="inner">
-        <div class="con1">
+        <div class="con1 animate" data-animate="motion">
             <p class="tit">제 52회 졸업전시</p>
             <h2 class="tit2">Induk university</h2>
             <p class="text">시각디자인과 졸업전시회 당시, <span>디스플레이 디자인 팀</span>의 <span>팀장으로 활동</span>했습니다. <br>약 100여 명의 학생이 참여하는 전시를 위해 공간 배치도를 직접설계하고, <br>
             가벽과 가구 대여 등의 실무를 진행했습니다.</p>
         </div>
-        <div class="con2">
+        <div class="con2 animate" data-animate="motion">
           <p class="center-tit">Display design</p>
           <p class="center">Experience <span></span></p>
         </div>
-        <div class="con3">
+        <div class="con3 animate" data-animate="motion">
           <p class="text"> 학생들의 니즈를 반영하기 위해 수요조사 및 설문조사를 기획하고 실행했으며,<br>진행 과정에서 발생한 <span>학생과 교수 간의 의견 충돌 또한 중재</span>하며 원활한 소통을 위해 힘썼습니다.<br>이 경험은 디자인뿐 아니라 조율 능력과 리더십을 기를 수 있는 소중한 기회였습니다.</p>
         </div>
       </div>
@@ -607,7 +609,7 @@ useState / useEffect / Vercel / GitHub / Figma / Midjourney</p>
         </div>
 
         <div class="contents">
-          <div class="one">
+          <div class="one animate" data-animate="motion">
             <div class="c-left">
               <h2 class="c-tit">01 <br>Showcase <br>Design</h2>
               <p class="c-text"><span>인덕대학교 2024졸업전시회</span><br>
@@ -625,7 +627,7 @@ useState / useEffect / Vercel / GitHub / Figma / Midjourney</p>
               </p>
             </div>
           </div>
-          <div class="two">
+          <div class="two animate" data-animate="motion">
             <div class="c-left">
               <h2 class="c-tit">02 <br>Brand Launch<br>Design</h2>
               <p class="c-text"><span>창업 브랜딩 디자인</span><br>
@@ -643,7 +645,7 @@ useState / useEffect / Vercel / GitHub / Figma / Midjourney</p>
               </p>
             </div>
           </div>
-          <div class="three">
+          <div class="three animate" data-animate="motion">
             <div class="c-left">
               <h2 class="c-tit">03 <br>Mobile Application <br>Design</h2>
               <p class="c-text"><span>모바일 앱 디자인 & 프로토타입</span><br>
@@ -661,7 +663,7 @@ useState / useEffect / Vercel / GitHub / Figma / Midjourney</p>
               </p>
             </div>
           </div>
-          <div class="four">
+          <div class="four animate" data-animate="motion">
             <div class="c-left">
               <h2 class="c-tit">04 <br>GoodDoctor<br>Web Re:Design</h2>
               <p class="c-text"><span>웹 리디자인 및 기획</span><br>
@@ -684,7 +686,7 @@ useState / useEffect / Vercel / GitHub / Figma / Midjourney</p>
       </div>
     </section>
 
-    <section class="skill">
+    <section class="skill" id="skill">
   <div class="inner">
     <p class="skill-tit">Skills & Tools</p>
     <div class="skill-marquee">
@@ -761,7 +763,7 @@ useState / useEffect / Vercel / GitHub / Figma / Midjourney</p>
       <!-- item 2 -->
       <div class="acc-item">
         <button class="acc-btn" id="q2" aria-expanded="false" aria-controls="a2">
-          <span class="q">UXUI 디자이너를 선택한 이유는 무엇인가요?</span>
+          <span class="q">코드 협업은 어느 정도 가능한가요? (HTML/CSS/JS, Git)</span>
           <span class="arrow" aria-hidden="true"></span>
         </button>
         <div class="acc-panel" id="a2" role="region" aria-labelledby="q2">
@@ -772,7 +774,7 @@ useState / useEffect / Vercel / GitHub / Figma / Midjourney</p>
       <!-- item 3 -->
       <div class="acc-item">
         <button class="acc-btn" id="q3" aria-expanded="false" aria-controls="a3">
-          <span class="q">UXUI 디자이너를 선택한 이유는 무엇인가요?</span>
+          <span class="q">본인의 강점/약점과 이를 보완하기 위한 루틴은?</span>
           <span class="arrow" aria-hidden="true"></span>
         </button>
         <div class="acc-panel" id="a3" role="region" aria-labelledby="q3">
@@ -783,7 +785,7 @@ useState / useEffect / Vercel / GitHub / Figma / Midjourney</p>
       <!-- item 4 -->
       <div class="acc-item">
         <button class="acc-btn" id="q4" aria-expanded="false" aria-controls="a4">
-          <span class="q">UXUI 디자이너를 선택한 이유는 무엇인가요?</span>
+          <span class="q">좋은 팀 문화를 어떻게 정의하고, 합류 후 90일 계획은?</span>
           <span class="arrow" aria-hidden="true"></span>
         </button>
         <div class="acc-panel" id="a4" role="region" aria-labelledby="q4">
@@ -821,6 +823,7 @@ useState / useEffect / Vercel / GitHub / Figma / Midjourney</p>
 
     
     </div>
+    <div class="cursor"></div> <!-- 커스텀 커서 -->
 </body>
 <script src="js/script.js"></script>
 </html>
