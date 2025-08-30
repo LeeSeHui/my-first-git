@@ -356,8 +356,16 @@ rgba(92, 230, 140, 0.4) 0%,   /* 연두(LightGreen) + 옅게 */
   flex-direction: column; /* 세로 정렬 */
   gap: 180px; }
 .hobbyTit {text-align: center; color: #fff;}
-.hobbyTit h2 {font-size: 50px; font-weight: 800;}
+.hobbyTit h2 {font-size: 50px; font-weight: 800; }
 .hobbyTit p {font-size: 36px; font-weight: 200;}
+
+.hobbyTit.motion{animation:hobbyup .8s cubic-bezier(.10,0,.10,1) both;}
+
+@keyframes hobbyup{
+  0%  { transform: translateY(60px); opacity:0; }
+  100% { transform: translateY(0);    opacity:1; }
+}
+
 .hobbyList {display: flex; justify-content: center; width: 80%; height: 460px; position: relative;}
 .hobbyList li img {width: 320px; height: 420px; transition: transform 0.3s ease; filter: brightness(70%);}
 /* 첫 번째 이미지는 항상 밝게 (hover 효과 없음) */
@@ -369,9 +377,37 @@ rgba(92, 230, 140, 0.4) 0%,   /* 연두(LightGreen) + 옅게 */
 .hobbyList li:nth-child(1) { transform: translate(-110%,-15%) rotate(-8deg); z-index: 1; }
 .hobbyList li:nth-child(1) img {width: 100%;}
 .hobbyList li:nth-child(2) { transform: translate(-60%,-15%) rotate(-8deg); z-index: 1; }
+
+.hobbyList li:nth-child(2)::after{
+  content:"경험&영감";
+  position:absolute; left:50%; top:40%;
+  transform:translate(80%,-50%) rotate(5deg) scale(.94);
+  padding:12px 22px; border-radius:999px;
+  background:#F3BA00; color:#161616; font-weight:700;
+  opacity:0; pointer-events:none;
+  transition:opacity .28s ease, transform .28s ease;
+  z-index:100; /* li 위로 */
+}
+.hobbyList li:nth-child(2):hover::after{
+  opacity:1; transform:translate(40%,-50%) rotate(5deg) scale(1);
+}
+
 .hobbyList li:nth-child(3) { transform: translateX(-10%) rotate(-4deg); z-index: 2; }
 .hobbyList li:nth-child(4) { transform: translate(40%,-10%) rotate(2deg); z-index: 3; }
 .hobbyList li:nth-child(5) { transform: translateX(80%) rotate(-5deg); z-index: 4; }
+.hobbyList li:nth-child(5)::after{
+  content:"관찰력&편안함";
+  position:absolute; left:50%; top:70%;
+  transform:translate(80%,-50%) rotate(5deg) scale(.94);
+  padding:12px 22px; border-radius:999px;
+  background:#4A63FF; color:#161616; font-weight:700;
+  opacity:0; pointer-events:none;
+  transition:opacity .28s ease, transform .28s ease;
+  z-index:100; /* li 위로 */
+}
+.hobbyList li:nth-child(5):hover::after{
+  opacity:1; transform:translate(40%,-50%) rotate(5deg) scale(1);
+}
 
 
 
@@ -385,12 +421,37 @@ rgba(92, 230, 140, 0.4) 0%,   /* 연두(LightGreen) + 옅게 */
   filter: brightness(100%);
 }
 
-.hobbyText p { font-size: 30px; font-weight: 200; color: #fff; text-align: center; align-items: center;}
+.hobbyText p { font-size: 18px; font-weight: 200; line-height: 1.5; color: #fff; text-align:center;}
+
+.hobbyText.motion .word { display: inline-block;
+animation: slide-up 1s cubic-bezier(.5, 0, .5, 1) both;
+animation-delay: calc(20ms * var(--word-index));
+}
+
+@keyframes slide-up {
+0% {transform: translateY(30px); opacity: 0;}
+80% {transform: translateY(30px); opacity: 0;}
+}
 
 
 /* philosophy */
 .philosophy .inner {min-height: 100vh; padding-top: 450px; width: 70%;}
 .philosophy .philosophyTit {color: #fff; position: relative; z-index: 1; }
+
+/* 1) 초기 상태 (보일 준비만 해두기) */
+.philosophyTit.motion{
+  transform: translateY(-100px);   /* 살짝 아래서 올라오게*/
+  transition:
+    opacity .9s cubic-bezier(.2,.7,.3,1),
+    transform .9s cubic-bezier(.2,.7,.3,1);
+  will-change: opacity, transform;
+}
+
+/* 3) 안의 텍스트를 살짝 순차로(선택) */
+.philosophyTit p{transition: inherit}
+.philosophyTit h2{transition: inherit}
+.philosophyTit.mot.on[data-animate="motion"] p { transition-delay: .05s; }
+.philosophyTit.animate.on[data-animate="motion"] h2{ transition-delay: .15s; }
 
 .philosophy .philosophyTit::before {
   content: "";
@@ -412,10 +473,25 @@ rgba(92, 230, 140, 0.4) 0%,   /* 연두(LightGreen) + 옅게 */
 .philosophy .philosophyTit p {font-size: 20px;}
 .philosophy .philosophyTit h2 {font-size: 70px;}
 
+
 .philosophy .philosophyText {display: flex; justify-content: end; margin-top: 150px; color: #fff;}
 .philosophy .philosophyText p.top {font-size: 35px; font-weight: 500;}
 .philosophy .philosophyText p.top span {font-size: 18px;}
 .philosophy .philosophyText p.bottom {font-size: 18px; line-height: 1.6; font-weight: 200;}
+
+/* 1) 초기 상태 */
+.philosophyText ul.animate li{opacity:0;transform:translateY(50px)}
+
+/* 2) 트리거: ul에 .on 붙으면 li 공통 애니메이션 실행 */
+.philosophyText ul.animate.motion[data-animate="motion"] li{
+  animation:text-slide .85s cubic-bezier(.2,.7,.3,1) both;
+}
+
+/* 3) 순차 지연 */
+.philosophyText ul.animate.motion li:nth-child(1){animation-delay:0s;}
+.philosophyText ul.animate.motion li:nth-child(2){animation-delay:1s;}
+.philosophyText ul.animate.motion li:nth-child(3){animation-delay:2s;}
+
 .philosophy .philosophyText li {margin-bottom: 80px; position: relative;}
 .philosophy .philosophyText li:hover p.top {color: #2D9B4C; cursor: default;}
 
@@ -632,8 +708,10 @@ rgba(92, 230, 140, 0.4) 0%,   /* 연두(LightGreen) + 옅게 */
   height: 200px;
 }
 
-.slide-desc span {font-size: 25px; font-weight: 700; color: #2D9B4C;}
 
+
+.slide-desc span {font-size: 25px; font-weight: 700; color: #2D9B4C;}
+.slide-desc span.goal {font-size: 20px; font-weight: 500; border: 2px solid #2d9b4c; padding: 0 15px; border-radius: 50px; margin-right: 10px;}
 .slide-desc h4 {
   font-size: 20px;
   margin-bottom: 8px;
@@ -645,6 +723,8 @@ rgba(92, 230, 140, 0.4) 0%,   /* 연두(LightGreen) + 옅게 */
   font-weight: 300;
   color: #979797;
 }
+
+.slide-desc p.png {margin-bottom: 10px; margin-top: 10px;}
 .slide-desc p.top {color: #fff;}
 
 
@@ -749,7 +829,7 @@ bottom: -48px;
 
 
 /* 클론코딩 스플리팅 */
-.motion  .char { display: inline-block;
+.clone-section .motion .char { display: inline-block;
 animation: slide-up 1s cubic-bezier(.10, 0, .10, 1) both;
 animation-delay: calc(50ms * var(--char-index));
 }
