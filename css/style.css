@@ -1227,7 +1227,15 @@ rgba(92, 230, 140, 0.4) 0%,   /* 연두(LightGreen) + 옅게 */
 }
 .footer-title{
   display:flex; align-items:center; gap:20px; margin:0;
-  font-family:'MangoGrotesque', sans-serif; font-weight:500; font-size: 500px;
+  font-family:'MangoGrotesque', sans-serif; font-weight:700; font-size: 500px;
+  font-style: italic;
+  transition: transform 0.4s ease, color 0.4s ease;
+}
+
+
+.footer-title:hover {
+  font-style: italic; /* 이탤릭으로 변함 */
+  color: #2D9B4C;     /* 연두색 */
 }
 .footer-title .big{
   font-size: clamp(64px, 12vw, 180px);
@@ -1248,9 +1256,9 @@ rgba(92, 230, 140, 0.4) 0%,   /* 연두(LightGreen) + 옅게 */
 }  /* 살짝 위로 */
 
 .footer-title .line{
-  display:inline-block; height:3px; background:#fff;
-  width:min(42vw, 520px);
-  border-radius:3px;
+  display:inline-block; height:20px; background:#fff;
+  width:min(42vw, 420px);
+  margin-left: 50px;
 }
 
 /* 하단: 설명 + 링크 */
