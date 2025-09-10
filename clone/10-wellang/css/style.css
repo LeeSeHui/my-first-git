@@ -1,0 +1,566 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Nanum+Gothic:wght@400;700&family=Noto+Sans+KR:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
+
+/* reset */
+* {margin: 0;padding: 0; box-sizing: border-box;}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, tbody, tfoot, thead, tr, th, td{margin:0;padding:0;}
+h1, h2, h3, h4, h5, h6 {font-weight: 700; font-size: inherit;}
+a {color: inherit; text-decoration: inherit;}
+img {vertical-align: middle;}
+a img {border: none;}
+li {list-style: none;}
+address, em, i {font-style: normal;}
+a:focus {outline: none}
+button:focus {outline: none}
+
+/* layout */
+body {font-family: 'Noto Sans KR' , sans-serif; background: #091925}
+.wrap {width: 100%; position: relative; overflow: hidden; }
+
+/* 공통요소 */
+.inner {width: 1400px; margin: 80px auto; position: relative; }
+
+
+/* Header */
+header { box-sizing:border-box; position: relative; z-index: 100; margin-top: 40px;}
+/* header::before {content:''; position: absolute; width: 100%; height: 0px; background: #00B0C7; transition:all 0.3s; left:0; top:80px; opacity: 0;}
+header.on:before {height: 205px; opacity: 1;} */
+
+/* .innerHeader {display: flex; justify-content: space-between; width: 90%;  margin: 0 auto; height: 80px; line-height:80px; position: relative; } */
+.innerHeader {display: flex; justify-content: space-between; width: 90%;  margin: 0 auto;   position: relative; align-items: center;}
+.innerHeader .logo {width:230px; position: relative;
+  z-index: 10000;}
+.innerHeader .logo a {display: block; width: 100%; height: 100%;}
+.innerHeader .logo img {  width: 100%; height: 100%; position: ;}
+
+.innerHeader nav {width: 60%;  position: static; left: 380px; top: 50px;   }
+.innerHeader ul.gnb {display: flex; gap: 40px; }
+
+.innerHeader nav .gnb > li {width: 50%; position: relative; }
+.innerHeader nav .gnb > li a {display: block; width: 100%; height: 100%; text-align: center; color:#fff; font-size: 17px; font-weight: normal;}
+.innerHeader nav .gnb > li a:hover, .innerHeader nav .gnb > li a:focus { color: #00B0C7;}
+.innerHeader nav .gnb > li ul.inner {position: absolute; width: 220px; top:-10%; left: 50%; line-height:0px; opacity: 0; z-index: 50; transform: translateX(-50%); background: #00B0C7; padding: 15px 0; transition: all 0.3s;}
+.innerHeader nav .gnb > li ul.inner.on {line-height:35px; opacity: 1;}
+
+.innerHeader nav .gnb > li ul.inner li a {text-align: center; display: block; width: 100%; height: 100%; color:#fff; font-size: 15px; transition:all 0.3s; }
+.innerHeader nav .gnb > li ul.inner li a:hover, .innerHeader nav .gnb > li ul.inner li a:focus {font-weight: bold;}
+
+
+
+
+.innerHeader ul.language { display:flex; justify-content:space-between; width:6.5%;  position: relative; z-index: 99900;}
+.innerHeader ul.language li { transform: translateX(40px);}
+.innerHeader ul.language li a {display:inline-block; padding:5px 0; font-size:15px; color:rgb(168,168,168); position:relative; transition:color 0.3s ease;}
+.innerHeader ul.language li a::after {content:''; position:absolute; left:0; bottom: 0px; width:100%; height:2px; background:#fff; transform:scaleX(0); transform-origin:right; transition:transform 0.3s ease;}
+.innerHeader ul.language li a:hover, header .inner ul.language li a:focus {color:#fff;}
+.innerHeader ul.language li a:hover::after, header .inner ul.language li a:focus::after {transform:scaleX(1); transform-origin:left;}
+
+
+
+.innerHeader ul.menu {display: flex; align-items: center; gap: 8px; position: relative; margin-left: 10px; cursor: pointer;}
+
+.innerHeader .menu li a span {display: inline-block; width: 12px; height: 12px;background: #00bcd4; position: relative; top: 0;  transition: transform 0.3s ease;}
+.innerHeader .menu li:first-child a span {background: #fff; top: 4px; }
+.innerHeader .menu:hover li:first-child a span {transform:  translate(9px,-5px); transition: transform 0.4s ease;}
+.innerHeader .menu li:last-child a span {top: -4px; } 
+.innerHeader .menu:hover li:last-child a span {transform:  translate(-11px,3px); transition: transform 0.4s ease;}
+
+
+
+/* 오픈메뉴 */
+
+/* 닫기버튼 */
+.close { width: 30px; height: 30px; background: none; border: none;cursor: pointer;}
+.close .line {position: absolute; top: 95px; right:90px; width: 40px;height: 2px;background: #fff;transform-origin: center;}
+.close .white {transform: rotate(45deg);background: #fff;}
+.close .mint {transform:rotate(-45deg);background: #00bcd4; }
+
+.menuWrap {position: fixed; top: 0;left: 0; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.7);
+backdrop-filter: blur(10px); z-index: 9000; display: none;overflow-y: auto;}
+.menuInner {width: 85%; margin: 100px auto; position: relative; z-index: 9999; }
+.menuWrap .gnb {display: flex; flex-direction: row; flex-wrap: wrap; gap: 40px; justify-content: center; text-align: left; }
+.menuWrap .gnb > ::after {content: ''; width: 12px; height: 12px; border-radius: 50%; background: #00bcd4; position: absolute; top: 80px; left: 0; opacity: 0; transition: all 0.3s; }
+.menuWrap .gnb > li:hover:after {opacity: 1;position: absolute; top: 120px; transition: all 0.3s;} 
+.menuWrap .gnb > li {width: 200px; font-size: 30px; font-weight: 600; color: #fff; font-family: "Red Hat Display", sans-serif; cursor: pointer; position: relative; padding-top: 150px; text-align: left;}
+.menuWrap .gnb > li .sub {margin-top: 20px; padding-left: 2px; margin-top: 70px;}
+.menuWrap .gnb > li .sub li {font-size: 15px; font-weight: 400; line-height: 2.5; color: #fff; font-family: "Red Hat Display", sans-serif;}
+.menuWrap.on {display: block;}
+.menuInner > .gnb {display: flex; flex-wrap: wrap; justify-content: space-between; width: 90%;}
+.menuWrap .gnb > li .sub li.dim {color: #666;}
+.menuWrap .gnb > li .sub li.active {color: #fff;}
+.menuWrap .gnb > li .sub li {transition: color 0.2s ease;}
+
+
+
+/* visual */
+.visual .inner { width: 1550px; padding-top: 100px; margin: 0 auto;}
+.visual .inner .title h2.left {font-size: 105px; font-family: "Red Hat Display", sans-serif; color: #fff; }
+.visual .inner .title h2.right { margin-left: 445px; font-size: 105px; font-family: "Red Hat Display", sans-serif; color: #fff; margin-top: -20px}
+.visual .inner .title h2.left img {width: 230px; height: auto;}
+.visual .inner .title p{margin-left: 443px ; font-size: 30px; font-weight: 600; font-family: "Red Hat Display", sans-serif; color: #fff; letter-spacing: -3px; margin-top: 10px;}
+.visual .inner .img {margin-top: 80px;}
+.scroll-scale-img {transition: transform 1s ease, opacity 1s ease; transform: scale(1); opacity: 1;}
+.visual p.img.motion img {transition: transform 0.3s ease; width: 100%; height: auto;}
+
+/* weMake */
+.weMake .inner {width: 1300px; padding-top: 300px;padding-bottom: 150px; }
+.weMake .inner .title h2 {text-align: center; font-size: 80px; font-family: "Red Hat Display", sans-serif; color: #00B0C7;}
+.weMake .inner .title p {text-align: center; margin-top: 40px; font-size: 30px; font-weight: 500; font-family: "Red Hat Display", sans-serif; color: #fff; letter-spacing: -2.2px;}
+.weMake .inner .slide ul {margin-top: 20px; display: flex; justify-content: space-between; text-align: center; height: 500px; overflow: visible;}
+
+
+.weMake .inner .slide li {position: relative; width: 30%; background: #16242E; border-radius: 20px; padding-top: 160px; text-align: center; overflow: hidden; transition: all 0.3s;}
+.weMake .inner .slide ul li:hover {background: #00B0C7; transition: all 0.3s; cursor: default; box-shadow: 0 0 100px rgba(0, 176, 199, 0.65); transition: box-shadow 0.3s ease, background 0.3s ease;}
+
+
+.weMake .inner .slide ul li h3 {font-size: 40px; color: #fff; margin-top: 100px; font-weight: 500; letter-spacing: -1px;}
+.weMake .inner .slide ul li p {font-size: 20px; color: #fff; margin-top: 50px;}
+
+
+.weMake .slide ul li {will-change: transform; transition: transform 0.4s ease, z-index 0.4s ease; position: relative;
+}
+.weMake .inner .slide ul li img {width: 150px; height: auto; position: absolute; top: 95px; left: 50%; transform: translateX(-50%); transition: opacity 0.3s ease;}
+.weMake .inner .slide ul li .default-img {opacity: 1; z-index: 1; transition: all 0.3s;}
+.weMake .inner .slide ul li .hover-img {opacity: 0; z-index: 2; transition: all 0.33;}
+.weMake .inner .slide ul li:hover .hover-img {opacity: 1; transition: all 0.3s;}
+.weMake .inner .slide ul li:hover .default-img {opacity: 0; transition: all 0.3s;}
+
+
+
+/* applications */
+.applications .inner {width: 1550px;  margin-top: 400px;}
+.applications .inner h2 {text-align: center; font-size: 80px; font-family: "Red Hat Display", sans-serif; color: #fff; }
+.applications .inner .list ul {display: flex; justify-content: space-between; gap: 30px; min-width: max-content; margin-top: 130px;  transition: all 0.5s;}
+.applications .inner .list ul li {transition: all 0.5s; }
+.applications .inner .list ul li img { border-radius: 15px; display: block; width: 100%; height: 80%;  object-fit: cover; } 
+.applications .inner .list ul li p {font-size: 25px; color: #fff; margin-top: 30px; text-align: center; font-family: "Red Hat Display", sans-serif;}
+
+.applications .list ul:hover li {filter: brightness(0.4); /* 전체 어둡게 */transition: filter 0.3s ease;  transition: all 0.5s;}
+.applications .list ul li:hover {filter: brightness(1); /* 호버한 것만 밝게 */  transition: all 0.5s;}
+
+/* products */
+.products .inner {  margin: 0 auto; position: relative; padding-top: 20px; padding-bottom: 200px;}
+.products .inner h2 {font-size: 80px; font-family: "Red Hat Display", sans-serif; color: #fff; position: absolute; top: 15%; left: -6%; line-height: 1.1;}
+.products .right{width: 1550px; margin: 300px auto; position: relative; height: 800px; }
+.products .right .slide2 {position: absolute; right: -7%; width: 1000px;  }
+.products .right .slide2 .slick-dots {position: absolute; left: -70%; top: 50%; transform: translateY(-60%); }
+.products .right .slide2 .slick-dots button {height: 70px; width: 300px; background: none; font-size: 20px; position: relative; gap: 5px;  border: none; text-align: left; letter-spacing: -1px; color: #656f75;  border-radius: 7px; cursor: pointer; transition: all 0.3s;}
+.products .right .slide2 .slick-dots li button {
+  display: block;
+  position: relative;
+  padding-right: 30px; /* 화살표 들어갈 공간 확보 */
+}
+.products .right .slide2 .slick-dots button:hover {color: #fff; transition: all 0.3s;}
+
+.products .right .slide2 li {position: relative; overflow: visible !important;  /* ✅ 이걸로 자르는 거 풀기 */}
+.products .right .slide2 .txt {position: absolute; bottom: -20px;  /* ❌ 이것도 없애거나 position 자체를 변경 */
+  left: 50%; transform: translateX(20%); width: 100%; color: #fff; z-index: 10; position: static; /* ✅ 이걸로 바꿔서 자연스럽게 아래로 흘러가게 */ transform: none; margin-top: -60px; padding: 30px; }
+.products .right .slide2 .txt h3 {font-size: 80px; margin-bottom: 20px; font-family: "Red Hat Display", sans-serif; font-weight: 500;}
+.products .right .slide2 .txt p {font-size: 22px; font-weight: 300; line-height: 1.5; letter-spacing: -1.5px;}
+
+/* 슬라이드 현재 표시 애니메이션 */
+.products .right .slide2 .slick-dots li.slick-active button {color: #fff; font-weight: 600;}
+.products .right .slide2 .slick-dots .slick-active {position: relative; transition: all 0.3s; color: #fff;}
+.products .right .slide2 .slick-dots .slick-active:after {content: ''; width: 380px; height: 70px; background:#0b1f2c; position: absolute; left: -30px; bottom: 0; animation-name: line; animation-duration: 0.3s; z-index: -1; border-radius: 7px; }
+.products .right .slide2 .slick-dots li.slick-active button {
+  display: inline-flex;
+  align-items: center;
+}
+
+.products .right .slide2 .slick-dots li.slick-active button::after { content: '';display: inline-block;width: 50px;height: 50px;
+  background: url('../img/arrow-up-right.png') no-repeat center/contain; position: absolute; top: 50%; right: -30px; transform: translateY(-50%);}
+
+
+/* hover */
+.slick-arrow:hover {cursor: pointer; background: #ccc; transition: all 0.5s;}
+.slick-arrow:hover:after {font-size: 28px; color: #333; transition: all 0.5s;}
+
+
+
+
+/* information */
+.information {
+  background: url(../img/applications_bg.png) no-repeat center center;
+  background-size: cover;
+   padding: 250px 0 300px; /* 위아래 여백 크게 추가! */
+}
+.information .inner {width: 1550px; }
+
+@keyframes scroll {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+.information img.squre {display: block; position: absolute; top: -80px; left: 70px; z-index: 0;  animation: scroll 1.5s ease-in-out infinite;} 
+/* 동동거리는 애니메이션!!!! 설정. 축약형 */
+
+
+.information .inner .title {position: relative; z-index: 1; }
+.information .inner .title h2 {font-size: 80px; font-family: "Red Hat Display", sans-serif; color: #fff; margin-bottom:  20px;}
+.information .inner .title p { font-size: 30px; font-weight: 500; font-family: "Red Hat Display", sans-serif; color: #fff; letter-spacing: -2.8px;}
+.information .inner .icon ul {position: relative; width: 100%;height: 400px;}
+.information .inner .icon ul li {position: absolute;  background: #16242E; border-radius: 20px;
+padding: 40px 50px; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 250px; height: 180px; transition: all 0.8s; cursor: pointer;}
+.information .inner .icon ul li:nth-child(2){transform: translateY(-100px);}
+.information .inner .icon ul li:hover {background: #00B0C7;transition: all 0.8s; }
+.information .inner .icon ul li.contact-us {right: 400px; top: 150px;  }
+
+.information .inner .icon ul li.contact-us::after {content: ''; width: 1px; height: 130px; background: linear-gradient(to bottom, #00B0C7, #00668C); position: absolute; bottom: -130px; left: 50%; transform: translateX(-50%);}
+.information .inner .icon ul li.contact-us::before {content: ''; width: 7px; height: 7px; background: linear-gradient(to bottom, #00B0C7, #00668C);position: absolute; bottom: -3px; left: 50%; transform: translateX(-50%); border-radius: 50px;}
+.information .inner .icon ul li.history {right: 100px; top: 150px;  }
+.information .inner .icon ul li.history::after {content: ''; width: 1px; height: 130px; background: linear-gradient(to bottom, #00B0C7, #00668C);position: absolute; bottom: -130px; left: 50%; transform: translateX(-50%);}
+.information .inner .icon ul li.history::before {content: ''; width: 7px; height: 7px; background: linear-gradient(to bottom, #00B0C7, #00668C);position: absolute; bottom: -3px; left: 50%; transform: translateX(-50%); border-radius: 50px;}
+@keyframes bar {
+  0% { height: 0; }
+}
+
+/* ::after에 대한 bar 애니메이션 */
+.information.motion .inner .icon ul li.contact-us::after,
+.information.motion .inner .icon ul li.history::after {
+  animation: bar 1s forwards;animation-delay: 0.5s;
+}
+
+/* ::before에 대한 bar 애니메이션 */
+.information.motion .inner .icon ul li.contact-us::before,
+.information.motion .inner .icon ul li.history::before {
+  animation: bar 2.6s forwards;animation-delay: 0.5s;
+}
+
+/* information */
+.information .inner .icon ul li.right {right: 100px; top: 50px; }
+.information .inner .icon ul li img {width: 80px; height: auto; margin-bottom: 20px; transition: filter 0s; }
+.information .inner .icon ul li:hover img {filter: brightness(0) invert(1); transition: filter 0s; }
+.information .inner .icon ul li p {font-size: 23px; color: #fff; text-align: center; font-family: "Red Hat Display", sans-serif; font-weight: 600;}
+.information .inner .icon ul li.left { right: 380px; top: 350px;}
+.information .inner .icon ul li.right { right: 100px;  top: 240px;}
+.information img.bg {z-index: 100;}
+
+/* accordion */
+.accordion-section { width: 100%; overflow: hidden; background: #091925; margin: 0 auto; padding: 150px 0; }
+.accordion-wrap { display: flex; width: 90%; margin: 0 auto; height: 600px; gap: 20px;}
+.accordion-item { flex: 0.6; overflow: hidden; position: relative; transition: flex 0.4s ease, filter 048s ease, transform 0.8s ease; cursor: pointer; }
+.accordion-item img { width: 100%; height: 100%; object-fit: cover; transition: all 0.8s ease; }
+.accordion-item .text { position: absolute; bottom: 0%; right: 5%; font-size: 5.5vw; color: white; font-family: 'Red Hat Display', sans-serif; z-index: 2; font-weight: 600;}
+
+.accordion-item .text {opacity: 0; transition: opacity 0.3s ease;}
+.accordion-item.active .text {opacity: 1;}
+.accordion-item.active { flex: 5; }
+.accordion-item.active img { filter: brightness(100%); transform: scale(1.02); }
+.accordion-item:not(.active) img { filter: brightness(50%); }
+
+*/
+/* recruit */
+
+.recruit .right li {position: absolute; right: 0;}
+.recruit .right li img {width: 870px; height: auto;display: block; bottom:129px; right: 0;}
+.recruit .right li .hover-img {position: absolute;  opacity: 0; transition:opacity 0.6s ease;}
+.recruit:hover .right li .hover-img {opacity: 1;}
+.recruit .right li .default-img {display: block;}
+.recruit .right li span {position: absolute; z-index: 100; font-size: 50px; font-weight: 600;  color: #fff; transform: rotate(-45deg) translate(0,0); top: 190px; right: 50px; transition: transform 0.5s ease;}
+.recruit:hover .right li span {transform: rotate(-45deg) translate(50px, -10px);}
+
+.recruit .inner {display: flex; justify-content: space-between; width: 1550px; padding: 130px 0 130px;border-top: 2px solid rgba(29, 65, 90, 0.7); border-bottom: 2px solid rgba(29, 65, 90, 0.7); position: relative; margin: 0 auto;}
+.recruit .inner .title h2 {font-size: 53px; font-family: "Red Hat Display", sans-serif; color: #fff; position: absolute; top:250px; z-index: 2; font-weight: 600; letter-spacing: -2.8px; cursor: pointer;}
+.recruit .inner .title p {color: #00B0C7; font-size: 30px; font-family: "Red Hat Display", sans-serif; position: absolute; top:350px; cursor: pointer;}
+
+
+
+/* newsRoom */
+.newsRoom .inner {width: 1550px; padding: 180px 0; display: flex; justify-content: space-between; position: relative;}
+.newsRoom .inner .title h2 {font-size: 80px; font-family: "Red Hat Display", sans-serif; color: #fff; position: absolute; margin-top: 50px;}
+.newsRoom .inner .title span { display: inline-block; transform: translateY(-50%) rotate(-45deg); position: absolute; top: 60px; right: -90px; font-size: 60px; transition: transform 0.3s ease; font-weight: 600;}
+.newsRoom .inner .title span:hover {transform: rotate(-45deg) translate(50px, -20px);transition: transform 0.5s ease;}
+
+.newsRoom .inner .right {padding: 50px 60px; background: #132A3C; border-radius: 15px; transition: all 0.5s; cursor: pointer; position: absolute; right: 0;}
+
+.newsRoom .inner .right:hover {background: #00B0C7; transition: all 0.5s;}
+.newsRoom .inner .right:hover p.tit ,.newsRoom .inner .right:hover p.date {color: #fff; transition: all 0.5s;}
+
+.newsRoom .inner .right p.tit {font-size: 18px; color:  #00B0C7; font-weight: 500;}
+.newsRoom .inner .right p.txt {font-size: 25px; color: #fff; font-weight: normal; line-height: 1.5; margin-top: 20px; width: 650px;}
+.newsRoom .inner .right p.date {margin-top: 40px; color: #bbb;}
+.newsRoom .inner .right p.date span {margin-left: 10px; color: #fff; font-size: 20px; position: absolute; bottom: 48px; left: 140px; }
+
+
+/* footer */
+footer .inner {width: 1550px; padding-top: 400px ;}
+footer .inner img {display: block; margin-bottom: 50px;}
+footer .inner p{font-size: 16px;  color: #fff; font-weight: 100;}
+footer .info{display: flex; justify-content: space-between; align-items: flex-end}
+footer .info .left {width: 50%;}
+footer .info .left p.adress { font-family: 'GmarketSansMedium'; font-size: 16px; letter-spacing: 0.5px;margin-bottom: 27px; }
+footer .info .right {width: 50%; text-align: right;}
+footer .left .dial {display: flex; justify-content: space-between; width: 55%;}
+footer .left .dial p {width: 50%;  font-family: "Red Hat Display", sans-serif; font-size: 17px;}
+
+footer .left .dial p span {color: #818181; margin-right: 15px; font-weight: 600;}
+
+/*개인정보처리방침 */
+footer .right p.top a {display: block; line-height: 1.2; position: absolute; top:390px; right: 0; font-size: 17px; font-weight: 300;}
+footer .right p.top b.one {position: relative; transition:transform 0.5s ease;}
+footer .right p.top b.one::after {position: absolute; bottom: -6px; content:''; position:absolute; left:0; width:100%; height:2px; background:#fff; transform:scaleX(0); transform-origin:right; transition:transform 0.5s ease; }
+footer .right p.top b.one:hover, footer .right p.top b.one:focus {color:#fff;}
+footer .right p.top b.one:hover::after, footer .right p.top b.one:focus::after {transform:scaleX(1); transform-origin:left;}
+
+/* 고객문의하기 */
+footer .right p.top b.two {position: relative;  margin-left: 50px; color: #00B0C7; transition:transform 0.5s ease;}
+footer .right p.top b.two::after {position: absolute; bottom: -6px; content:''; position:absolute; left:0; width:100%; height:2px; background:#00B0C7; transform:scaleX(0); transform-origin:right; transition:transform 0.5s ease; }
+footer .right p.top b.two:hover, footer .right p.top b.one:focus {color: #00B0C7;}
+footer .right p.top b.two:hover::after, footer .right p.top b.one:focus::after {transform:scaleX(1); transform-origin:left;}
+
+
+
+footer .right .bottom {color: #c4c4c4; font-family: "Red Hat Display", sans-serif; font-size: 17px; font-weight: 500;}
+
+
+
+
+/* animation */
+@keyframes title{
+  0% {opacity: 0; transform: translateX(-100px);}
+  0% {opacity: 0; transform: translateX(-50px);}
+}
+.visual .title.motion .left {animation-name: title; animation-duration: 2.2s;}
+
+@keyframes subtitle {
+  0% {opacity: 0; transform: translateX(-100px);}
+  100% {opacity: 1; transform: translateX(0);}
+}
+
+.visual .title.motion p {animation-name: subtitle; animation-duration: 2.2s; animation-delay: 0.3s; animation-fill-mode: both;}
+
+
+
+@keyframes title2{
+  0% {opacity: 0; transform: translateX(200px);}
+  0% {opacity: 0; transform: translateX(100px);}
+}
+.visual .title.motion .right {animation-name: title2; animation-duration: 2.2s;}
+
+
+
+
+@keyframes titleImg {
+  0% { opacity: 0; transform: translateY(100px) scale(0.9); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.visual p.img.motion img {animation-name: titleImg; animation-duration: 1.5s; animation-fill-mode: both; transition: transform 0.3s ease; }
+
+@keyframes titP{
+  0% {opacity: 0; transform: translateY(50px);}
+  100% {opacity: 1; transform: translateY(0);}
+}
+.weMake.motion .title p {animation-name: titP; animation-duration: 1s;}
+.information.motion .title p {animation-name: titP; animation-duration: 1s; animation-delay: 0.5s; /* ✅ 0.5초 뒤에 시작 */
+  animation-fill-mode: both; /* ✅ 끝난 후 상태 유지 */}
+.accordion-section.motion {animation-name: titP; animation-duration: 1.5s;}
+.recruit.motion {animation-name: titP; animation-duration: 2.3s;}
+.newsRoom.motion .right {animation-name: titP; animation-duration: 2s;}
+
+
+/* 스플리팅 */
+
+@keyframes slide-up {
+  0% {transform: translateY(80px); opacity: 0;}
+  5% {transform: translateY(30px); opacity: 0;}
+  100% {transform: translateY(0px); opacity: 1;}
+}
+.weMake.motion .word {
+    display: inline-block;
+    animation: slide-up 1s cubic-bezier(.30, 0, .30, 0) both;
+    animation-delay: calc(120ms * var(--word-index));
+  }
+.applications.motion .char {
+  display: inline-block;
+  animation: slide-up 0.8s cubic-bezier(.30, 0, .30, 0) both;
+  animation-delay: calc(10ms * var(--char-index));
+}
+.products.motion .char {
+  display: inline-block;
+  animation: slide-up 0.8s cubic-bezier(.30, 0, .30, 0) both;
+  animation-delay: calc(10ms * var(--char-index));
+}
+.information.motion .char {
+  display: inline-block;
+  animation: slide-up 0.8s cubic-bezier(.30, 0, .30, 0) both;
+  animation-delay: calc(10ms * var(--char-index));
+}
+
+
+  @keyframes applications{
+    0% {transform: translateX(0%);}
+    100% {transform: translateX(-100%);}
+  }
+  .applications .list{animation: applications 18s linear infinite;}
+
+
+
+@keyframes slideInFromLeft {
+  0% { opacity: 0; transform: translateX(-800px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+.applications.motion .list ul {
+  animation: slideInFromLeft 1s ease forwards;
+}
+
+
+
+
+
+/* 고정버튼 */
+  .fixed-contact {position: fixed; right: 200px; bottom: 70px; z-index: 10000; background:#0b212d; width: 60px; height: 60px; border-radius: 20px;display: flex;justify-content: center;align-items: center;box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);transition: all 0.3s ease;padding: 70px 70px; text-align: center;}
+  .fixed-contact span {font-size: 35px; color:#00bcd4; font-weight: 800;}
+  .fixed-contact p {margin-bottom: 10px; font-family: "Red Hat Display", sans-serif; font-weight: 400;}
+  .fixed-contact a {color: #fff; font-size: 20px; font-weight: 300;}
+  
+  .fixed-contact:hover {background: #0098b2;transition: all 0.5s; box-shadow: 0 0 30px rgba(0, 176, 199, 0.65); transition: box-shadow 0.5s ease, background 0.8s ease;}
+  .fixed-contact:hover span {color: #fff;}
+
+  /* 탑버튼 */
+.top-btn { position: fixed; right: 40px; bottom: 40px; z-index: 9999; width: 50px; height: 50px; border-radius: 15px; background: #00B0C7; color: white; font-size: 18px; display: flex; justify-content: center; align-items: center; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); cursor: pointer; opacity: 0; visibility: hidden; transition: all 0.4s ease; box-shadow: 0 0 30px rgba(0, 176, 199, 0.65);transform: translateY(0); transition: all 0.5s; }
+.top-btn.show { opacity: 1; visibility: visible; }
+.top-btn i{transform: translateY(0); transition: all 0.5s;}
+.top-btn:hover i{transform: translateY(-5px);transition: all 0.5s;}
+
+
+/* 반응형 */
+/* responsive web */
+
+/* 1600px ~ 1401px */
+@media screen and (max-width: 1600px){
+  
+.fixed-contact {right: 30px; bottom: 90px; width: 55px; height: 55px;}
+.top-btn { font-size: 15px; box-shadow:none; bottom: 20px; right: 20px; }
+.information img.squre {width: 320px; left: 30px;}
+.information .inner .icon ul li {width: 200px; height: 138px;}
+.information .inner .icon ul li img {width: 75px; margin-bottom: 10px;}
+.information .inner .icon ul li p {font-size: 19px;}
+.information .inner .icon ul li img {width: 65px;}
+.information .inner .icon ul li.contact-us {right: 500px;}
+.information .inner .icon ul li.history {right: 250px}
+.recruit .inner {width: 1500px;}
+.newsRoom .inner .title h2 {left: 10px;}
+footer .inner {width: 1500px; padding: 150px 0 0;}
+.accordion-wrap { display: flex; width: 95%;}
+
+}
+
+/* 1400px ~ 1200px */
+@media screen and (max-width: 1400px){
+.innerHeader {width: 98%; height: 20px;}
+.innerHeader ul.language {width: 8.5%; margin-right: 72px;}
+.innerHeader nav .gnb > li a {font-size: 16px;}
+.fixed-contact {padding: 61px 61px;}
+.fixed-contact a {font-size: 18px;}
+.fixed-contact span {font-size: 31px;}
+.top-btn {height: 48px; width: 48px; border-radius: 14px; }
+.visual .inner {padding: 100px 50px;}
+.visual .inner .title h2.left {font-size: 95px; }
+.visual .inner .title h2.right { margin-left: 380px; font-size: 95px; }
+.visual .inner .title p{margin-left: 380px ; font-size: 27px; font-weight: 500; }
+.visual .inner .title h2.left img {width: 220px; height: auto;}
+.visual p.img.motion img {width: 90%; }
+.weMake .inner .title h2 {font-size: 73px;}
+.weMake .inner .title p {font-size: 27px; margin-top: 30px;}
+.weMake .inner .slide li {width: 28%; }
+.weMake .inner .slide ul {justify-content: center; gap: 58px;}
+.applications .inner h2 {font-size: 71px;}
+.products .right .slide2 {width: 776px; right: 10%;}
+.products .inner h2 {left: 3%;}
+.products .right .slide2 .slick-dots {top: 55%;}
+.slick-slide img {width: 765px; height: 480px;}
+.products .right .slide2 .slick-dots button {font-size: 19px;}
+.products .right .slide2 .txt h3 {font-size: 64px;}
+.products .right .slide2 .txt p {font-size: 20px;}
+
+
+.information .inner .title {position: absolute; top: -80px; left: 28px;}
+.information img.squre {width: 280px; left: 50px; top: -130px;}
+.information .inner .icon ul li {width: 185px; height: 130px;}
+.information .inner .icon ul li img {width: 60px; margin-bottom: 8px;}
+.information .inner .icon ul li p {font-size: 16.5px;}
+.information .inner .icon ul li.contact-us {right: 650px;}
+.information .inner .icon ul li.history {right: 420px}
+.information .inner .title h2 {font-size: 70px;}
+.information .inner .title p {font-size: 28px;}
+.accordion-item img {height: 80%;}
+.accordion-item .text {bottom: 18%; font-size: 7.5vw;}
+.accordion-section {padding: 0;}
+.recruit .inner {padding: 125px 0 130px;}
+.recruit .right li img {width: 771px; margin-right: 155px;}
+.recruit .right li span {margin-right: 155px;}
+.recruit .inner .title h2 {left: 30px;}
+.recruit .inner .title p {left: 30px;}
+.newsRoom .inner .title h2 {left: 30px;}
+.newsRoom .inner .right {padding: 40px 55px; right: 197px;}
+.newsRoom .inner .right p.txt {font-size: 21px; width: 540px; }
+.newsRoom .inner .right p.date span {bottom: 37px; left: 140px; }
+footer .inner {width: 1325px; }
+footer .right p.top a {top: 150px; font-size: 16px;}
+footer .left .dial {width: 60%;}
+footer .info .left p.adress {font-size:14px ;}
+footer .left .dial p {font-size: 15px;}
+
+}
+
+
+
+/* 1201px ~ 1000px */
+@media screen and (max-width: 1200px){
+.innerHeader nav .gnb{display: none;}
+.innerHeader ul.language {display: none;}
+.innerHeader ul.menu {display: column; align-items: center;  pointer;}
+.innerHeader .menu li a span {display: inline-block; width: 30px; height: 3px;background: #fff;}
+.innerHeader .menu li:first-child a span {background: #fff; top: 4px; left: 5px; }
+.innerHeader .menu li:last-child a span {top: -4px; left: -33px } 
+.visual .inner {   padding-top: 200px;}
+.visual .inner .title h2.left {font-size: 90px; }
+.visual .inner .title h2.right { margin-left: 300px; font-size: 90px; }
+.visual .inner .title p{margin-left: 300px ; font-size: 30px; font-weight: 600; }
+.visual p.img.motion img{width: 75%;}
+
+.weMake .inner {width: 1200px;}
+.weMake .inner .title h2 {font-size: 70px;}
+.weMake .inner .slide ul {gap: 47px;}
+.applications .inner {width: 1240px;}
+
+.products .right {margin: 350px auto;}
+.products .right .slide2 {width: 776px; right: 12%;}
+.products .inner h2 {left: 3%; font-size: 74px;}
+.products .right .slide2 .slick-dots {top: 55%; border-top-left-radius: -67%;}
+.slick-slide img {width: 655px; height: 400px;}
+.products .right .slide2 .slick-dots button {font-size: 20px; font-weight: 400;}
+.products .right .slide2 .txt h3 {font-size: 60px;}
+.products .right .slide2 .txt p {font-size: 20px;}
+.recruit .inner .title h2 {font-size:50px ; top: 231px;}
+.recruit .right li img {width: 700px; margin-right: 350px;}
+.recruit .right li span {margin-right: 350px;}
+.recruit .inner .title p {top: 320px;}
+
+.newsRoom .inner .title h2 {font-size: 75px ;}
+.newsRoom .inner .title span {top: 54px; font-size: 56px;}
+.newsRoom .inner .right {padding: 50px 47px; right: 398px;}
+.newsRoom .inner .right p.txt {font-size: 25px; width: 400px; }
+.newsRoom .inner .right p.date span {bottom: 48px; left: 130px; }
+footer .inner {width: 1125px; }
+
+
+}
+
+/* 768px ~ 501px */
+@media screen and (max-width: 768px){}
+
+
+
+/* 500px 이하 (모바일 mode) */
+@media screen and (max-width: 500px){
+.visual .inner {padding: 100px 21px;}
+.visual .inner .title h2.left {font-size: 40px; }
+.visual .inner .title h2.right { margin-left: 70px; font-size: 40px; margin-top: 6px; }
+.visual .inner .title p{margin-left: 70px ; font-size: 17px; font-weight: 500; letter-spacing: -1.1px; }
+.visual p.img.motion img{width: 30%;}
+.visual .inner .title h2.left img {width: 100px; height: auto;}
+}

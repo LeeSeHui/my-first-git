@@ -308,7 +308,7 @@ rgba(92, 230, 140, 0.4) 0%,   /* 연두(LightGreen) + 옅게 */
 .fixed-title {
   position: fixed;
   top: 200px;
-  right: 8%;
+  right: 0%;
   text-align: end;
   z-index: 50;
   font-variation-settings: "wght" 900;
@@ -329,7 +329,7 @@ rgba(92, 230, 140, 0.4) 0%,   /* 연두(LightGreen) + 옅게 */
 .about-img img {width: 100%; display: block;}
 .img-hover {position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 0.4s ease;}
 .about-img:hover .img-hover {opacity: 1;}
-.about-text { text-align: end; margin-top: 300px; margin-right: 150px;}
+.about-text { text-align: end; margin-top: 300px; margin-right: 0px;}
 .about-text h3 {font-size: 28px; margin-bottom: 10px; font-weight: 400;}
 .about-text p {font-size: 18px; line-height: 1.6; font-weight: 300; color:rgba(255,255,255,.5);}
 
@@ -577,7 +577,7 @@ rgba(92, 230, 140, 0.4) 0%,   /* 연두(LightGreen) + 옅게 */
   position: relative;
   color: #fff;
   isolation: isolate;
-  padding-top: 10px;
+  padding-top: 20vh;
 }
 
 .tproj-head{
@@ -625,8 +625,11 @@ rgba(92, 230, 140, 0.4) 0%,   /* 연두(LightGreen) + 옅게 */
 /* 가로 트랙 + 이미지 */
 .tproj-track{ display:flex; height:100%; gap:20px; padding-left:10vw; }
 
-.tproj-slide{ position:relative; flex:0 0 65vw; display:flex; flex-direction:column; align-items:center; margin-right:40px; }
-.tproj-slide img{ width:100%; height:60vh; object-fit:cover; border-radius:10px; transition:filter .3s ease; }
+.tproj-slide{ position:relative; flex:0 0 65vw; display:flex; flex-direction:column; align-items:center;}
+.tproj-slide img,
+.tproj-slide video{ width:100%; height:60vh; object-fit:cover; border-radius:10px; transition:filter .3s ease; }
+
+
 
 /* 섹션 안의 첫 번째 슬라이드만 타겟 */
 .tproj-sec .tproj-slide:first-child:hover img {
@@ -937,6 +940,25 @@ animation-delay: calc(50ms * var(--char-index));
 .exhibition .img .img-link:focus-visible {outline:2px solid #fff;outline-offset:4px;}
 .exhibition .img .click-fx {pointer-events:none;}
 
+/* 두 번째 블록 */
+.exhibition .two .c-left {
+  text-align: right;
+}
+.exhibition .two .c-left .c-tit,
+.exhibition .two .c-left .c-text {
+  text-align: right;
+}
+
+/* 네 번째 블록 */
+.exhibition .four .c-left {
+  text-align: right;
+}
+.exhibition .four .c-left .c-tit,
+.exhibition .four .c-left .c-text {
+  text-align: right;
+}
+
+
 
 
 /* experience */
@@ -1005,9 +1027,19 @@ animation-delay: calc(50ms * var(--char-index));
   font-size: 55px; font-weight: 800; line-height: 1.1; margin: 0 0 14px;
 position: relative; transform: translateY(-45px);}
 .exhibition .c-tit::after {content: ''; display: inline-block; width: 540px; height: 1px; background-color: #fff; position: absolute; bottom: -20px; left: 0;}
+
+/* 두 번째와 네 번째 타이틀 밑줄을 오른쪽 기준으로 */
+.exhibition .two .c-tit::after,
+.exhibition .four .c-tit::after {
+  left: auto;   /* 기존 left:0 제거 */
+  right: 0;     /* 오른쪽 기준 정렬 */
+}
+
 .exhibition .c-text{
   font-size: 18px; line-height: 1.5; opacity:.9; transform: translateY(-12px); color: #bdbdbd;
 }
+
+
 .exhibition .c-text span{display: inline-block; margin-bottom: 10px; font-size: 20px; font-weight: 700; color: #fff;}
 
 /* 이미지 박스 */
@@ -1207,11 +1239,38 @@ rgba(92, 230, 140, 0.4) 0%,   /* 연두(LightGreen) + 옅게 */
 .qa .acc-btn:hover{background:rgba(255,255,255,0.04);}
 .qa .acc-btn:focus-visible{outline:2px solid #fff;outline-offset:2px;}
 .qa .acc-panel{overflow:hidden;height:0;transition:height .28s ease;}
-.qa .acc-body{margin:0 20px 18px 20px;background:#1c1c1c;border-radius:12px;padding:16px 18px;color:#ccc;line-height:1.8;font-size:16px;}
+.qa .acc-body{margin:0 20px 18px 20px;background:#1c1c1c;border-radius:12px;padding:16px 18px;color:#ccc;line-height:1.8;font-size:18px;}
 .qa .arrow{width:18px;height:18px;display:inline-block;position:relative;transform:rotate(0deg);transition:transform .28s ease;}
 .qa .arrow::before,.qa .arrow::after{content:"";position:absolute;inset:0;border-right:2px solid #aaa;border-bottom:2px solid #aaa;transform:rotate(-45deg);}
 .qa .acc-btn[aria-expanded="true"] .arrow{transform:rotate(90deg);}
 @media (max-width:640px){.qa{padding:40px 16px;} .qa .acc-btn{font-size:18px;padding:16px;} .qa .acc-body{font-size:15px;}}
+
+/* final */
+.final {
+  padding: 80px 0; /* 위아래 여백 필요 시 */
+  text-align: center;
+}
+.final .inner {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+.final-video {
+  display: block;
+  width: 100%;
+  max-height: 600px;
+  border-radius: 20px;   /* 모서리 둥글게 (이미지랑 통일감) */
+  object-fit: cover;     /* 영상이 잘리더라도 꽉 차게 */
+}
+
+.final-video {
+  width: 100%;
+  max-width: 100%;   /* 영상 원래 크기 제한 */
+  border-radius: 20px;
+  display: block;
+  margin: 0 auto;
+  transform: scale(0);   /* 처음엔 점처럼 */
+  opacity: 0;            /* 투명 */
+}
 
 
 

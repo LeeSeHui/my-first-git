@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wellang</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/scrolla.jquery.min.js"></script>
+    <script src="js/slick.min.js"></script>
+    <script src="js/splitting.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/slick.css">
+    <link rel="stylesheet" href="XEIcon-2.2.0/xeicon.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
+    </head>
+<body>
+    <div class="wrap">
+        <header>
+            <div class="innerHeader">
+                <a href="index.html">
+                    <h1 class="logo">
+                        <img src="img/헤더로고.PNG" alt="">
+                    </h1>
+                </a>
+            <nav>
+                    <ul class="gnb">
+                    <li>
+                        <a href="#">Applications</a>
+                    </li>
+                    <li>
+                        <a href="#">Products</a>
+                        <ul class="inner">
+                            <li><a href="#">오디오 앰프 IC</a></li>
+                            <li><a href="#">오디오 인핸스먼트 IC</a></li>
+                            <li><a href="#">LNB 파워 IC</a></li>
+                            <li><a href="#">AC 다이렉트 LED 드라이버 IC</a></li>
+                            <li><a href="#">미니 LED 드라이버 IC</a></li>
+                            <li><a href="#">갈바닉 절연 게이트 드라이버 IC</a></li>
+                            <li><a href="#">DC-DC 컨버터 IC</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">About us</a>
+                        <ul class="inner">
+                            <li><a href="#">CEO인사말</a></li>
+                            <li><a href="#">회사소개</a></li>
+                            <li><a href="#">CI</a></li>
+                            <li><a href="#">특허 인증</a></li>
+                            <li><a href="#">연구소</a></li>
+                            <li><a href="#">Contact us</a></li>
+                            
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Investment</a>
+                        <ul class="inner">
+                            <li><a href="#">재무정보</a></li>
+                            <li><a href="#">공시정보</a></li>
+                            <li><a href="#">공고사항</a></li>
+                            <li><a href="#">IR</a></li>
+                            <li><a href="#">News</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">ESG</a>
+                        <ul class="inner">
+                            <li><a href="#">ESG개요</a></li>
+                            <li><a href="#">환경C</a></li>
+                            <li><a href="#">사회</a></li>
+                            <li><a href="#">지배구조</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Career</a>
+                        <ul class="inner">
+                            <li><a href="#">인재상</a></li>
+                            <li><a href="#">인사제도</a></li>
+                            <li><a href="#">채용정보</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            
+                <ul class="language">
+                    <li><a href="#">KR</a></li>
+                    <li><a href="#">EN</a></li>
+                    <li><a href="#">CH</a></li>
+                </ul>
+                <ul class="menu">
+                    <li><a href="#"><span></span></a></li>
+                    <li><a href="#"><span></span></a></li>
+                </ul>
+            
+            </div>
+        </header>
+        <!-- 오버레이 전체 메뉴 -->
+        <div class="menuWrap">
+            <button class="close">
+                <span class="line white"></span>
+                <span class="line mint"></span>
+              </button>
+
+            <div class="menuInner">
+            <ul class="gnb">
+                <li>Applications
+                    
+                </li>
+                <li>Products
+                    <ul class="sub">
+                        <li>오디오 앰프 IC</li>
+                        <li>오디오 인핸스먼트 IC</li>
+                        <li>LNB 파워 IC</li>
+                        <li>AC 다이렉트 LED 드라이버 IC</li>
+                        <li>미니 LED 드라이버 IC</li>
+                        <li>갈바닉 절연 게이트 드라이버 IC</li>
+                        <li>DC-DC 컨버터 IC</li>
+                    </ul>
+                </li>
+                <li>About us
+                    <ul class="sub">
+                        <li>CEO인사말</li>
+                        <li>회사소개</li>
+                        <li>CI</li>
+                        <li>특허인증</li>
+                        <li>연구소</li>
+                        <li>Contact us</li>
+                    </ul>
+                </li>
+                <li>Investment
+                    <ul class="sub">
+                        <li>재무정보</li>
+                        <li>공시정보</li>
+                        <li>공고사항</li>
+                        <li>IR</li>
+                        <li>News</li>
+                    </ul>
+                </li>
+                <li>ESG
+                    <ul class="sub">
+                        <li>ESG개요</li>
+                        <li>환경</li>
+                        <li>사회</li>
+                        <li>지배구조</li>
+                    </ul>
+                </li>
+                <li>Career
+                    <ul class="sub">
+                        <li>인재상</li>
+                        <li>인사제도</li>
+                        <li>채용정보</li>
+                    </ul>
+                </li>
+            </ul>
+            </div>
+        </div>
+        <section class="visual">
+            <div class="inner">
+                <div class="title animate" data-animate="motion">
+                    <h2 class="left">We design <img src="img/더블유.PNG" alt=""></h2>
+                    <h2 class="right">Innovation & Future</h2>
+                    <p>고객의 혁신과 미래를 함께하는 팹리스 업체</p>
+                </div>
+                <p class="img animate" data-animate="motion">
+                    <img src="img/main_visual_img01.jpg" alt=""class="scroll-scale-img">
+                </p>
+            </div>
+        </section>
+        
+        <section class="weMake animate" data-animate="motion">
+        <div class="inner">
+            <div class="title">
+                <h2 data-splitting="words">We make Analog and Audio Chips</h2>
+                <p>아날로그와 오디오 반도체를 만듭니다.</p>
+            </div>
+            <div class="slide">
+                <ul>
+                    <li>
+                        
+                            <img src="img/main_power_img01.png" class="default-img" alt="default">
+                            <img src="img/main_power_img01_on.png" class="hover-img" alt="hover">
+                            <h3>Innovation</h3>
+                            <p>혁신적 생각</p>
+                        
+                    </li>
+                    <li>
+                        
+                            <img src="img/main_power_img02.png" class="default-img" alt="default">
+                            <img src="img/main_power_img02_on.png" class="hover-img" alt="hover">
+                            <h3>Excellence</h3>
+                            <p>탁월한 기술</p>
+                        
+                    </li>
+                    <li>
+                            <img src="img/main_power_img03.png" class="default-img" alt="default">
+                            <img src="img/main_power_img03_on.png" class="hover-img" alt="hover">
+                            <h3>Confidence</h3>
+                            <p>고객중심</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        </section>
+        
+
+        <section class="applications animate" data-animate="motion">
+            <div class="inner">
+                <h2 data-splitting>Applications</h2>
+                <div class="list">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <img src="img/applications_list_img01.jpg" alt="">
+                            </a>
+                            <p>TV</p>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="img/applications_list_img02.jpg" alt="">
+                            </a>
+                            <p>Satellte TV,Set-Top Box</p>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="img/applications_list_img03.jpg" alt="">
+                            </a>
+                            <p>Monitor</p>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="img/applications_list_img04.jpg" alt="">
+                            </a>
+                            <p>Gaming Monitor</p>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="img/applications_list_img05.jpg" alt="">
+                            </a>
+                            <p>AI Speaker</p>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="img/applications_list_img06.jpg" alt="">
+                            </a>
+                            <p>Bluetooth Speaker</p>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="img/applications_list_img07.jpg" alt="">
+                            </a>
+                            <p>Soundbar</p>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="img/applications_list_img08.jpg" alt="">
+                            </a>
+                            <p>LED Lighting</p>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="img/applications_list_img09.jpg" alt="">
+                            </a>
+                            <p>Automotive</p>
+                            <li>
+                                <a href="#">
+                                    <img src="img/applications_list_img01.jpg" alt="">
+                                </a>
+                                <p>TV</p>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="img/applications_list_img02.jpg" alt="">
+                                </a>
+                                <p>Satellte TV,Set-Top Box</p>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="img/applications_list_img03.jpg" alt="">
+                                </a>
+                                <p>Monitor</p>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="img/applications_list_img04.jpg" alt="">
+                                </a>
+                                <p>Gaming Monitor</p>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="img/applications_list_img05.jpg" alt="">
+                                </a>
+                                <p>AI Speaker</p>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="img/applications_list_img06.jpg" alt="">
+                                </a>
+                                <p>Bluetooth Speaker</p>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="img/applications_list_img07.jpg" alt="">
+                                </a>
+                                <p>Soundbar</p>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="img/applications_list_img08.jpg" alt="">
+                                </a>
+                                <p>LED Lighting</p>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="img/applications_list_img09.jpg" alt="">
+                                </a>
+                                <p>Automotive</p>
+                            </li>
+                            
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="products animate" data-animate="motion">
+            <div class="inner">
+                <h2 data-splitting>Products</h2>
+        
+                    <div class="right">
+                        <ul class="slide2">
+                            <li>
+                                <img src="./img/Audio-Amplifier_NEW.jpg"alt="">
+                                <div class="txt">
+                                    <h3>Audio Amplifier IC</h3>
+                                    <p>웰랑은 20년 넘게 축적한 음질 향상 기술과 전력 반도체 설계 기술을 기반으로 <br> 다양한 오디오 앰프IC 솔루션을 개발하여 TV포함 여러 제품군에 공급하고 있습니다.<br>
+                                    고음질 오디오 신호 처리 기술과 신뢰성이 뛰어난 아날로그 회로 설계 기술을 결합하여 <br>
+                                    사람이 듣기 편안하면서도 뛰어난 음질의 사운드를 제공하고 있습니다.
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="img/Audio-Enhancement_NEW-TEST.jpg"alt="">
+                                <div class="txt">
+                                <div class="txt">
+                                    <h3>Audio Enhancement IC</h3>
+                                    <p>웰랑의 고품질&고성능 음질 기술이 집약된 오디오 인핸스먼트 IC 제품은<br>
+                                        영화, 음악, 게임 등 실감 사운드 콘텐츠를 두 개의 스피커에 맞추어 <br>
+                                        입체적으로 처리하여 고객이 마치 현장에 있는 듯한 경험을 제공합니다.
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="./img/LNB_NEW.JPG"alt="">
+                                <div class="txt">
+                                <div class="txt">
+                                    <h3>LNB Power IC</h3>
+                                    <p>웰랑은 전력반도체와 통신 제어 기능을 담당하는 위성수신기영 LNBP IC를 개발하여 <br> 판매하고 있습니다. 위성안테나에 위치한 위성신호수신기에 (LNB) 전원을 공급하고<br>
+                                    DiSEqC 규격에 맞게 신호를 전달하는 기능을 담당하며 위성 TV와 위성 셋톱박스에<br>
+                                    사용됩니다.
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="img/AC-Direct-LED-Driver-NEW.jpg"alt="">
+                                <div class="txt">
+                                <div class="txt">
+                                    <h3>AC Direct LED Driver IC</h3>
+                                    <p>웰랑은 AC Direct 방식의 LED Driver IC를 개발하여 판매하고 있습니다.<br>
+                                    기존 형광등과 백열등을 효율이 높은 LED 조명으로 대체하는데 사용됩니다.
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="img/Mini-LED_NEW.jpg"alt="">
+                                <div class="txt">
+                                <div class="txt">
+                                    <h3>Mini LED Driver IC</h3>
+                                    <p>웰랑은 미니 LED TV를 위한 드라이머 IC 제품 개발을 진행하고 있습니다. 미니 LED TV는<br>
+                                    로컬 디밍 기술을 활용하여 LED TV의 낮은 명암비 문제를 해결하여 뛰어난 화질 경험을 <br>
+                                    고객에게 제공하며, 높은 성장이 예상됩니다.
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="img/Galvanic_NEW.jpg"alt="">
+                                <div class="txt">
+                                <div class="txt">
+                                    <h3>Galvanic lsolated Gate <br>Driver IC</h3>
+                                    <p>웰랑은 미래가치가 높은 자동차용 시스템 반도체를 신사업으로 추진하고 있습니다.<br> 갈바닉 절연 드라이버 IC는 시스템 안전을 위해 DC 절연을 유지하면서<br>
+                                    AC 신호만을 전달하여 시스템을 보호하는 역할을 담당하는데,<br>
+                                    자사는 정진형(Capacitive)와 유도형(Inductive)를 결합한<br>
+                                    하이브리드 방식을 제안하였고 개발을 진행하고 있습니다.
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="img/DCDC_NEW.jpg"alt="">
+                                <div class="txt">
+                                    <h3>DC-DC Converter IC</h3>
+                                    <p>웰랑은 미래가치가 높은 자동차용 시스템 반도체를 신사업으로 추진하고있습니다. <br> DC-DC 컨버터 IC는 입력 전압을 시스템에서 요구되는 다양한 전압으로 변환하는 역할을 <br> 담당하며, 자동차를 비롯여 가전, PC, 모바일 제품에 널리 사용되고 있습니다. <br> 자사는 축적된 아날로그 회로 설계 역량으로 효율이 높으면서 신뢰성이 뛰어난 솔루션 제공을 <br>목표로 개발을 진행하고 있습니다.
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                        
+                </div>
+            </div>
+        </section>
+        <section class="information animate" data-animate="motion">
+            
+            <div class="inner">
+                <div class="title">
+                        <h2 data-splitting>Company Information</h2>
+                        <p>고객과 함께하는 좋은 비즈니스 파트너가 되기위해 최선을 다하겠습니다.</p>
+                </div>
+                    <img class="squre" src="img/main_company_tit.png" alt="">
+                <div class="icon">
+                    <ul>
+                        <li class="contact-us">
+                          <img src="img/main_company_icon01.png" alt="">
+                          
+                          <p>Contact Us</p>
+                        </li>
+                        <li class="history">
+                          <img src="img/main_company_icon02.png" alt="">
+                          <p>History</p>
+                        </li>
+                      </ul>
+                </div>
+            </div>
+        </section>
+        <section class="accordion-section animate" data-animate="motion">
+            <div class="accordion-wrap">
+              <div class="accordion-item active">
+                <img src="img/vision_accordion_img01.jpg" alt="Office 1">
+                <div class="text">Office</div>
+              </div>
+              <div class="accordion-item">
+                <img src="img/vision_accordion_img02.jpg" alt="Office 2">
+                <div class="text">Office</div>
+              </div>
+              <div class="accordion-item">
+                <img src="img/vision_accordion_img03.jpg" alt="Office 3">
+                <div class="text">Office</div>
+              </div>
+              <div class="accordion-item">
+                <img src="img/vision_accordion_img04.jpg" alt="Office 4">
+                <div class="text">Office</div>
+              </div>
+              <div class="accordion-item">
+                <img src="img/vision_accordion_img05.jpg" alt="Office 5">
+                <div class="text">Office</div>
+              </div>
+            </div>
+          </section>
+
+        <section class="recruit animate" data-animate="motion">
+            
+            <div class="inner">
+                <div class="title">
+                    <h2>(주)웰랑과 함께할 인재를 채용합니다</h2>
+                    <p>Wellang Co.,Ltd.</p>
+                </div>
+                <div class="right">
+                    <ul>
+                    <li>
+                        <a href="#">
+                        <img src="img/main_recruit_bg.png" alt="default" class="default-img">
+                        <img src="img/main_recruit_bg_on.png" alt="hover" class="hover-img">
+                        <span class="lnr lnr-arrow-right"></span>
+                        </a>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="newsRoom animate" data-animate="motion">
+            <div class="inner">
+                <div class="title">
+                    <h2>News room<span class="lnr lnr-arrow-right"></span></h2>
+                </div>
+                <div class="right">
+                    <p class="tit">NEWS</p>
+                    <p class="txt">
+                        <b>몸값 2000억 목표... 삼성·LG가 찍은 팹리스 '웰랑'IPO재도전 [시그널]</b>
+                    </p>
+                    <p class="date">2024-11-19 <span><i class="xi-camera"></i></span></p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="inner">
+                
+                    <img src="img/푸터로고.PNG" alt="">
+                <div class="info">
+                    <div class="left">
+                        <p class="adress"><b>경기도 성남시 분당구 판교로 228번길 15, 원스동 6층 (삼평동,판교세븐벤처밸리 1단지) </b></p>
+                        <div class="dial">
+                            <p class="tel"><span>TEL</span> <b>031-8038-4900</b></p>
+                            <p class="fax"><span>FAX</span> <b>031-8038-4949</b></p>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <p class="top">
+                            <a href="#">
+                                <b class="one">개인정보처리방침</b>
+                                <b class="two">고객문의하기</b>
+                            </a>
+                        </p>
+                        <p class="bottom">
+                            © Wellang Co.,Ltd. All Rights reserved.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+        <!-- Contact 고정 버튼 -->
+        <div class="fixed-contact">
+            <a href="/kr/about/contact.php">
+                <p>Contact</p>
+                <span class="lnr lnr-bubble"></span>
+            </a>
+          </div>
+        <!-- 탑버튼 -->
+          <div class="top-btn">
+            <i class="xi-arrow-up"></i>
+          </div>
+  
+    
+
+    <script src="js/script.js"></script>
+    <script>
+        $(window).on('scroll', function () {
+          let scrollTop = $(window).scrollTop();
+      
+          $('.weMake .slide ul li').each(function (index) {
+            let speed = 0.05 + (index * 0.03); // 속도 차이
+            let moveY = -(scrollTop * speed); // 위로 이동
+            $(this).css('transform', `translateY(${moveY}px)`);
+          });
+        });
+      </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+@charset "utf-8";
+/* 인코딩할때 깨지지말라고 써주는 코드 */
+@font-face {
+ font-family: 'handel gothic';
+ src: url(../font/handel gothic.ttf) format('truetype');
+}
+/* 폰트를 다운받거나 폰트 css를 이렇게 따로 만들어주면 됨 */
+/* 웹용은 ttf쓰기 (에러가 잘 안남 )*/

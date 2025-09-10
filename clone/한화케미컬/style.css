@@ -1,0 +1,164 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css?family=Exo+2|Noto+Sans+KR&display=swap');
+
+/* reset */
+* {margin: 0;padding: 0; box-sizing: border-box;}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, tbody, tfoot, thead, tr, th, td{margin:0;padding:0;}
+h1, h2, h3, h4, h5, h6 {font-weight: 700; font-size: inherit;}
+a {color: inherit; text-decoration: inherit;}
+img {vertical-align: middle;}
+a img {border: none;}
+li {list-style: none;}
+address, em, i {font-style: normal;}
+a:focus {outline: none}
+button:focus {outline: none}
+
+/* 레이아웃 */
+body{font-family: 'Noto Sans KR',sans-serif; }
+.er{font-family: 'Exo 2',sans-serif;}
+.wrap{position: relative;margin: 0 auto;overflow: hidden;}
+
+/* 헤더 */
+header{background: rgba(2, 2, 2, 0.19);height: 100px; line-height: 100px; position: fixed; width: 100%; left: 0;top: 0;}
+.innerheader{width: 1600px; margin: 0 auto; display: flex; justify-content: space-between; color: #fff;}
+.innerheader .logo{width: 220px;}
+.innerheader nav{width: 87%; display: flex;justify-content: space-between;}
+.innerheader nav .gnb{width: 38%; display: flex; justify-content: space-between;}
+.innerheader nav .gnb li{width: 25%; text-align: center;}
+.innerheader nav .gnb li a{display: block;width: 100%; height: 100%;}
+.innerheader nav .gnb li a:hover, .innerheader nav .gnb li a:focus{color: #ff8342;}
+
+.innerheader nav .tnb{width: 38%;display: flex;  justify-content: space-between;}
+.innerheader nav .tnb li:nth-child(1),.innerheader nav .tnb li:nth-child(2){width: 33%;}
+.innerheader nav .tnb li a{display: block; width: 100%; height: 100%;}
+.innerheader nav .tnb li a i{margin-right: 10px;}
+.innerheader nav .tnb li:last-child a{height: 35px; line-height: 35px; border: 1px solid#fff; padding: 0 0 10px 15px; border-radius: 20px; margin-top: 33px;}
+.innerheader nav .tnb li:last-child a i{margin-left: 10px;}
+.innerheader nav .tnb li:last-child a:hover, .innerheader nav .tnb li:last-child a:focus{background:#fff;color:#ff8342;}
+
+/* 비쥬얼 */
+.visual{background:url(../한화케미컬/img/vis_4.jpg) no-repeat center/cover ; width: 100%; height: 100vh; background-attachment: fixed;}
+.visual .maintit{width: 1024px; margin: 0 auto; padding-top: 330px; text-align: center; color: #fff;}
+.visual .maintit h2{font-size: 55px; line-height: 1.1; margin-bottom: 30px;}
+.visual .maintit p{font-size: 25px; margin-bottom: 30px;}
+.visual .maintit .view{display: block; width: 180px; margin: 0 auto; padding: 8px 0; border-radius: 40px; border: 1px solid#fff;}
+
+
+
+/* 공통요소 */
+.inner{width: 1400px; margin: 0 auto;}
+.inner .tit{text-align: center;}
+.inner .tit h2{font-size: 42px; margin-bottom: 10px; font-weight: normal;}
+.inner .tit h2 .color{color: #ff8342; margin-left: 10px;}
+.inner .tit p{font-size: 18px; margin-bottom: 50px; color: #555;}
+
+/* 어바웃 */
+.about{padding: 80px 0;}
+
+.about .inner ul{display: flex; border-bottom: 1px solid #ddd;}
+.about .inner ul li a{display: block; width: 100%; height: 100%; } 
+.about .inner ul li a .img{width: 100%; overflow: hidden;}
+.about .inner ul li a .img img{ width:100%; transition: all 0.2s;}
+.about .inner ul li a .txtbox{padding: 30px;}
+.about .inner ul li a .txtbox h3{font-size: 20px; margin-bottom: 10px;}
+.about .inner ul li a .txtbox p{font-size: 16px; margin-bottom: 20px;}
+.about .inner ul li a .txtbox p.more{text-transform: uppercase; font-weight: bold; padding-left: 40px; position: relative;}
+.about .inner ul li a .txtbox p.more::before{content:'\f178'; position: absolute; font-family: fontAwesome; left: 0; top: 0; width: 30px; height: 30px; background:#ff8342; border-radius: 50%;line-height: 30px;}
+.about .inner ul li a:hover .img img{transform: scale(1.3);}
+
+/* 이노베이션 */
+.inovations{padding: 100px 0 150px;}
+.inovations .inner .imgbox{background: url(../한화케미컬/img/product_1.jpg) no-repeat center/cover; width: 100%; height: 540px; position: relative;}
+.inovations .inner .imgbox .innerbox{background: #3a3c4e;width: 80%; position: absolute; left: 50%;bottom: -50px; transform: translateX(-50%);}
+.inovations .inner h3{background: #fff; font-size: 18px; padding: 25px 45px;}
+.inovations .inner h3 span{color: #ff8342;}
+.inovations .inner .imgbox .innerbox .bottom{display: flex; justify-content: space-between; padding: 35px 85px;}
+.inovations .inner .imgbox .innerbox .bottom p {color: #fff;}
+.inovations .inner .imgbox .innerbox .bottom a{display: block; background: #ff8342; padding: 11px 32px 6px; border-radius: 50px;  color:#fff;} 
+/*  padding: 9px 30px 6px; 말고 위드를 주고 aline itemes center 줘도 됨*/
+
+/* me */
+.me{width: 100%; background: url(../한화케미컬/img/me.jpg)no-repeat center/cover; padding: 80px 0; margin-bottom: 150px;}
+.me .inner ul.list{width: 100%; border-top: 2px solid#000; border-bottom: 2px solid#000;}
+.me .inner ul.list > li{padding: 30px 60px;}
+.me .inner ul.list > li h3{font-size: 18px; margin-bottom: 20px;}
+.me .inner ul.list > li h3 i{margin-right: 10px; color: #ff8342;}
+.me .inner ul.list > li > p{line-height: 1.6; margin-bottom: 20px; padding-left: 33px;}
+.me .inner ul.list > li .in{margin-left: 33px;}
+.me .inner ul.list > li .in li{display: flex; margin-bottom: 10px;}
+.me .inner ul.list > li .in li em{width: 12%;}
+.me .inner ul.list > li .in li p{position: relative;}
+.me .inner ul.list > li .in li p::before{content: ''; position: absolute; left: -40px; top: 10px; width: 4px; height: 4px; border-radius: 50%; background: #ff8342;}
+.me .inner ul.list > li .more{display: block; font-weight: bold; font-size: 14px;}
+.me .inner ul.list > li .more i{margin-left: 10px; color: #ff8342;}
+
+/* sns */
+.sns {margin-bottom: 60px;}
+.sns .inner ul {display: flex; justify-content: space-between;}
+.sns .inner ul li{width: 32.6%;}
+.sns .inner ul li a{display: block; width: 100%; height: 100%;}
+.sns .inner ul li a p.img {width: 100%; position: relative;}
+.sns .inner ul li a p.img img {width: 100%;}
+.sns .inner ul li a p.img:before {content: '';  left: 0; top: 0; width: 0%; height: 100%;position: absolute;
+    background: rgba(255, 131, 66, 0.9);
+transition: 0.5s;}
+.sns .inner ul li p.img:after {content: 'BLOG'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); color: #fff; border: 1px solid #fff; padding: 5px 30px; 
+border-radius: 40px; opacity: 0;}
+
+/* hover */
+.sns .inner ul li a:hover p.img:before {width: 100%; transition: all 0.3s; cursor: pointer; }
+.sns .inner ul li a:hover p.img:after {opacity: 1; transition: 0.5s; cursor: pointer;}
+.sns .inner ul li a .bottom {padding: 20px 0 20px 30px;}
+.sns .inner ul li a .bottom p.color {font-weight: normal; color: #ff8342; font-size: 15px;}
+.sns .inner ul li a .bottom p {font-weight: bold; font-size: 18px;}  
+.sns .inner ul li a .bottom p.time { color: #999; font-weight: normal; font-size: 15px; 
+margin-top: 30px; position: relative; padding-left: 20px;}
+.sns .inner ul li a .bottom p.time:before {position: absolute; left: 0; top: 4px;
+content: '\f017'; font-family: fontAwesome; font-size: 15px;}
+.sns .inner ul li a .bottom p.time span {margin-left: 10px;}
+
+/* footer */
+footer{border-top: 1px solid #999; padding: 30px 0 50px; }
+footer .inner {width: 1600px; display: flex; }
+footer .inner .ftLogo {margin-right: 80px;}
+footer .inner .address {margin-right: 300px; width: 30%; }
+footer .inner .address li:first-child {font-weight: bold; margin-bottom: 10px;}
+footer .inner .address li:last-child {color: #999;}
+footer .inner .list {display: flex; width: 50%; justify-content: space-between;}
+footer .inner .list a {display: block; width: 100%; height: 100%;  text-align: center; position: relative;}
+footer .inner .list a:after {position: absolute; content: ''; right: -29px; top: 10px; width: 4px;
+height: 4px; border-radius: 50%; background: #ccc;}
+
+/* animation */
+@keyframes slideUp {
+    0% {opacity: 0; transform: translateY(100px);}
+    30% {opacity: 0; transform: translateY(100px);}
+}
+
+.inner.motion .tit h2 {animation-name: slideUp; animation-duration: 1s;}
+.inner.motion.tit p {animation-name: slideUp; animation-duration: 1.5s;}
+
+@keyframes slideLeft{
+    0% {opacity: 0; transform: translateX(-30px) rotateX(-100deg)}
+    30% {opacity: 0; transform: translateX(-30px) rotateX(-100deg)};}
+
+.about .inner.motion ul li {animation-name: slideUp; animation-duration: 1.4s;}
+.about .inner.motion ul li:nth-child(3) { animation-duration: 1s;}
+.about .inner.motion ul li:nth-child(2) { animation-duration: 1.2s;}
+
+
+.sns .inner.motion ul li {animation-name: slideUp; animation-duration: 1.4s;}
+.sns .inner.motion ul li:nth-child(3) { animation-duration: 1.6s;}
+.sns .inner.motion ul li:nth-child(2) { animation-duration: 1.3s;}
+
+/* .about .inner ul li {animation-name: slideLeft; animation-duration: 1.4s;}
+.about .inner ul li:nth-child(3) { animation-duration: 1s;}
+.about .inner ul li:nth-child(2) { animation-duration: 1.2s;} */
+
+/* splitting */
+.motion  .char { display: inline-block;
+    animation: slideLeft 1s cubic-bezier(.10, 0, .10, 1) both;
+    animation-delay: calc(60ms * var(--char-index));
+}
+/* 개발자도구로 보고 char에 하면 각각, word로 하면 문장 전체 애니메이션. */
+/* html에 글자에 datl-splitting먹이고 css에 넣으면됨 */

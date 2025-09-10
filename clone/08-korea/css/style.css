@@ -1,0 +1,150 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap');
+
+/* reset */
+* {margin: 0;padding: 0; box-sizing: border-box;}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, tbody, tfoot, thead, tr, th, td{margin:0;padding:0;}
+h1, h2, h3, h4, h5, h6 {font-weight: 700; font-size: inherit;}
+a {color: inherit; text-decoration: inherit;}
+img {vertical-align: middle;}
+a img {border: none;}
+li {list-style: none;}
+address, em, i {font-style: normal;}
+a:focus {outline: none}
+button:focus {outline: none}
+
+body {font-family: "Nanum Gothic", sans-serif;font-weight: 400;font-style: normal; color: #333; line-height: 1.25;}
+.wrap {position: relative; margin: 0 auto; overflow: hidden; }
+
+/* header */
+.innerheader {width: 90%; height: 90px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;}
+.innerheader .icon {width: 218px; display: flex; justify-content: space-between;}
+.innerheader .logo a {display: block; width: 100%; cursor: pointer;}
+.innerheader .right {width: 245px; display: flex; justify-content: space-between;}
+.innerheader .right li {border: 1px solid #ddd; width: 46%; text-align: center; height: 45px; line-height: 45px;}
+.innerheader .icon a {display: block; width: 100%; cursor: pointer;}
+
+/* visual */
+.visual {width: 100%; height: 90vh; position: relative;}
+.visual img {width: 100%; height: 100%;}
+.visual .inner {position: absolute; left: 50%; top: 50%;  transform: translate(-50%, -50%); display: flex; justify-content: space-between; width: 1280px;}
+.visual .inner .leftbox { width: 55%;}
+.visual .inner .leftbox h2 {font-size: 50px; margin-bottom: 50px;}
+.visual .inner .leftbox p {font-size: 22px; margin-bottom: 50px;}
+.visual .inner .leftbox .btn {display: block; background-color: #000; width: 160px; text-align: center; padding: 20px 0; color: #fff;}
+.visual .inner .rightbox { width: 20%; }
+.visual .inner .rightbox .may {width: 145px; height: 145px; border-radius: 50%; background-color: #f57454; text-align: center; margin-bottom: 10px;}
+.visual .inner .rightbox .may .tit {font-size: 55px; font-weight: bold; font-style: italic;}
+.visual .inner .rightbox ul { margin-bottom: 30px; }
+.visual .inner .rightbox ul li { border-bottom: 1px solid #000; }
+.visual .inner .rightbox ul li a{font-size: 12px; letter-spacing: 5px; line-height: 50px;}
+.visual .inner .rightbox .date {font-size: 54px; font-weight: bold;}
+
+/* 공통요소 */
+.inner {width: 1400px; margin: 0 auto;}
+.inner .maintit {text-align: center; font-size: 40px; margin-bottom: 50px;}
+
+/* happy */
+.happy { padding: 120px 0 100px;}
+.happy .inner .maintit span {color: #f57260;}
+.happy .inner ul {display: flex; justify-content: space-between;}
+.happy .inner ul li {width: 32.2%;background-color: #c5cdbe;}
+.happy .inner ul li:nth-child(2) {background-color: #e89b90;}
+.happy .inner ul li:nth-child(3) {background-color: #dfcfc0;}
+.happy .inner ul li a {display: block; width: 100%; height: 100%; cursor: pointer; padding: 50px 0 50px 30px; box-sizing: border-box; position: relative;}
+.happy .inner ul li a:after {content: ''; width: 63%; height: 2px; background-color: rgba(237, 237, 237, 0.2); position: absolute; right: 0; top: 63px;}
+.happy .inner ul li:nth-child(2) a:after {width: 60%;}
+.happy .inner ul li:nth-child(3) a:after {width: 43%;}
+.happy .inner ul li a p {font-size: 19px; margin-bottom: 30px;}
+.happy .inner ul li a h3 {font-size: 26px; margin-bottom: 70px;}
+.happy .inner ul li a p.img {width: 380px; float: right; overflow: hidden;}
+.happy .inner ul li a p.img img {width: 100%; transition: all 0.8s;}
+
+/* hover */
+.happy .inner ul li a:hover p.img img {transform: scale(1.2);}
+
+/* smart */
+.smart {background: url(../img/section.jpg); background-repeat: no-repeat; background-position: center; background-size: cover; padding: 80px 0;}
+.smart .maintit span {color: #425ca6;}
+.bottom {display: flex; justify-content: space-between; }
+.bottom .left {width: 30%; }
+.bottom .left li {background-color: red;}
+.bottom .left li:nth-child(1) {margin-bottom: 10px;}
+.bottom .left li a {display: block; width: 100%; height: 100%; position: relative;} 
+.bottom .left li a:before {content: '상품테스트'; position: absolute; left: 40px; bottom: 40px; color: #fff; font-size: 16px; font-weight: bold; border-bottom: 5px solid #fff; padding-bottom: 25px;}
+.bottom .left li a img {width: 100%;}
+.bottom .left li a h3 {font-size: 22px; position: absolute; top: 55%; left: 40%; font-size: 22px; color: #fff; line-height: 1.5;}
+
+
+.bottom .right {width: 68.5%; background-color: pink; display: flex;}
+.bottom .right li {width: 50%; background-color: #fff; text-align: center; padding: 50px 0;}
+.bottom .right li:nth-child(1) {border-right: 1px solid #ddd;}
+.bottom .right li >p {font-size: 19px; font-weight: bold; width: 30%; margin: 0 auto 20px; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; padding: 10px 0;}
+.bottom .right li a {display: block; width: 100%; height: 100%; }
+.bottom .right li a p.img {width: 200px; height: 200px ; border-radius: 50%; overflow: hidden; margin: 0 auto 30px;}
+.bottom .right li a p.img img {width: 100%; transition: all 0.5s;}
+.bottom .right li a:hover p.img img {transform: scale(1.2);}
+
+/* news */
+.news {padding: 50px 0 130px;}
+.news ul {display: flex; justify-content: space-between;}
+.news li {width: 48%; background-image: url(../img/img_08.jpg); background-repeat: no-repeat; background-position: center; background-size: cover; padding: 80px 0 80px 50px;}
+.news ul li:nth-child(2) {background-image: url(../img/img_09.jpg);}
+.news ul li h3 {font-size: 24px; margin-bottom: 20px;}
+.news ul li p {margin-bottom: 10px;}
+.news ul li p .num {font-size: 14px; background-color: #7f8c97; padding: 3px 7px; border-radius: 50%}
+
+/* footer */
+footer {background-color: #454545; color: #adadad; padding: 60px 0;}
+footer .inner {display: flex; justify-content: space-between;}
+footer .inner .address {line-height: 1.8;}
+footer .inner .address span {font-size: 14px;}
+footer .inner .flogo {margin-top: 30px;}
+
+.topbtn {width: 80px; height: 80px; background-color: #454545; color: #ffff; position: fixed; right: 5%; bottom: 27%; background-image: url(../img/arrow.JPG); background-repeat: no-repeat; border-radius: 50%; display: flex; justify-content: center; align-items: center ; background-position: 50% 13%;}
+
+/* animation */
+@keyframes slideup{
+    0% {transform: translateY(100px); opacity: 0;}
+    50% {transform: translateY(100px); opacity: 0;}
+}
+.visual .inner.motion .leftbox h2 {animation-name: slideup; animation-duration: 1.5s; }
+.visual .inner.motion .leftbox p {animation-name: slideup; animation-duration: 2s;}
+.visual .inner.motion .leftbox .btn {animation-name: slideup; animation-duration: 2.5s;}
+.happy .inner.motion ul li {animation-name: slideup; animation-duration: 1.2s;}
+.happy .inner.motion ul li:nth-child(2) { animation-duration: 1.4s;}
+.happy .inner.motion ul li:nth-child(3) { animation-duration: 1.6s;}
+
+@keyframes slideleft {
+    0% {transform: translateX(-100px); opacity: 0;}
+    30% {transform: translateX(-100px); opacity: 0;}
+}
+
+@keyframes slideright {
+    0% {transform: translateX(100px); opacity: 0;}
+    30% {transform: translateX(100px); opacity: 0;}
+}
+
+.smart .inner .bottom li {animation-name: slideleft; animation-duration: 1s;}
+.smart .inner .bottom li:nth-child(2) {animation-name: slideleft; animation-duration: 1.2s;}
+
+@keyframes scaleani{
+    0% {opacity: 0; transform: scale(0);}
+    30% {opacity: 0; transform: scale(0);}
+}
+.visual .rightbox .may {animation-name: scaleani; animation-duration: 1s;}
+
+@keyframes letterspc{
+    0% {opacity: 0; letter-spacing: -5px;}
+    30% {opacity: 0; letter-spacing: -5px;}
+}
+.visual .rightbox ul li a {animation-name: letterspc; animation-duration: 1s;}
+.visual .rightbox ul li:nth-child(2) { animation-duration: 1.2s;}
+.visual .rightbox ul li:nth-child(3) { animation-duration: 1.4s;}
+.visual .rightbox .date {animation-name: slideup; animation-duration: 1.6s;}
+
+@keyframes borderani{
+    0% {opacity: 0;}
+    30% {opacity: 0;}
+}
+.visual .rightbox ul li {animation-name: borderani; animation-duration: 3s;}

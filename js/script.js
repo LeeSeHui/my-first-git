@@ -211,117 +211,120 @@ items.forEach((item) => {
 });
 
 
-// teamproject
-// ===== Intro: 가로 스크롤 =====
 (() => {
   if (!window.gsap || !window.ScrollTrigger) return;
   gsap.registerPlugin(ScrollTrigger);
 
-  const wrap  = document.querySelector(".intro-wrap");
-  if (!wrap) return;
+  // 📌 스크롤 배율 & 여유 조절
+  const SCROLL_SPEED   = 1.8;    // 값 ↑ → 더 많이 스크롤해야 끝남 (느려짐)
+  const TAIL_VW        = 80;     // 끝에서 여유 (뷰포트 단위, %)
+  const EXTRA_END_PX   = 1200;   // 마지막에 강제로 머무르는 여유(px)
 
-  const track = wrap.querySelector(".intro-track");
+  const vw = () => window.innerWidth;
+  const tailPx  = () => (TAIL_VW / 100) * vw();
 
-  // 트랙 총 가로 길이 - 화면 너비 만큼 이동
-  const len = () => Math.max(0, track.scrollWidth - window.innerWidth);
-
-  // 가로 스크롤
-  gsap.to(track, {
-    x: () => -len(),
-    ease: "none",
-    scrollTrigger: {
-      id: "intro-horizontal",
-      trigger: wrap,
-      start: "top top",
-      end: () => "+=" + len(),
-      pin: true,
-      scrub: 1,
-      anticipatePin: 1,
-      invalidateOnRefresh: true
-    }
-  });
-
-  window.addEventListener("resize", () => ScrollTrigger.refresh());
-})();
-
-
-(() => {
-  if (!window.gsap || !window.ScrollTrigger) return;
-  gsap.registerPlugin(ScrollTrigger);
-
-  /* 0) 인트로 한 번만 핀 */
+  // 0) 인트로 섹션 고정 (있을 경우)
   const intro = document.querySelector(".tproj-intro");
   if (intro) {
     ScrollTrigger.create({
       id: "tproj-intro-pin",
       trigger: intro,
       start: "top top",
-      end: "+=700",        // 인트로 멈춰있는 길이 (원하면 500~1200 조절)
+      end: "+=700",
       pin: true,
       scrub: true
     });
   }
 
-  /* 1) 각 프로젝트: 헤더 살짝 보여주고 → 가로 스크롤 */
+  // 1) 각 프로젝트 섹션 가로 스크롤
   document.querySelectorAll(".tproj-sec").forEach((sec, i) => {
-    const head  = sec.querySelector(".tproj-head");
-    const wrap  = sec.querySelector(".tproj-wrap");
-    const track = sec.querySelector(".tproj-track");
+    const head   = sec.querySelector(".tproj-head");
+    const wrap   = sec.querySelector(".tproj-wrap");
+    const track  = sec.querySelector(".tproj-track");
     const slides = sec.querySelectorAll(".tproj-slide");
 
-    // 가로 길이 계산
-    const len = () => Math.max(0, track.scrollWidth - window.innerWidth);
+    if (!wrap || !track) return;
 
-    // 스테이지 핀
+    // 실 가로 길이
+    const baseLen = () => Math.max(0, track.scrollWidth - window.innerWidth);
+    // end 길이 = 가로 길이 * 배율 + 끝 여유 + 강제 추가 px
+    const endLen  = () => Math.max(1, baseLen() * SCROLL_SPEED + tailPx() + EXTRA_END_PX);
+
+    // 섹션 전체 고정
     ScrollTrigger.create({
       id: `tproj-pin-${i}`,
       trigger: wrap,
       start: "top top",
-      end: () => "+=" + (len() || 1),
+      end: () => "+=" + endLen(),
       pin: true,
       scrub: 1,
-      invalidateOnRefresh: true,
-      anticipatePin: 1
+      anticipatePin: 1,
+      invalidateOnRefresh: true
     });
 
-// 🔒 타이틀도 같은 범위 동안 고정 (여백 추가 X)
-ScrollTrigger.create({
-  id: `tproj-headpin-${i}`,
-  trigger: wrap,
-  start: "top top",
-  end: () => "+=" + len(),
-  pin: head,
-  pinSpacing: false,
-  anticipatePin: 1,
-  onEnter:     () => gsap.set(head, {autoAlpha: 1}),
-  onEnterBack: () => gsap.set(head, {autoAlpha: 1}),
-  onLeave:     () => gsap.set(head, {autoAlpha: 0}),  // ← 다음 섹션에선 안 보이게
-  onLeaveBack: () => gsap.set(head, {autoAlpha: 0})
-});
-    // 트랙 이동 + 슬라이드 스냅(한 장씩 크게)
+// 헤더 고정 (같은 구간 동안만 보이게)
+if (head) {
+  // 기본은 숨김
+  gsap.set(head, { autoAlpha: 0 });
+
+  ScrollTrigger.create({
+    id: `tproj-headpin-${i}`,
+    trigger: wrap,
+    start: "top top",
+    end: () => "+=" + endLen(),
+    pin: head,
+    pinSpacing: false,
+    anticipatePin: 1,
+    onEnter:      () => gsap.set(head, { autoAlpha: 1 }),
+    onEnterBack:  () => gsap.set(head, { autoAlpha: 1 }),
+    onLeave:      () => gsap.set(head, { autoAlpha: 0 }),
+    onLeaveBack:  () => gsap.set(head, { autoAlpha: 0 })
+  });
+}
+
+    // 트랙 이동
     gsap.to(track, {
-      x: () => -len(),
+      x: () => -baseLen(),
       ease: "none",
       scrollTrigger: {
         id: `tproj-move-${i}`,
         trigger: wrap,
         start: "top top",
-        end: () => "+=" + len(),
+        end: () => "+=" + endLen(),
         scrub: 1,
+        anticipatePin: 1,
         invalidateOnRefresh: true,
-        snap: {
-          snapTo: (v) => {
-            const steps = slides.length - 1;
-            return steps>0 ? Math.round(v * steps)/steps : 0;
-          },
-          duration: 0.25
-        }
+        snap: slides.length > 1
+          ? {
+              snapTo: (v) => {
+                const steps = slides.length - 1;
+                return Math.round(v * steps) / steps;
+              },
+              duration: 0.25
+            }
+          : false
       }
     });
   });
 
+  // ✅ 비디오 play/pause 제어 (보일 때만 재생)
+  document.querySelectorAll('.tproj-slide video').forEach((vid) => {
+    ScrollTrigger.create({
+      trigger: vid.closest('.tproj-slide'),
+      start: "left center",
+      end: "right center",
+      horizontal: true,
+      onEnter: () => vid.play?.(),
+      onEnterBack: () => vid.play?.(),
+      onLeave: () => vid.pause?.(),
+      onLeaveBack: () => vid.pause?.()
+    });
+  });
+
+  // 리사이즈 대응
   window.addEventListener("resize", () => ScrollTrigger.refresh());
 })();
+
 
 function splitIntoLines(p){
   // 원문 가져오기 (br는 공백으로, 공백은 1칸으로)
@@ -622,3 +625,39 @@ animate();
     }
   }, { passive: true });
 })();
+
+// 영상 선택
+document.addEventListener('DOMContentLoaded', () => {
+  const finalVideo = document.getElementById('finalVideo');
+  if (!finalVideo) return;
+
+  const rate = 2.0; // 원하는 배속
+
+  // 메타데이터/재생 시점마다 확실히 적용
+  const applyRate = () => { finalVideo.playbackRate = rate; };
+
+  finalVideo.addEventListener('loadedmetadata', applyRate);
+  finalVideo.addEventListener('play', applyRate);
+  finalVideo.addEventListener('playing', applyRate);
+  finalVideo.addEventListener('ratechange', () => {
+    if (finalVideo.playbackRate !== rate) applyRate();
+  });
+
+  // 자동재생 트리거(일부 브라우저용)
+  finalVideo.play().catch(() => {/* 무음 자동재생 실패시 무시 */});
+});
+
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.to(".final-video", {
+  scale: 1,         // 최종 크기
+  opacity: 1,       // 서서히 보이게
+  ease: "power3.out",
+  scrollTrigger: {
+    trigger: ".final",
+    start: "top 60%",   // ✅ 조금 더 아래 들어왔을 때 시작
+    end: "top 20%",     // ✅ 더 길게 애니메이션 진행
+    scrub: true         // 스크롤에 맞춰 부드럽게
+  }
+});
+
