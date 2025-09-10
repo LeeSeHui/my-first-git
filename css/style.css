@@ -1363,3 +1363,27 @@ rgba(92, 230, 140, 0.4) 0%,   /* 연두(LightGreen) + 옅게 */
   z-index: 9999;
 }
 
+  /* 탑버튼 */
+.footer {
+  position: relative; /* 버튼 절대 배치를 위해 */
+  padding: 50px 20px;
+  background: #111;
+  color: #fff;
+  text-align: center;
+}
+
+.footer .top-btn {
+  position: absolute; 
+  right: 80px; 
+  bottom: 150px; 
+  width: 50px; 
+  height: 50px; 
+  border-radius: 15px;
+  background:#2D9B4C; 
+  color:#fff; 
+  display:flex;
+  align-items:center; 
+  justify-content:center;
+  cursor:pointer; 
+  box-shadow: 0 0 20px rgba(47, 195, 24, 0.5);
+}

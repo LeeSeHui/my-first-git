@@ -661,3 +661,9 @@ gsap.to(".final-video", {
   }
 });
 
+// 탑버튼
+const topBtn = document.querySelector('.top-btn');
+
+topBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
