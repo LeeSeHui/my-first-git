@@ -667,3 +667,31 @@ const topBtn = document.querySelector('.top-btn');
 topBtn.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
+
+// 이메일 복사
+  document.querySelector(".copy-email").addEventListener("click", function(e) {
+    e.preventDefault();
+    const email = "tptp406@naver.com";
+    navigator.clipboard.writeText(email).then(() => {
+      showToast("이메일 주소가 복사되었습니다: " + email);
+    });
+  });
+
+  // 전화번호 복사
+  document.querySelector(".copy-phone").addEventListener("click", function(e) {
+    e.preventDefault();
+    const phone = "010-4928-0142"; // 👉 원하는 번호로 바꿔주세요
+    navigator.clipboard.writeText(phone).then(() => {
+      showToast("전화번호가 복사되었습니다: " + phone);
+    });
+  });
+
+  // 토스트 메시지 함수
+  function showToast(message) {
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    toast.classList.add("show");
+    setTimeout(() => {
+      toast.classList.remove("show");
+    }, 2500);
+  }
