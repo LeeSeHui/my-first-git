@@ -745,7 +745,6 @@ rgba(92, 230, 140, 0.4) 0%,   /* 연두(LightGreen) + 옅게 */
 /* 2번 슬라이드부터 desc는 절대배치 + 변수로 위치 조절 */
 .tproj-slide:not(:first-child) > .slide-desc{
   position:absolute;
-  left:var(--desc-left, 20px);
   right:var(--desc-right, auto);
   bottom:var(--desc-bottom, 19px);
   background: #2D2D2D;
