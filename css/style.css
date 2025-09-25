@@ -643,7 +643,7 @@ rgba(92, 230, 140, 0.4) 0%,   /* 연두(LightGreen) + 옅게 */
   filter: brightness(1);
 }
 .click-fx{
-  position:absolute; width:120px; height:120px;
+  position:absolute; width:180px; height:180px;
   background:url("../img/click.png") center/contain no-repeat;
   transform:translate(-50%,-50%) scale(.9);
   opacity:0; pointer-events:none; z-index:2;
