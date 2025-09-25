@@ -462,6 +462,27 @@ containers.forEach(container => {
     clickFx.style.opacity = 0;
   });
 });
+// li 안의 a 태그에 hover 효과 주기
+document.querySelectorAll('li > a').forEach(link => {
+  const fx = link.querySelector('.click-fx');
+  if (!fx) return;
+
+  link.addEventListener('mousemove', e => {
+    const rect = link.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    fx.style.left = `${x}px`;
+    fx.style.top  = `${y}px`;
+    fx.style.opacity = 1;
+    fx.style.transform = 'translate(-50%, -50%) scale(1)';
+  });
+
+  link.addEventListener('mouseleave', () => {
+    fx.style.opacity = 0;
+    fx.style.transform = 'translate(-50%, -50%) scale(.9)';
+  });
+});
 
 // qna
 (function(){

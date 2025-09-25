@@ -561,6 +561,8 @@ rgba(92, 230, 140, 0.4) 0%,   /* 연두(LightGreen) + 옅게 */
   z-index:-1;
 }
 
+.intro-slide p {font-size: 18px; font-weight: 300; margin-left: 250px;}
+
 /* (참고) 프로젝트 구간에서 이미지 간격 넓을 때는 gap을 0으로 */
 .tproj-track{ display:flex; height:100%; gap: 0; }
 
@@ -797,7 +799,14 @@ bottom: -48px;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
-
+a:hover .click-fx {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+li > a {
+  position: relative;
+  display: inline-block;
+}
 /* 초기 상태 (숨김) */
 .section-text{
   transform: translateY(30px);
